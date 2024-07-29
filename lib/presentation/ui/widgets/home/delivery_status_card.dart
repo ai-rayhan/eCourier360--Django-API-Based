@@ -1,0 +1,48 @@
+
+import 'package:flutter/material.dart';
+import 'package:e_courier_360/presentation/utility/box_decoration.dart';
+import 'package:e_courier_360/presentation/utility/size.dart';
+import 'package:e_courier_360/presentation/utility/text_style.dart';
+
+class SummaryCard extends StatelessWidget {
+  const SummaryCard({
+    super.key, required this.status, required this.count, required this.countColor, required this.image,
+  });
+final String status;
+final String count;
+final Color countColor;
+final Icon image;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Stack(
+        children: [
+          Container(
+            width: Sizefinder.deviceWidth(context)/4.6,
+            height: Sizefinder.deviceWidth(context)/4.6,
+            decoration: AppBoxDecoration.whiteDecoration,
+            child:  
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(children: [
+                // Image.network(image,height: 40,width: 40,),
+                SizedBox(
+                  child: image
+                  ),
+                Text(status,style: AppTextStyle.primary14w600.copyWith(fontSize: 12),maxLines: 1,overflow: TextOverflow.ellipsis,),
+              ],),
+            ),
+          ),
+          Positioned(
+            left:  45,
+            child: Container(
+              decoration: BoxDecoration(color: countColor,borderRadius: BorderRadius.circular(5)),
+              child:  Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(count,style: AppTextStyle.darkGrey13Bold.copyWith(color: Colors.white),),
+              )))
+        ],
+      ),
+    );
+  }
+}

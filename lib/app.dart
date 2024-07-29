@@ -1,0 +1,19 @@
+import 'package:e_courier_360/controller_binder.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/auth/splash_screen.dart';
+import 'package:e_courier_360/presentation/utility/app_theme_data.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class ECourier360 extends StatelessWidget {
+  const ECourier360({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppThemeData.lightThemData,
+      home: const SplashScreen(),
+      initialBinding: ControllerBinder(),
+    );
+  }
+}
