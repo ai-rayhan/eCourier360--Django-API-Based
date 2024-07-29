@@ -1,8 +1,10 @@
 import 'package:e_courier_360/presentation/state_holders/local/parcel_data_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/add_merchant_screen/add_merchant_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/payment_screen/payment_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/riders_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/send_parcel_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/home/home_option_card.dart';
@@ -33,12 +35,14 @@ List<HomeOptionCard> adminOptions = [
       title: "All Merchant",
       imagePath: AssetsPath.persons,
       onTap: () {
+        Get.lazyPut<MerchantController>(() => MerchantController());
          Get.find<MainBottomNavController>().changeIndex(1);
       }),
   HomeOptionCard(
       title: "All Rider",
       imagePath: AssetsPath.rider,
       onTap: () {
+        Get.lazyPut<RiderController>(() => RiderController());
         Get.to(const RidersScreen());
       }),
   HomeOptionCard(

@@ -47,4 +47,49 @@ set tabIndex(int index){
   update();
 }
 
+
+List<DeliveryStatus> updateStatusList = [];
+List<int> get updateStatusIds  =>updateStatusList.map((status) => status.id).toList();
+List<String> get updateStatusNames =>updateStatusList.map((status) => status.status).toList();
+
+void reduceDeliveryStatusForUpdate(int statusID) {
+  // Define a mapping from statusID to the list of desired delivery status IDs
+  final statusMapping = {
+    1: [statusID,2, 12],
+    2: [statusID,3, 12],
+    3: [statusID,4, 12],
+    4: [statusID,5, 12],
+    5: [statusID,6, 7, 8, 9, 10, 12],
+    8:[statusID,13],
+    9:[statusID,13],
+    11:[statusID,13],
+  };
+
+  // Clear the existing list
+  updateStatusList.clear();
+
+  // Check if the statusID has a corresponding list in the mapping
+  if (statusMapping.containsKey(statusID)) {
+    // Get the list of desired delivery status IDs
+    List<int> desiredStatusIds = statusMapping[statusID]!; 
+    log(desiredStatusIds.toString());
+    // Add the matching DeliveryStatus objects to the updateStatusList
+    for (int id in desiredStatusIds) {
+      DeliveryStatus? status = _findDeliveryStatusById(id);
+      if (status != null) {
+        updateStatusList.add(status);
+      }
+    }
+  }
+}
+DeliveryStatus? _findDeliveryStatusById(int id) {
+  try {
+    return _deliveryStatuses.firstWhere(
+      (element) => element.id == id,
+    );
+  } catch (e) {
+    return null;
+  }
+}
+
 }

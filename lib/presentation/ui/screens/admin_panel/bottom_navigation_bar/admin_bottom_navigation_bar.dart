@@ -6,7 +6,6 @@ import 'package:e_courier_360/presentation/state_holders/delivery_zone_controlle
 import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/receiver_controller.dart';
 import 'package:get/get.dart';
-import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/ui/base/base_bottom_navigationbar.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/admin_home_screen/admin_home_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/merchants_screen.dart';

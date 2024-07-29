@@ -21,8 +21,7 @@ class MerchantsScreenState extends State<MerchantsScreen> with SingleTickerProvi
         },
        ),
   
-      body:Container()
-      //  const MerchantList()
+      body: const MerchantList()
 
     );
   }

@@ -1,6 +1,7 @@
 // import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 // import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/update_status_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
@@ -99,13 +100,13 @@ class ParcelsTrackScreenState extends State<ParcelsTrackScreen> with SingleTicke
         }).toList(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton:GetBuilder<ParcelStatusController>(
-      //   builder: (parcelController) {
-      //     return parcelController.isSelectionMode()?SizedBox(width: 200, child: FilledButton (onPressed: (){
-      //       Get.to(const UpdateStatusScreen());
-      //     }, child:const Text("Update Status"),)):Container();
-      //   }
-      // )
+      floatingActionButton:GetBuilder<ParcelStatusController>(
+        builder: (parcelController) {
+          return parcelController.isSelectionMode()?SizedBox(width: 200, child: FilledButton (onPressed: (){
+            Get.to(const UpdateStatusScreen());
+          }, child:const Text("Update Status"),)):Container();
+        }
+      )
     );
   }
 }

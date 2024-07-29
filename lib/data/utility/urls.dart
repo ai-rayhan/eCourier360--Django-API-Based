@@ -13,6 +13,9 @@ class Urls {
   static String updateProfile = '$baseUrl/updateprofile/';
 
   static String viewProfile = '$baseUrl/viewprofile/';
+  
+  static String riders = '$baseUrl/rider/list-create/';
+  static String allMerchants = '$baseUrl/merchants/allmerchants/';
 
   static String branch = '$baseUrl/branch/branches/';
   static String deliveryZone = '$baseUrl/branch/delivery-zone/';

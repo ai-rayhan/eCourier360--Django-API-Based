@@ -14,7 +14,7 @@ class AuthController extends GetxController {
   static String? userId;
   static String? merchantId;
   static String? mcid='1';
-  static String? userRole='Rider';
+  static String? userRole='Merchent';
   UserProfile? profile;
   bool _isPhoneVerifiedUser =false;
   bool get isPhoneVerifiedUser =>_isPhoneVerifiedUser;

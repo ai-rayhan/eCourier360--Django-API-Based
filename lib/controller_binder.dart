@@ -15,6 +15,7 @@ import 'package:e_courier_360/presentation/state_holders/receiver_controller.dar
 import 'package:e_courier_360/presentation/state_holders/send_phone_otp_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/tab_navigation_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/verify_otp_controller.dart';
 import 'package:get/get.dart';
 
@@ -34,10 +35,11 @@ class ControllerBinder extends Bindings {
     Get.put(CategoryController());
     Get.put( DeliveryZoneController());
     Get.put( ParcelController());
-    Get.put( StepperController());
+    Get.put( ParcelStatusController());
+    // Get.put( StepperController());
     Get.put( DeliveryTypeInfoController());
     Get.put( ReceiverController());
-    Get.put( ParcelDataController());
+    // Get.put( ParcelDataController());
     Get.put( DeliveryStatusController());
     Get.put( ProductController());
     Get.put( TabNavigationController());

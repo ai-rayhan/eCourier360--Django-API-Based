@@ -13,8 +13,7 @@ class RidersScreenState extends State<RidersScreen> with SingleTickerProviderSta
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: CourierAppBar(title: "Riders",),
-      body: Center(
-        // child: RiderList()
+      body: Center(child: RiderList()
         )
     );
   }

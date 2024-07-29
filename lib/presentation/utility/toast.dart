@@ -10,6 +10,6 @@ showToast(String msg,{ToastGravity? gravity}){
         timeInSecForIosWeb: 1,
         backgroundColor: AppColors.primaryColor,
         textColor: Colors.white,
-        fontSize: 16.0
+        fontSize: 13.0
     );
 }
