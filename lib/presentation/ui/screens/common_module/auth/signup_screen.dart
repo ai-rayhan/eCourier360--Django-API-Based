@@ -64,37 +64,57 @@ class _SignupScreenState extends State<SignupScreen> {
                             if (!_formKey.currentState!.validate()) {
                               return;
                             }
-                            //  bool response=false ;
-                            // if(widget.role=="Merchant"){
-                            //  response = await authController.merchantRegister(
-                            //         username: _userNameTEController.text,
-                            //         fullName: _fullNameTEController.text,
-                            //         shopName: _shopNameTEController.text,
-                            //         shopEmail: _shopEmailTEController.text,
-                            //         shopAddress: _shopAddressTEController.text,
-                            //         pickupPhone: _pickPhoneTEController.text,
-                            //         pickupAddress:
-                            //             _pickupAddressTEController.text);
-                            // }else{
-                            //   response = await authController.riderRegister(
-                            //         username: _userNameTEController.text,
-                            //         fullName: _fullNameTEController.text,
-                            //         vehicleType: _shopNameTEController.text,
-                            //         email: _shopEmailTEController.text,
-                            //         address: _shopAddressTEController.text,
-                            //         phone: _pickPhoneTEController.text,
-                            //         registrationNo:
-                            //             _pickupAddressTEController.text);
-                            // }
+                             bool response=false ;
+                            if(widget.role=="Merchant"){
+                              Map<String,dynamic> merchantInfo={
+                                     "shop_name":_shopNameTEController.text,
+                                     "shop_email": _shopEmailTEController.text,
+                                     "pickup_phone": _pickPhoneTEController.text,
+                                     "shop_address": _shopAddressTEController.text,
+                                     "pickup_address": _pickupAddressTEController.text,
+                              };
+                             response = await authController.signUp(
+                                      _userNameTEController.text, 
+                                      _shopEmailTEController.text, 
+                                      _pickPhoneTEController.text, 
+                                     'password',"Merchant",merchantInfo
+                                        );
+                            }else{
+                              Map<String,dynamic> riderInfo={
+                                     "full_name": _fullNameTEController.text,
+                                     "email": _shopEmailTEController.text,
+                                     "phone": _pickPhoneTEController.text,
+                                     "address": _shopAddressTEController.text,
+                                     "vehicle_type":  _shopNameTEController.text,
+                                     "registration_number": _pickupAddressTEController.text,
+                              };
 
-                            // if (response) {
-                            //   Get.to(const ApplicationSubmittedScreen());
-                            // } else {
-                            //   if (mounted) {
-                            //     Get.snackbar('Wrong!',
-                            //         'Apply failed. ${authController.errorMessage}');
-                            //   }
-                            // }
+                              response = await authController.signUp(
+                                 _userNameTEController.text, 
+                                 _shopEmailTEController.text, 
+                                  _pickPhoneTEController.text, 
+                                  'password',"rider",
+                                  riderInfo);
+                                 
+                                  // await authController.riderRegister(
+                                  //   username: _userNameTEController.text,
+                                  //   fullName: _fullNameTEController.text,
+                                  //   vehicleType: _shopNameTEController.text,
+                                  //   email: _shopEmailTEController.text,
+                                  //   address: _shopAddressTEController.text,
+                                  //   phone: _pickPhoneTEController.text,
+                                  //   registrationNo:
+                                  //       _pickupAddressTEController.text);
+                            }
+
+                            if (response) {
+                              Get.to(const ApplicationSubmittedScreen());
+                            } else {
+                              if (mounted) {
+                                Get.snackbar('Wrong!',
+                                    'Apply failed. ${authController.errorMessage}');
+                              }
+                            }
                           },
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,

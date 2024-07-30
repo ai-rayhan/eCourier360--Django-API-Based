@@ -1,8 +1,8 @@
 import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:flutter/material.dart';
 
-class ProfileCard extends StatelessWidget {
-  const ProfileCard({
+class SettingsCard extends StatelessWidget {
+  const SettingsCard({
     super.key,
     required this.title,
     required this.subtitle,

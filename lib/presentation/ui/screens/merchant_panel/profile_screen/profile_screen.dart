@@ -1,7 +1,7 @@
-import 'package:e_courier_360/presentation/ui/base/profile_screen.dart';
+import 'package:e_courier_360/presentation/ui/base/base_settings_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/customer_address_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/edit_profile_screen.dart';
-import 'package:e_courier_360/presentation/ui/widgets/profile/profile_card.dart';
+import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,10 +9,10 @@ class MerchantProfileScreen extends StatelessWidget {
   const MerchantProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return ProfileScreen(
+    return SettingsScreen(
         child: Column(
       children: [
-        ProfileCard(
+        SettingsCard(
             title: "Edit Profile",
             subtitle: "Edit Name,address etc.",
             iconData: Icons.account_circle_outlined,
@@ -20,7 +20,7 @@ class MerchantProfileScreen extends StatelessWidget {
             ontap: () {
               // Get.to(const EditProfileScreen());
             }),
-        ProfileCard(
+        SettingsCard(
             title: "Customer Address book",
             subtitle: "See Customer Address book",
             iconData: Icons.ballot_outlined,

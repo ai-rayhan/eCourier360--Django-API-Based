@@ -4,6 +4,8 @@ class Urls {
   
   static String signin = '$baseUrl/signin/';
   static String signup = '$baseUrl/signup/';
+  static String merchantRegister = '$baseUrl/signup/';
+  static String riderRegister = '$baseUrl/signup/';
   static String createMerchant = '$baseUrl/merchants/create/';
   static String addShop = '$baseUrl/merchants/allshop/';
   static String shopList = '$baseUrl/merchants/shop/';

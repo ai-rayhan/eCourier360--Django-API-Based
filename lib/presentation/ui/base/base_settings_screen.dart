@@ -1,4 +1,4 @@
-import 'package:e_courier_360/presentation/ui/widgets/profile/profile_card.dart';
+import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
@@ -9,15 +9,15 @@ import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:flutter/material.dart';
 import 'package:e_courier_360/quick_config.dart';
 
-class ProfileScreen extends StatelessWidget {
+class SettingsScreen extends StatelessWidget {
   final Widget child;
-  const ProfileScreen({super.key, required this.child});
+  const SettingsScreen({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CourierAppBar(
-            title: "Profile",
+            title: "Settings",
             leadingOnPressed: () =>
                 Get.find<MainBottomNavController>().backToHome()),
         body: Stack(
@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         // User profile
                         child,
-                        ProfileCard(
+                        SettingsCard(
                             title: "Logout",
                             subtitle: "Exit from app",
                             iconData: Icons.logout,

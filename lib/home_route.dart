@@ -7,13 +7,13 @@ import 'package:e_courier_360/presentation/ui/screens/merchant_panel/bottom_navi
 import 'package:e_courier_360/presentation/ui/screens/rider_panel/bottom_navigationbar/rider_bottom_navbar.dart';
 
 Widget goPanelHomeScreen(){
-  if(AuthController.userRole=="Superadmin"){
+  if(AuthController.userRole==1||AuthController.userRole==2){
   return const AdminBottomNavigationBar();
   }
-  else if(AuthController.userRole=="Merchent"){
+  else if(AuthController.userRole==3){
   return const MerchantBottomNavigationBar();
   }
-  else if(AuthController.userRole=="Rider"){
+  else if(AuthController.userRole==4){
   return const RiderBottomNavigationBar();
   }
   else{

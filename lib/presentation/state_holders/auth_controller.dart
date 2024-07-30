@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:e_courier_360/data/models/profile.dart';
+import 'package:e_courier_360/data/services/network_caller/request_methods/dynamic_post_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/post_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
@@ -12,9 +13,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthController extends GetxController {
   static String? token;
   static String? userId;
-  static String? merchantId;
+  // static String? merchantId;
   static String? mcid='1';
-  static String? userRole='Merchent';
+  static int? userRole=1;
+  static bool? isActiveUser=true;
   UserProfile? profile;
   bool _isPhoneVerifiedUser =false;
   bool get isPhoneVerifiedUser =>_isPhoneVerifiedUser;
@@ -24,14 +26,17 @@ class AuthController extends GetxController {
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
  
-  Future<bool> signUp(String name,String email,String phone,String password) async {
+  Future<bool> signUp(String name,String email,String phone,String password,String userType,Map<String,dynamic> businessInfo) async {
     _inProgress = true;
     update();
-     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.signup, {
+     final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.signup, {
         'username':name,
         'email' : email,
         'password' : password,
         'phone_number':phone,
+        "user_type":userType,
+         userType:businessInfo,
+
     }, isLogin: false);
     _inProgress = false;
     if (response.success) {
@@ -71,6 +76,77 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<bool> merchantRegister({required String username,required String fullName,required String shopName,required String shopEmail,required String shopAddress,required String pickupPhone,required String pickupAddress}) async {
+    _inProgress = true;
+    update();
+     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.merchantRegister, {
+    "fullname":fullName,
+    "shop_name":shopName,
+    "shop_address":shopAddress,
+    "pickup_address":pickupAddress,
+    "shop_email":shopEmail,
+    "username":username,
+    "pickup_phone":pickupPhone
+    }, isLogin: false);
+    _inProgress = false;
+    if (response.success) {
+      update();
+      return true;
+    } else {
+      _errorMessage = response.errorMessage;
+      update();
+      return false;
+    }
+  }
+ 
+  Future<bool> riderRegister({required String username,required String fullName,required String registrationNo,required String email,required String address,required String phone,required String vehicleType}) async {
+    _inProgress = true;
+    update();
+     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.riderRegister, {
+    "username": username,
+    "full_name":fullName,
+    "email": email,
+    "phone": phone,
+    "address": address,
+    "vehicle_type": vehicleType,
+    "registration_number": registrationNo,
+    // "rider_commission": 10
+    }, isLogin: false);
+    _inProgress = false;
+    if (response.success) {
+      update();
+      return true;
+    } else {
+      _errorMessage = response.errorMessage;
+      update();
+      return false;
+    }
+  }
+
+
+
+  // Future<bool> logIn(String userName,String password) async {
+  //   _inProgress = true;
+  //   update();
+  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.signin, {
+  //       'username' : userName,
+  //       'password' : password,
+  //   }, isLogin: false);
+  //   _inProgress = false;
+   
+  //   if (response.success) {
+  //     LoginResponse  reponseData=LoginResponse.fromJson(response.returnValue);
+  //     token=reponseData.data.token;
+  //     userRole=reponseData.data.user.roles![0].name;
+  //     saveUserDetails(reponseData);
+  //     update();
+  //     return true;
+  //   } else {
+  //     _errorMessage = response.errorMessage;
+  //     update();
+  //     return false;
+  //   }
+  // }
   Future<void> saveUserDetails(String userToken, UserProfile userProfile,String uid) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('token', userToken);
@@ -91,6 +167,7 @@ class AuthController extends GetxController {
     token = await _getToken();
     profile = await _getProfile();
     _isPhoneVerifiedUser = await _checkIsphoneVerified();
+    userRole = profile?.data?.role;
   }
 
   Future<bool> isLoggedIn() async {

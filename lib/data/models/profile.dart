@@ -30,7 +30,7 @@ class UserDataDetails {
   final String email;
   final String name;
   final String phone;
-  final String? role;
+  final int? role;
   final String? fullName;
   final String? address;
   final String? photoUrl;
