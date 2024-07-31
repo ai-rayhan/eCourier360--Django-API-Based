@@ -41,7 +41,7 @@ class ParcelDashBoard extends StatelessWidget {
             child: SummaryCard(
               status: dashBoardController.deliveryStatuses[index].status,
               count: dashBoardController
-                  .deliveryStatuses[index].totalBooking
+                  .deliveryStatuses[index].parcelCount
                   .toString(),
               countColor: colors[dashBoardController
                   .deliveryStatuses[index].id-1],

@@ -65,7 +65,8 @@ class AuthController extends GetxController {
     }, isLogin: false);
     _inProgress = false;
     if (response.success) {
-      saveUserDetails( response.returnValue['data']['access'], UserProfile.fromJson(response.returnValue['data']),response.returnValue['data']['id'].toString());
+      log("message:${response.returnValue['data']}");
+      saveUserDetails( response.returnValue['data']['access'], UserProfile.fromJson(response.returnValue),response.returnValue['data']['id'].toString());
       saveVerification(response.returnValue['data']['is_phone_verified']);
       update();
       return true;
@@ -154,6 +155,7 @@ class AuthController extends GetxController {
     await sharedPreferences.setString('uid', uid);
     token = userToken;
     profile = userProfile;
+    userRole=userProfile.data?.role;
     userId=uid;
     log("ueiytrueyntre yt "+userProfile.toString());
   }

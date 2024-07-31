@@ -33,7 +33,7 @@ class Urls {
   static String updateParcelDetails(int id) =>'$baseUrl/parcels/parceldetails/$id/';
 
   static String deliveryChargeInfo = '$baseUrl/settings/delivery-time/';
-  static String deliveryStatus = '$baseUrl/settings/delivery-status/';
+  static String deliveryStatus = '$baseUrl/settings/ds-parcel-count/';
 
   static String merchantParcels = '$baseUrl/merchants/parcels/';
   static String merchantParcelsByStatus(int statusId) =>

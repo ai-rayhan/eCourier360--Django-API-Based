@@ -1,3 +1,4 @@
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/rider_details_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/rider_edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,7 @@ class _RiderListState extends State<RiderList> {
                   id:  controller.riderList[index].id,
                   title:  controller.riderList[index].fullName,
                   subtitle: 'Phone: ${controller.riderList[index].phone}\nEmail:${controller.riderList[index].email}\nVehicle:${controller.riderList[index].vehicleType}',
-                  onTap: () => Get.to( EditRiderScreen(rider:controller.riderList[index]  ,)),
+                  onTap: () => Get.to( RiderDetailsScreen(rider:controller.riderList[index]  ,)),
                 )),
       );
     });

@@ -63,13 +63,13 @@ class MerchantInfoSummuryCard extends StatelessWidget {
           width: double.infinity,
           child: ListTile(
             title: Text(
-              merchant.merchantName,
+              merchant.user.username,
               style: AppTextStyle.theme16w600,
             ),
-            // subtitle: Text(
-            //   "Phone:${merchant.pickupPhone}\nEmail:${merchant.shopEmail}\nPickupAddress:${merchant.pickupAddress}",
-            //   style: AppTextStyle.darkgrey13,
-            // ),
+            subtitle: Text(
+              "Phone:${merchant.pickupPhone}\nEmail:${merchant.shopAddress}\nPickupAddress:${merchant.pickupAddress}",
+              style: AppTextStyle.darkgrey13,
+            ),
             leading: const Icon(Icons.account_circle_sharp),
             trailing: Container(
               height: 28,

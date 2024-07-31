@@ -1,12 +1,23 @@
+import 'package:e_courier_360/presentation/state_holders/settings_controller.dart';
 import 'package:e_courier_360/presentation/ui/base/base_settings_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/branches/branches_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AdminSettingsScreen extends StatelessWidget {
+class AdminSettingsScreen extends StatefulWidget {
   const AdminSettingsScreen({super.key});
 
+  @override
+  State<AdminSettingsScreen> createState() => _AdminSettingsScreenState();
+}
+
+class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
+  @override
+  void initState() {
+    Get.lazyPut<SettingsController>(() => SettingsController());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SettingsScreen(

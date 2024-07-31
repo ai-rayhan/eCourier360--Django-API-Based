@@ -3,17 +3,17 @@ class DeliveryStatus {
   final String status;
   final String? activity;
   final String? image;
-  final int? totalBooking;
-  final bool publish;
-  final String createdAt;
-  final String updatedAt;
+  final int? parcelCount;
+  final bool? publish;
+  final String? createdAt;
+  final String? updatedAt;
 
   DeliveryStatus( {
     required this.id,
     required this.status,
     this.activity,
     this.image,
-    this.totalBooking,
+    this.parcelCount,
     required this.publish,
     required this.createdAt,
     required this.updatedAt,
@@ -21,14 +21,14 @@ class DeliveryStatus {
 
   factory DeliveryStatus.fromJson(Map<String, dynamic> json) {
     return DeliveryStatus(
-      id: json['id'] as int,
-      status: json['status'] as String,
+      id: json['id'],
+      status: json['status'],
       activity: json['activity'] as String?,
       image: json['image'] as String?,
-      publish: json['publish'] as bool,
-      totalBooking: 5,
-      createdAt: json['created_at'] as String,
-      updatedAt: json['updated_at'] as String,
+      publish: json['publish']??true,
+      parcelCount: json['parcel_count'],
+      createdAt: json['created_at'] as String?,
+      updatedAt: json['updated_at'] as String?,
     );
   }
 

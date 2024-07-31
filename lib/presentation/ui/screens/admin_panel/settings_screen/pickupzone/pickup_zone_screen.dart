@@ -1,24 +1,24 @@
+import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/settings_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/branches/edit_branch_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/pickupzone/pickup_zone_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BranchesScreen extends StatefulWidget {
-  const BranchesScreen({super.key});
+class PickUpZoneScreen extends StatefulWidget {
+  const PickUpZoneScreen({super.key});
 
   @override
-  State<BranchesScreen> createState() => _BranchesScreenState();
+  State<PickUpZoneScreen> createState() => _PickUpZoneScreenState();
 }
 
-class _BranchesScreenState extends State<BranchesScreen> {
+class _PickUpZoneScreenState extends State<PickUpZoneScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Get.find<SettingsController>().getBranches();
+      await Get.find<PickUpZoneController>().getPickupZone();
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
     super.initState();
@@ -29,15 +29,15 @@ class _BranchesScreenState extends State<BranchesScreen> {
     appBar: const CourierAppBar(
       title: "Branches",
       ),
-      body:GetBuilder<SettingsController>(
+      body:GetBuilder<PickUpZoneController>(
         builder: (controller) {
           return Visibility(
             visible: !controller.inProgress,
             replacement: const Center(child: const CenterCircularProgressIndicator(),),
             child: ListView.builder(
-              itemCount: controller.branches.length,
-              itemBuilder: (context,index)=>SettingsCard(title: controller.branches[index].name,
-             subtitle: controller.branches[index].address, iconData: Icons.grass, ontap: (){
+              itemCount: controller.pickupZones.length,
+              itemBuilder: (context,index)=>SettingsCard(title: controller.pickupZones[index].name,
+             subtitle: controller.pickupZones[index].branchId.toString(), iconData: Icons.delivery_dining_outlined, ontap: (){
               Get.to(const PickUpZoneScreen());
              }))
           );

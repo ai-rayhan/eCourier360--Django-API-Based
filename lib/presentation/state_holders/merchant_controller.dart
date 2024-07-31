@@ -35,24 +35,24 @@ class MerchantController extends GetxController {
     }
   }
 
-  User? _user;
-  User? get currentUser=>_user;
+  // User? _user;
+  // User? get currentUser=>_user;
 
-  Future<bool> getProfile() async {
-    _inProgress = true;
-    update();
-     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.viewProfile,);
-    _inProgress = false;
-    if (response.success) {
-      _user= User.fromJson(response.returnValue);
-      update();
-      return true;
-    } else {
-      _errorMessage = response.errorMessage;
-      update();
-      return false;
-    }
-  }
+  // Future<bool> getProfile() async {
+  //   _inProgress = true;
+  //   update();
+  //    final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.viewProfile,);
+  //   _inProgress = false;
+  //   if (response.success) {
+  //     _user= User.fromJson(response.returnValue);
+  //     update();
+  //     return true;
+  //   } else {
+  //     _errorMessage = response.errorMessage;
+  //     update();
+  //     return false;
+  //   }
+  // }
     Future<bool> updateProfile(String name,String phone,String address,File imageFile) async {
     _inProgress = true;
     update();
@@ -85,7 +85,7 @@ class MerchantController extends GetxController {
      _merchant = (response.returnValue as List<dynamic>)
           .map((json) => Merchant.fromJson(json))
           .toList();
-     _merchant.sort((a, b) => a.user.compareTo(b.user));
+    //  _merchant.sort((a, b) => a.user.compareTo(b.user));
       update();
       return true;
     } else {

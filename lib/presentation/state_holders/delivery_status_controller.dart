@@ -15,7 +15,7 @@ class DeliveryStatusController extends GetxController {
   
   List<DeliveryStatus> _deliveryStatuses = [];
   List<DeliveryStatus> get deliveryStatuses=>_deliveryStatuses;
-  List<int> get statusCount =>_deliveryStatuses.map((status) => status.totalBooking??0).toList();
+  List<int> get statusCount =>_deliveryStatuses.map((status) => status.parcelCount??0).toList();
 
   List<String> get statusNames =>deliveryStatuses.map((status) => status.status).toList();
   List<int> get statusIds =>deliveryStatuses.map((status) => status.id).toList();
