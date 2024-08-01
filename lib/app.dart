@@ -2,6 +2,7 @@ import 'package:e_courier_360/controller_binder.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/splash_screen.dart';
 import 'package:e_courier_360/presentation/utility/app_theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 class ECourier360 extends StatelessWidget {
@@ -14,6 +15,7 @@ class ECourier360 extends StatelessWidget {
       theme: AppThemeData.lightThemData,
       home: const SplashScreen(),
       initialBinding: ControllerBinder(),
+      builder: EasyLoading.init(),
     );
   }
 }

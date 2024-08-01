@@ -1,5 +1,5 @@
 import 'package:e_courier_360/data/models/delivery_type_info.dart';
-import 'package:e_courier_360/presentation/state_holders/delivery_charge_info_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/calculate_screen/result_screen.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';

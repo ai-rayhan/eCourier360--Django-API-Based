@@ -8,6 +8,7 @@ class SettingsCard extends StatelessWidget {
     required this.subtitle,
     required this.iconData,
     required this.ontap,
+    this.trailling,
     this.hasDivider,
   });
   final String title;
@@ -15,6 +16,7 @@ class SettingsCard extends StatelessWidget {
   final IconData iconData;
   final VoidCallback ontap;
   final bool? hasDivider;
+  final Widget? trailling;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,7 +55,7 @@ class SettingsCard extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                const Icon(
+                 trailling?? const Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 14,
                   color: AppColors.darkGreyColor,
@@ -67,5 +69,55 @@ class SettingsCard extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+                 
+      Column(
+        children: [
+          Container(
+            width: 120,
+            height: 25,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 219, 191, 255),
+              borderRadius: BorderRadius.all(Radius.circular(8))),
+            child: Center(child: Text("Pickup Zone")),
+          ),
+          AppSizedBox.h5,
+          Container(
+            width:120,
+            height: 25,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 214, 210, 255),
+              borderRadius: BorderRadius.all(Radius.circular(8))),
+            child: Center(child: Text("Delivery Zone")),
+          ),
+        ],
+      ),AppSizedBox.w10,
+           Container(
+        width: 40,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 200, 186, 252),
+          borderRadius: BorderRadius.all(Radius.circular(8))),
+        child: Center(child: Column(
+          children: [
+            Icon(Icons.edit_note_outlined),
+            Text("Edit"),
+          ],
+        )),
+      ),
+      
+    ],);
   }
 }

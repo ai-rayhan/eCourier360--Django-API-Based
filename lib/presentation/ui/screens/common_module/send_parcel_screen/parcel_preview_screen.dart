@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:e_courier_360/data/models/body/parcel_data.dart';
 import 'package:e_courier_360/data/models/product.dart';
-import 'package:e_courier_360/presentation/state_holders/delivery_charge_info_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/parcels_screen.dart';

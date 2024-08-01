@@ -1,6 +1,8 @@
 import 'package:e_courier_360/presentation/state_holders/settings_controller.dart';
 import 'package:e_courier_360/presentation/ui/base/base_settings_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/branches/branches_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/category/category_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/delivery_type/delivery_type_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,26 +32,20 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
             ontap: () {
               Get.to(const BranchesScreen());
             }),
-        // SettingsCard(
-        //     title: "Pickup Zones",
-        //     subtitle: "Exit from app",
-        //     iconData: Icons.logout,
-        //     ontap: () {}),
-        // SettingsCard(
-        //     title: "Delivery Zones",
-        //     subtitle: "Exit from app",
-        //     iconData: Icons.logout,
-        //     ontap: () {}),
         SettingsCard(
             title: "Delivery Types",
             subtitle: "Delivery type to control costs",
             iconData: Icons.local_shipping_outlined,
-            ontap: () {}),
+            ontap: () {
+              Get.to(const DeliveryTypesScreen());
+            }),
         SettingsCard(
             title: "Product Types",
             subtitle: "Product category which deliver",
             iconData: Icons.category_outlined,
-            ontap: () {}),
+            ontap: () {
+              Get.to(const CategoriesScreen());
+            }),
         // SettingsCard(
         //     title: "Rise Issue",
         //     subtitle: "Exit from app",

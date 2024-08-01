@@ -1,6 +1,6 @@
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/category_controller.dart';
-import 'package:e_courier_360/presentation/state_holders/delivery_charge_info_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/local/onboard_controller.dart';

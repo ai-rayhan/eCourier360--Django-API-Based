@@ -1,77 +1,78 @@
 import 'package:e_courier_360/data/models/branch.dart';
-import 'package:e_courier_360/data/models/product.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/get_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/post_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/put_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/global_loading.dart';
 import 'package:get/get.dart';
 
 class SettingsController extends GetxController {
-  bool _inProgress = false;
-  bool get inProgress => _inProgress;
-  String _errorMessage = '';
-  String get errorMessage => _errorMessage;
 
   List<Branch> _branches = [];
   List<Branch> get branches=>_branches;
 
   Future<bool> getBranches() async {
-    _inProgress = true;
-    update();
+    showloading('Loading..');
      final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.branch,);
-    _inProgress = false;
     if (response.success) {
      _branches = (response.returnValue as List<dynamic>)
           .map((json) => Branch.fromJson(json))
           .toList();
       update();
+     showSuccess("success");
       return true;
     } else {
-      _errorMessage = response.errorMessage;
-      update();
+      showError(response.errorMessage);
       return false;
     }
   }
 
-  Future<bool> addProduct(List<Product> productList,int parcelId) async {
-    _inProgress = true;
-    update();
-    for(Product product in productList){
-    
-    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.addParcelDetails,token: AuthController.token, {
-    "date": "2024-04-17" ,
-    "parcel": parcelId.toString() ,
-    "product_type":product.productType.toString(),
-    "item_description": product.description??'',
-    "quantity": product.quantity.toString(),
-    "weight": product.weight.toString(),
-    "width": product.width.toString(),
-    "height": product.height.toString(),
-    }, isLogin: true);
-    response.returnValue;
+  Future<bool> addBranch(String name,String phone, String email,String address) async {
+    showloading('Loading..');
+    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.branch,token: AuthController.token, {
+    "name":name ,
+    "phone": phone,
+    "email": email,
+    "address": address
+    });
+    if (response.success) {
+      await getBranches();
+      showSuccess("Done");
+      return true;
+    } else {
+      showError(response.errorMessage);
+      return false;
     }
-    return true;
   }
-
-  Future<bool> updateProduct(List<Product> productList,int parcelId) async {
-    _inProgress = true;
-    update();
-    for(Product product in productList){
-    
-    final  NetworkCallerReturnObject response =await PutRequest.execute(Urls.updateParcelDetails(product.id),token: AuthController.token, {
-    "date": "2024-04-17" ,
-    "parcel": parcelId.toString() ,
-    "product_type":product.productType.toString(),
-    "item_description": product.description??'',
-    "quantity": product.quantity.toString(),
-    "weight": product.weight.toString(),
-    "width": product.width.toString(),
-    "height": product.height.toString(),
-    }, isLogin: true);
-    response.returnValue;
+  Future<bool> updateBranch(String name,String phone, String email,String address,int branchId) async {
+    showloading('Loading..');
+    final  NetworkCallerReturnObject response =await PutRequest.execute(Urls.updateBranch(branchId),token: AuthController.token, {
+    "name":name ,
+    "phone": phone,
+    "email": email,
+    "address": address
+    });
+    if (response.success) {
+      await getBranches();
+      showSuccess("Done");
+      return true;
+    } else {
+      showError(response.errorMessage);
+      return false;
     }
-    return true;
   }
+  // Future<bool> deleteBranch(int branchId) async {
+  //   showloading('Loading..');
+  //   final  NetworkCallerReturnObject response =await DeleteRequest.execute(Urls.updateBranch(branchId),token: AuthController.token);
+  //   if (response.success) {
+  //     await getBranches();
+  //     showSuccess("Done");
+  //     return true;
+  //   } else {
+  //     showError(response.errorMessage);
+  //     return false;
+  //   }
+  // }
 }

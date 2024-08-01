@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/ui/screens/rider_panel/rider_home_screen/rider_home_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/rider_panel/rider_profile_screen/rider_profile_screen.dart';
 import 'package:e_courier_360/presentation/state_holders/category_controller.dart';
-import 'package:e_courier_360/presentation/state_holders/delivery_charge_info_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';

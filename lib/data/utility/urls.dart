@@ -19,10 +19,15 @@ class Urls {
   static String riders = '$baseUrl/rider/list-create/';
   static String allMerchants = '$baseUrl/merchants/allmerchants/';
 
+  //Admin settings
   static String branch = '$baseUrl/branch/branches/';
+  static String updateBranch(int id) =>'$baseUrl/branch/branches/$id/';
   static String deliveryZone = '$baseUrl/branch/delivery-zone/';
+  static String updateDeliveryZone(int id) =>'$baseUrl/branch/delivery-zone/$id/';
   static String pickupZone = '$baseUrl/branch/pickup-zone/';
-  static String productType = '$baseUrl/settings/product-type/';
+  static String updatePickupZone(int id) => '$baseUrl/branch/pickup-zone/$id/';
+  static String category = '$baseUrl/settings/product-type/';
+  static String updateCategory(id) => '$baseUrl/settings/product-type/$id/';
   static String receiverList= '$baseUrl/receiver/receivers/';
 
 
@@ -32,7 +37,8 @@ class Urls {
   static String updateParcel(int id) =>'$baseUrl/parcels/update-destroy/$id/';
   static String updateParcelDetails(int id) =>'$baseUrl/parcels/parceldetails/$id/';
 
-  static String deliveryChargeInfo = '$baseUrl/settings/delivery-time/';
+  static String deliveryType = '$baseUrl/settings/delivery-time/';
+  static String updateDeliveryType(int id) => '$baseUrl/settings/delivery-time/$id/';
   static String deliveryStatus = '$baseUrl/settings/ds-parcel-count/';
 
   static String merchantParcels = '$baseUrl/merchants/parcels/';

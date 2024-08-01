@@ -41,7 +41,7 @@ abstract class PutRequest {
         logger.d(decodedJson);
         return NetworkCallerReturnObject(
             errorMessage: '',
-            returnValue: decodedJson,
+            returnValue: '',
             success: true,
             responseCode: response.statusCode);
       } else if (response.statusCode == 401) {

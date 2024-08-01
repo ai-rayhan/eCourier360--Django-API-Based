@@ -1,8 +1,8 @@
 import 'package:e_courier_360/presentation/state_holders/settings_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/branches/edit_branch_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/pickupzone/pickup_zone_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/deliveryzone/delivery_zone_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
-import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,34 +23,40 @@ class _BranchesScreenState extends State<BranchesScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: const CourierAppBar(
-      title: "Branches",
+      appBar: const CourierAppBar(
+        title: "Branches",
       ),
-      body:GetBuilder<SettingsController>(
-        builder: (controller) {
-          return Visibility(
-            visible: !controller.inProgress,
-            replacement: const Center(child: const CenterCircularProgressIndicator(),),
+      body: GetBuilder<SettingsController>(builder: (controller) {
+        return Visibility(
+            visible: controller.branches.isNotEmpty,
+            replacement: const EmptyDataPage(),
             child: ListView.builder(
-              itemCount: controller.branches.length,
-              itemBuilder: (context,index)=>SettingsCard(title: controller.branches[index].name,
-             subtitle: controller.branches[index].address, iconData: Icons.grass, ontap: (){
-              Get.to(const PickUpZoneScreen());
-             }))
-          );
-        }
+                itemCount: controller.branches.length,
+                itemBuilder: (context, index) => SettingsCard(
+                      title: controller.branches[index].name,
+                      subtitle: controller.branches[index].address,
+                      iconData: Icons.grass,
+                      ontap: () {
+                        Get.to( DeliveryZoneScreen(branch: controller.branches[index],));
+                      },
+                      trailling:NewWidget()
+                      //  IconButton(icon: Icon(Icons.edit),onPressed: (){
+                      //   Get.to(EditBranchScreen(branch: controller.branches[index],));
+                      // })
+                    )));
+      }),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ElevatedButton(
+            onPressed: () {
+              Get.to(const EditBranchScreen());
+            },
+            child: const Text("Add Branch")),
       ),
-           
-           bottomNavigationBar: Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: ElevatedButton(onPressed: (){
-             Get.to(EditBranchScreen());
-             }, child: const Text("Add Branch")),
-           ),
-
-            );
+    );
   }
 }

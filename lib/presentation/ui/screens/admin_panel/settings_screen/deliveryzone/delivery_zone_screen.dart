@@ -1,5 +1,5 @@
 import 'package:e_courier_360/data/models/branch.dart';
-import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/delivery_zone_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dialog.dart';
@@ -8,19 +8,19 @@ import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PickUpZoneScreen extends StatefulWidget {
+class DeliveryZoneScreen extends StatefulWidget {
   final Branch branch;
-  const PickUpZoneScreen({super.key, required this.branch});
+  const DeliveryZoneScreen({super.key, required this.branch});
 
   @override
-  State<PickUpZoneScreen> createState() => _PickUpZoneScreenState();
+  State<DeliveryZoneScreen> createState() => _DeliveryZoneScreenState();
 }
 
-class _PickUpZoneScreenState extends State<PickUpZoneScreen> {
+class _DeliveryZoneScreenState extends State<DeliveryZoneScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Get.find<PickUpZoneController>().getPickupZone(branchId: widget.branch.id);
+      await Get.find<DeliveryZoneController>().getDeliveryZone(branchId: widget.branch.id);
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
     super.initState();
@@ -32,22 +32,22 @@ class _PickUpZoneScreenState extends State<PickUpZoneScreen> {
     appBar:  CourierAppBar(
       title: "${widget.branch.name}>PickupZone",
       ),
-      body:GetBuilder<PickUpZoneController>(
+      body:GetBuilder<DeliveryZoneController>(
         builder: (controller) {
           return Visibility(
             visible: !controller.inProgress,
-            replacement: const Center(child: const CenterCircularProgressIndicator(),),
+            replacement: const Center(child:  CenterCircularProgressIndicator(),),
             child: ListView.builder(
-              itemCount: controller.pickupZones.length,
+              itemCount: controller.deliveryZones.length,
               itemBuilder: (context,index)=>SettingsCard(
-              title: controller.pickupZones[index].name,
-             subtitle: controller.pickupZones[index].branchId.toString(), iconData: Icons.delivery_dining_outlined, ontap: (){
+              title: controller.deliveryZones[index].name,
+             subtitle: controller.deliveryZones[index].branchId.toString(), iconData: Icons.delivery_dining_outlined, ontap: (){
              },
              trailling: IconButton(icon: Icon(Icons.edit),onPressed: (){
-              _nameTEController.text=controller.pickupZones[index].name;
+              _nameTEController.text=controller.deliveryZones[index].name;
               showInputDialog(context: context, title: "Update PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
                onSubmitPressed: () async{
-              await Get.find<PickUpZoneController>().updatePickupZone(_nameTEController.text, widget.branch.id,controller.pickupZones[index].id);
+              await Get.find<DeliveryZoneController>().updateDeliveryZone(_nameTEController.text, widget.branch.id,controller.deliveryZones[index].id);
               _nameTEController.clear();
              },);
              },),
@@ -62,11 +62,11 @@ class _PickUpZoneScreenState extends State<PickUpZoneScreen> {
              child: ElevatedButton(onPressed: (){
              showInputDialog(context: context, title: "Add PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
              onSubmitPressed: () async{
-              await Get.find<PickUpZoneController>().addPickupZone(_nameTEController.text, widget.branch.id);
+              await Get.find<DeliveryZoneController>().addDeliveryZone(_nameTEController.text, widget.branch.id);
                _nameTEController.clear();
              },
              );
-             }, child: const Text("Add PickUpZone")),
+             }, child: const Text("Add Delivery Zone")),
            ),
 
             );
