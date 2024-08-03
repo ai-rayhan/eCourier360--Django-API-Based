@@ -27,12 +27,12 @@ class ParcelDashBoard extends StatelessWidget {
         ),
         // itemCount: 6,
         itemCount:
-            dashBoardController.deliveryStatuses.length ?? 0,
+            dashBoardController.deliveryStatuses.length,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             onTap: () {
               dashBoardController.tabIndex = index;
-              if(AuthController.userRole=="Rider"){
+              if(AuthController.userRole==4){
                  Get.find<MainBottomNavController>().changeIndex(1);
               }else{
                   Get.find<MainBottomNavController>().changeIndex(2);

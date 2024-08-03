@@ -1,6 +1,5 @@
 import 'package:e_courier_360/presentation/ui/base/base_settings_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/customer_address_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/edit_profile_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

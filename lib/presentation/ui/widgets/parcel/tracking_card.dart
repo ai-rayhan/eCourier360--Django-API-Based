@@ -1,7 +1,6 @@
 
 import 'package:e_courier_360/data/helper/date_converter.dart';
 import 'package:e_courier_360/data/models/parcel.dart';
-import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/percel_view_screen.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:e_courier_360/presentation/utility/box_decoration.dart';

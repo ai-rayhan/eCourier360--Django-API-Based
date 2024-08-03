@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:e_courier_360/data/models/merchant.dart';
-import 'package:e_courier_360/data/models/shop.dart';
-import 'package:e_courier_360/data/models/user_profile.dart';
 import 'package:e_courier_360/data/services/network_caller/multipart_converter.dart';
 import 'package:e_courier_360/data/services/network_caller/network_caller.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/put_request.dart';

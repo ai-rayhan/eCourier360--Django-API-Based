@@ -1,5 +1,4 @@
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/merchants_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

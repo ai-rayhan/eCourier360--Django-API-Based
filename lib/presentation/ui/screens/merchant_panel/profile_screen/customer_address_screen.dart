@@ -43,11 +43,11 @@ class _CustomerAddressScreenState extends State<CustomerAddressScreen> {
             return Visibility(
               visible: controller.inProgress,
               replacement: Visibility(
-                visible: controller.receivers!=null,
+                visible: controller.receivers.isNotEmpty,
                 replacement: const EmptyDataPage(msg: "No Customer Address found",),
                 child: ListView.builder(
-                  itemCount:controller.receivers?.length,
-                  itemBuilder: (context,index)=>CustomerInfoCard(receiver: controller.receivers![index],index: index+1,)),
+                  itemCount:controller.receivers.length,
+                  itemBuilder: (context,index)=>CustomerInfoCard(receiver: controller.receivers[index],index: index+1,)),
               ),
               child: const CenterCircularProgressIndicator(),
             );

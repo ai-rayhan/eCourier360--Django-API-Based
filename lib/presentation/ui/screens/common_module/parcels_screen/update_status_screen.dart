@@ -4,7 +4,6 @@ import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/parcels_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';

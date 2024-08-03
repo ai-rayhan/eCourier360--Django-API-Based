@@ -88,29 +88,29 @@ class NewWidget extends StatelessWidget {
           Container(
             width: 120,
             height: 25,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(255, 219, 191, 255),
               borderRadius: BorderRadius.all(Radius.circular(8))),
-            child: Center(child: Text("Pickup Zone")),
+            child: const Center(child: Text("Pickup Zone")),
           ),
           AppSizedBox.h5,
           Container(
             width:120,
             height: 25,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(255, 214, 210, 255),
               borderRadius: BorderRadius.all(Radius.circular(8))),
-            child: Center(child: Text("Delivery Zone")),
+            child: const Center(child: Text("Delivery Zone")),
           ),
         ],
       ),AppSizedBox.w10,
            Container(
         width: 40,
         height: 50,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 200, 186, 252),
           borderRadius: BorderRadius.all(Radius.circular(8))),
-        child: Center(child: Column(
+        child: const Center(child: Column(
           children: [
             Icon(Icons.edit_note_outlined),
             Text("Edit"),

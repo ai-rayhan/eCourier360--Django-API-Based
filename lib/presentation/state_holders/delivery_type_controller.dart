@@ -1,5 +1,4 @@
 
-import 'dart:developer';
 import 'package:e_courier_360/data/models/delivery_type_info.dart';
 import 'package:e_courier_360/data/models/product.dart';
 import 'package:e_courier_360/data/services/network_caller/network_caller.dart';

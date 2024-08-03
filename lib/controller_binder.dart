@@ -5,7 +5,6 @@ import 'package:e_courier_360/presentation/state_holders/delivery_status_control
 import 'package:e_courier_360/presentation/state_holders/delivery_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/local/onboard_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
-import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_profile_controller.dart';
@@ -13,7 +12,6 @@ import 'package:e_courier_360/presentation/state_holders/otp_time_decrease_contr
 import 'package:e_courier_360/presentation/state_holders/product_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/receiver_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/send_phone_otp_controller.dart';
-import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/tab_navigation_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/verify_otp_controller.dart';

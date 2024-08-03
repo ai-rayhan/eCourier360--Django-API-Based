@@ -1,11 +1,8 @@
 import 'package:e_courier_360/data/models/delivery_type_info.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
 import 'package:get/get.dart';
-import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ResultScreen extends StatelessWidget {
   final DeliveryInfo deliveryTypeInfo;

@@ -35,9 +35,9 @@ MerchantController merchantController=Get.find();
             visible: !controller.inProgress,
             replacement: const CenterCircularProgressIndicator(),
             child: ListView.builder(
-                itemCount: controller.merchantList?.length??0,
+                itemCount: controller.merchantList.length,
                 itemBuilder: (context, index) => MerchantInfoSummuryCard(
-                      merchant: controller.merchantList![index],
+                      merchant: controller.merchantList[index],
                     )),
           );
         }

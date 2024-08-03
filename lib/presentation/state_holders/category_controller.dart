@@ -1,6 +1,4 @@
 
-import 'dart:developer';
-
 import 'package:e_courier_360/data/models/category.dart';
 import 'package:e_courier_360/data/services/network_caller/network_caller.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/put_request.dart';

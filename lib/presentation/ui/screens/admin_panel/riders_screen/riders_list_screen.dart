@@ -1,5 +1,4 @@
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/rider_details_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/rider_edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
