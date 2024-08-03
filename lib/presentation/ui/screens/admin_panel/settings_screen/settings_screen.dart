@@ -1,8 +1,10 @@
+import 'package:e_courier_360/presentation/state_holders/role_permission_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/settings_controller.dart';
 import 'package:e_courier_360/presentation/ui/base/base_settings_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/branches/branches_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/category/category_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/delivery_type/delivery_type_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/role_permissions_screen/all_roles_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +19,6 @@ class AdminSettingsScreen extends StatefulWidget {
 class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
   @override
   void initState() {
-    Get.lazyPut<SettingsController>(() => SettingsController());
     super.initState();
   }
   @override
@@ -30,6 +31,7 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
             subtitle: "Branches and Pickup-Delivery Zones",
             iconData: Icons.grass,
             ontap: () {
+              Get.lazyPut<SettingsController>(() => SettingsController());
               Get.to(const BranchesScreen());
             }),
         SettingsCard(
@@ -37,6 +39,7 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
             subtitle: "Delivery type to control costs",
             iconData: Icons.local_shipping_outlined,
             ontap: () {
+              Get.lazyPut<SettingsController>(() => SettingsController());
               Get.to(const DeliveryTypesScreen());
             }),
         SettingsCard(
@@ -44,6 +47,7 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
             subtitle: "Product category which deliver",
             iconData: Icons.category_outlined,
             ontap: () {
+              Get.lazyPut<SettingsController>(() => SettingsController());
               Get.to(const CategoriesScreen());
             }),
         // SettingsCard(
@@ -60,7 +64,10 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
             title: "Roles and permissions",
             subtitle: "Manage Roles and User Permissions",
             iconData: Icons.admin_panel_settings_outlined,
-            ontap: () {}),
+            ontap: () {
+             Get.lazyPut<RolePermissionController>(() => RolePermissionController());
+              Get.to(AllRolesScreen());
+            }),
       ],
     ));
   }
