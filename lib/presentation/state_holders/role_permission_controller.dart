@@ -42,7 +42,12 @@ class RolePermissionController extends GetxController {
   }
   
   
-  List<Permission> _permissions = [];
+   List<Permission> _permissions = [
+    // Permission(id: 112, codename: 'view', contentTypeAppLabel: 'settings/deliverytype', contentTypeModel: 'deliverytype'),
+    // Permission(id: 113, codename: 'add', contentTypeAppLabel: 'settings/deliverytype', contentTypeModel: 'deliverytype'),
+    // Permission(id: 114, codename: 'update', contentTypeAppLabel: 'settings/deliverytype', contentTypeModel: 'deliverytype'),
+    // Permission(id: 115, codename: 'delete', contentTypeAppLabel: 'settings/deliverytype', contentTypeModel: 'deliverytype'),
+  ];
   List<Permission> get permissions=>_permissions;
   
   Future<bool> getPermissions() async {
@@ -130,4 +135,8 @@ void togglePermissionSelection(Permission permission, bool? value) {
   update();
 }
 
+Permission getPermissionFromId(int permId){
+Permission permission= _permissions.firstWhere((element) => element.id==permId);
+return permission;
+}
 }

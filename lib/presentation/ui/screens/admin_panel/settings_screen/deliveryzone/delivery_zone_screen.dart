@@ -30,7 +30,7 @@ class _DeliveryZoneScreenState extends State<DeliveryZoneScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
     appBar:  CourierAppBar(
-      title: "${widget.branch.name}>PickupZone",
+      title: "${widget.branch.name}>Delivery Zone",
       ),
       body:GetBuilder<DeliveryZoneController>(
         builder: (controller) {
@@ -41,7 +41,7 @@ class _DeliveryZoneScreenState extends State<DeliveryZoneScreen> {
               itemCount: controller.deliveryZones.length,
               itemBuilder: (context,index)=>SettingsCard(
               title: controller.deliveryZones[index].name,
-             subtitle: controller.deliveryZones[index].branchId.toString(), iconData: Icons.delivery_dining_outlined, ontap: (){
+             subtitle: controller.deliveryZones[index].branchId.toString(), iconData: Icons.local_shipping_rounded, ontap: (){
              },
              trailling: IconButton(icon: Icon(Icons.edit),onPressed: (){
               _nameTEController.text=controller.deliveryZones[index].name;

@@ -1,3 +1,4 @@
+import 'package:e_courier_360/data/models/permission.dart';
 import 'package:e_courier_360/data/models/role.dart';
 import 'package:e_courier_360/presentation/state_holders/role_permission_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
@@ -21,9 +22,14 @@ class EditRolesPermissionScreenState extends State<EditRolesPermissionScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Get.find<RolePermissionController>().getPermissions();
-    });
-    _nameTEController.text=widget.role?.name??"";
+      await Get.find<RolePermissionController>().getPermissions().then((value) { 
+           if(widget.role!=null){
+      _nameTEController.text=widget.role?.name??"";
+     for (int permId in  widget.role!.permissions) {
+          Permission permission=  Get.find<RolePermissionController>().getPermissionFromId(permId);
+            Get.find<RolePermissionController>().togglePermissionSelection(permission, true);
+             }}});
+             });
     super.initState();
   }
   final TextEditingController _nameTEController=TextEditingController();

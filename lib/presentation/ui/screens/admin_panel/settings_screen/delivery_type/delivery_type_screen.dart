@@ -38,7 +38,7 @@ class _DeliveryTypesScreenState extends State<DeliveryTypesScreen> {
                 itemBuilder: (context, index) => SettingsCard(
                       title: controller.deliveryTypes[index].deliveryType,
                       subtitle: controller.deliveryTypes[index].timeSlot??"",
-                      iconData: Icons.grass,
+                      iconData: Icons.view_in_ar_rounded,
                       ontap: () {
                         Get.to( EditDeliveryTypeScreen(deliveryInfo: controller.deliveryTypes[index],));
                       },

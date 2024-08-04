@@ -37,16 +37,18 @@ class Merchant {
   final String shopName;
   final String pickupPhone;
   final String shopAddress;
+  final String status;
   final String? pickupAddress;
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  Merchant({
+  Merchant( {
     required this.id,
     required this.user,
     required this.shopName,
     required this.pickupPhone,
     required this.shopAddress,
+    required this.status,
     this.pickupAddress,
     required this.createdAt,
     required this.updatedAt,
@@ -55,6 +57,7 @@ class Merchant {
   factory Merchant.fromJson(Map<String, dynamic> json) {
     return Merchant(
       id: json['id'],
+      status:json['status'],
       user: User.fromJson(json['user']),
       shopName: json['shop_name'],
       pickupPhone: json['pickup_phone'],

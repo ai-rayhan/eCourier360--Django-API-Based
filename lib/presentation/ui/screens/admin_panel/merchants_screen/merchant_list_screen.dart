@@ -84,7 +84,7 @@ class MerchantInfoSummuryCard extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  // merchant.admin?.status==1?"  Active":
+                                  merchant.status=="1"?"  Active":
                                   "Pending",
                                   style: const TextStyle(fontSize: 13,color: AppColors.whiteColor),
                                 ),

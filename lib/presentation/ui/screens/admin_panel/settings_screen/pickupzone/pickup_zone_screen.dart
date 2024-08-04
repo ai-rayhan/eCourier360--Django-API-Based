@@ -41,7 +41,7 @@ class _PickUpZoneScreenState extends State<PickUpZoneScreen> {
               itemCount: controller.pickupZones.length,
               itemBuilder: (context,index)=>SettingsCard(
               title: controller.pickupZones[index].name,
-             subtitle: controller.pickupZones[index].branchId.toString(), iconData: Icons.delivery_dining_outlined, ontap: (){
+             subtitle: controller.pickupZones[index].branchId.toString(), iconData: Icons.fire_truck, ontap: (){
              },
              trailling: IconButton(icon: Icon(Icons.edit),onPressed: (){
               _nameTEController.text=controller.pickupZones[index].name;

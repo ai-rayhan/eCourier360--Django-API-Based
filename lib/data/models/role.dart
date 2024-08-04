@@ -17,6 +17,7 @@ class Role {
       name: json['name'],
       createdAt: DateTime.parse(json['created_at']),
       permissions: List<int>.from(json['permissions']),
+      // permissions: [112,114]
     );
   }
 

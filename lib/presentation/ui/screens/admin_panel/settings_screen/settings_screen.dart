@@ -29,7 +29,7 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
         SettingsCard(
             title: "Branches and Zones",
             subtitle: "Branches and Pickup-Delivery Zones",
-            iconData: Icons.grass,
+            iconData: Icons.hub,
             ontap: () {
               Get.lazyPut<SettingsController>(() => SettingsController());
               Get.to(const BranchesScreen());
@@ -37,15 +37,15 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
         SettingsCard(
             title: "Delivery Types",
             subtitle: "Delivery type to control costs",
-            iconData: Icons.local_shipping_outlined,
+            iconData: Icons.view_in_ar_rounded,
             ontap: () {
               Get.lazyPut<SettingsController>(() => SettingsController());
               Get.to(const DeliveryTypesScreen());
             }),
         SettingsCard(
-            title: "Product Types",
+            title: "Product Category",
             subtitle: "Product category which deliver",
-            iconData: Icons.category_outlined,
+            iconData: Icons.lan_outlined,
             ontap: () {
               Get.lazyPut<SettingsController>(() => SettingsController());
               Get.to(const CategoriesScreen());

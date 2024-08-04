@@ -40,7 +40,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               itemCount: controller.categories.length,
               itemBuilder: (context,index)=>SettingsCard(
               title: controller.categories[index].title,
-             subtitle: '', iconData: Icons.delivery_dining_outlined, ontap: (){
+             subtitle: '', iconData: Icons.category_outlined,
+             trailling: Icon(Icons.edit),
+              ontap: (){
               _titleTEController.text=controller.categories[index].title;
               showInputDialog(context: context, title: "Update Category",content:CustomInputField(hintText: 'Title',controller: _titleTEController,),
                onSubmitPressed: () async{

@@ -1,6 +1,5 @@
 import 'package:e_courier_360/presentation/state_holders/settings_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/branches/edit_branch_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/deliveryzone/delivery_zone_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
@@ -39,11 +38,11 @@ class _BranchesScreenState extends State<BranchesScreen> {
                 itemBuilder: (context, index) => SettingsCard(
                       title: controller.branches[index].name,
                       subtitle: controller.branches[index].address,
-                      iconData: Icons.grass,
+                      iconData: Icons.hub_outlined,
                       ontap: () {
-                        Get.to( DeliveryZoneScreen(branch: controller.branches[index],));
+                        // Get.to( DeliveryZoneScreen(branch: controller.branches[index],));
                       },
-                      trailling:NewWidget()
+                      trailling:BranchEditCard(branch: controller.branches[index],)
                       //  IconButton(icon: Icon(Icons.edit),onPressed: (){
                       //   Get.to(EditBranchScreen(branch: controller.branches[index],));
                       // })
