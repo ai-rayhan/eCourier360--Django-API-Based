@@ -1,5 +1,5 @@
 class Urls {
-  static const String baseUrl = 'https://courier.2ndhandmarketbd.com/api';//Base API URL
+  static const String baseUrl = 'http://10.0.2.2:8000/api';//Base API URL
   // static const String baseUrl = 'https://courier.2ndhandmarketbd.com/api';
   
   static String signin = '$baseUrl/signin/';
@@ -9,7 +9,7 @@ class Urls {
 
   static String merchantRegister = '$baseUrl/signup/';
   static String riderRegister = '$baseUrl/signup/';
-  static String createMerchant = '$baseUrl/merchants/create/';
+  // static String createMerchant = '$baseUrl/merchants/create/';
   static String addShop = '$baseUrl/merchants/allshop/';
   static String shopList = '$baseUrl/merchants/shop/';
   static String updateShop(int id) =>'$baseUrl/merchants/shop-update/$id/';
@@ -17,10 +17,13 @@ class Urls {
   static String verifyPhoneOtp = '$baseUrl/verifyphone-otp/';
   static String updateProfile = '$baseUrl/updateprofile/';
 
+  static String allMerchants = '$baseUrl/merchants/allmerchants/';
+  static String activateMerchant = '$baseUrl/merchants/activate/';
+
   static String viewProfile = '$baseUrl/viewprofile/';
   
   static String riders = '$baseUrl/rider/list-create/';
-  static String allMerchants = '$baseUrl/merchants/allmerchants/';
+
 
   //Admin settings
   static String branch = '$baseUrl/branch/branches/';

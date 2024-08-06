@@ -209,25 +209,25 @@ class AuthController extends GetxController {
     Get.to(() => const VerifyPhoneScreen());
   }
 
-  Future<bool> createMerchant(String name,String phone,String address) async {
-    _inProgress = true;
-    update();
-     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.createMerchant, {
-         "merchant_name": name,
-         "bussiness_contact_info": phone,
-         "bussiness_address": address,
-    }, token: token);
-    _inProgress = false;
-    if (response.success) {
+  // Future<bool> createMerchant(String name,String phone,String address) async {
+  //   _inProgress = true;
+  //   update();
+  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.createMerchant, {
+  //        "merchant_name": name,
+  //        "bussiness_contact_info": phone,
+  //        "bussiness_address": address,
+  //   }, token: token);
+  //   _inProgress = false;
+  //   if (response.success) {
      
-      update();
-      return true;
-    } else {
-      _errorMessage = response.errorMessage;
-      update();
-      return false;
-    }
-  }
+  //     update();
+  //     return true;
+  //   } else {
+  //     _errorMessage = response.errorMessage;
+  //     update();
+  //     return false;
+  //   }
+  // }
 saveMerchantProfile(String mcid)async{
    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
    sharedPreferences.setString("mcid", mcid);

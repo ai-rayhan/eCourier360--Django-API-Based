@@ -25,7 +25,7 @@ class ControllerBinder extends Bindings {
     Get.put(AuthController());
     Get.put(OnBoardingController());
     Get.put(SendPhoneOtpController());
-    Get.put(MerchantProfileController());
+    // Get.put(MerchantProfileController());
     Get.put(VerifyOTPController());
     Get.put(OtpTimeDecreaseController());
 

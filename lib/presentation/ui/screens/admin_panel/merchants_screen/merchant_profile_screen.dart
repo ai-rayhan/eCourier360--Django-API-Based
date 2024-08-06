@@ -77,7 +77,7 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
             //   child: MerchantEditScreen(merchant:widget.merchant),
             // ),
             // CredentialEditScreen(merchant: widget.merchant,),
-            MerchantBussinessInfo(),
+            MerchantBussinessInfo(merchant: widget.merchant,),
             ParcelSummaryScreen(),
 
           ],

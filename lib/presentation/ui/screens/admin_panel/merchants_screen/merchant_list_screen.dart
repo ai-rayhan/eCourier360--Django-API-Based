@@ -54,48 +54,61 @@ class MerchantInfoSummuryCard extends StatelessWidget {
   final Merchant merchant;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Get.to( MerchantDetailsScreen(merchant:merchant)),
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Container(
-          decoration: AppBoxDecoration.whiteDecoration,
-          width: double.infinity,
-          child: ListTile(
-            title: Text(
-              merchant.user.username,
-              style: AppTextStyle.theme16w600,
-            ),
-            subtitle: Text(
-              "Phone:${merchant.pickupPhone}\nEmail:${merchant.shopAddress}\nPickupAddress:${merchant.pickupAddress}",
-              style: AppTextStyle.darkgrey13,
-            ),
-            leading: const Icon(Icons.account_circle_sharp),
-            trailing: Container(
-              height: 28,
-              width: 60,
-                          decoration:  BoxDecoration(
-                            color:AppColors.darkGreyColor,
-                            // color:merchant.admin?.status==1?Colors.green:AppColors.darkGreyColor,
-                            borderRadius: const BorderRadius.all(Radius.circular(12)),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 4,vertical: 2),
-                            child: Row(
-                              children: [
-                                Text(
-                                  merchant.status=="1"?"  Active":
-                                  "Pending",
-                                  style: const TextStyle(fontSize: 13,color: AppColors.whiteColor),
+    return GetBuilder<MerchantController>(
+      builder: (controller) {
+        return GestureDetector(
+          onLongPress: () {
+            controller.updateMerchantId(merchant.id);
+          },
+          onTap: (){
+             if(controller.merchantIDList.isEmpty){
+             Get.to( MerchantDetailsScreen(merchant:merchant));
+             }else{
+               controller.updateMerchantId(merchant.id);
+             }
+
+             },
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Container(
+              decoration: controller.merchantIDList.contains(merchant.id)?AppBoxDecoration.whiteBlueDecoration:AppBoxDecoration.whiteDecoration,
+              width: double.infinity,
+              child: ListTile(
+                title: Text(
+                  merchant.user.username,
+                  style: AppTextStyle.theme16w600,
+                ),
+                subtitle: Text(
+                  "Phone:${merchant.pickupPhone}\nEmail:${merchant.shopAddress}\nPickupAddress:${merchant.pickupAddress}",
+                  style: AppTextStyle.darkgrey13,
+                ),
+                leading: const Icon(Icons.account_circle_sharp),
+                trailing: Container(
+                  height: 28,
+                  width: 60,
+                              decoration:  BoxDecoration(
+                                color:merchant.status=='1'?Colors.green:AppColors.darkGreyColor,
+                                borderRadius: const BorderRadius.all(Radius.circular(12)),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 4,vertical: 2),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      merchant.status=="1"?"  Active":
+                                      "Pending",
+                                      style: const TextStyle(fontSize: 13,color: AppColors.whiteColor),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                    
+                        
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 }

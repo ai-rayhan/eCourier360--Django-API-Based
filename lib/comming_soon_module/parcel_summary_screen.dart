@@ -1,5 +1,6 @@
 
 
+import 'package:e_courier_360/data/models/merchant.dart';
 import 'package:flutter/material.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/merchant_profile_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
@@ -7,8 +8,8 @@ import 'package:e_courier_360/presentation/utility/box_decoration.dart';
 import 'package:e_courier_360/presentation/utility/sizedbox.dart';
 
 class MerchantBussinessInfo extends StatelessWidget {
-  const MerchantBussinessInfo({super.key});
-
+  const MerchantBussinessInfo({super.key, required this.merchant});
+final Merchant merchant;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -17,17 +18,17 @@ class MerchantBussinessInfo extends StatelessWidget {
         child: Column(
           children: [
             AppSizedBox.h16,
-            const CircleAvatar(
+             CircleAvatar(
               radius: 30.0,
               backgroundColor: Colors.purple,
               child: Text(
-                'AA',
+               merchant.shopName ,
                 style: TextStyle(fontSize: 24.0, color: Colors.white),
               ),
             ),
             AppSizedBox.h10,
-            const Text(
-              'App (app)',
+             Text(
+              merchant.user.username,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
             ),
             AppSizedBox.h16,

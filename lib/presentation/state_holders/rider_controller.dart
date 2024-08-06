@@ -14,24 +14,24 @@ class RiderController extends GetxController {
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
 
-  Future<bool> createMerchantProfile(String name,String phone,String bussinessAddress) async {
-    _inProgress = true;
-    update();
-     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.createMerchant, {
-        "merchant_name": name,
-        "bussiness_contact_info":phone,
-        "bussiness_address":bussinessAddress,
-    }, isLogin: true);
-    _inProgress = false;
-    if (response.success) {
-      update();
-      return true;
-    } else {
-      _errorMessage = response.errorMessage;
-      update();
-      return false;
-    }
-  }
+  // Future<bool> createMerchantProfile(String name,String phone,String bussinessAddress) async {
+  //   _inProgress = true;
+  //   update();
+  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.createMerchant, {
+  //       "merchant_name": name,
+  //       "bussiness_contact_info":phone,
+  //       "bussiness_address":bussinessAddress,
+  //   }, isLogin: true);
+  //   _inProgress = false;
+  //   if (response.success) {
+  //     update();
+  //     return true;
+  //   } else {
+  //     _errorMessage = response.errorMessage;
+  //     update();
+  //     return false;
+  //   }
+  // }
 
     Future<bool> updateProfile(String name,String phone,String address,File imageFile) async {
     _inProgress = true;
