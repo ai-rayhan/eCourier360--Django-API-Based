@@ -3,6 +3,7 @@ import 'package:e_courier_360/presentation/state_holders/merchant_controller.dar
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/receiver_screen/receivers_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/riders_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/send_parcel_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/home/home_option_card.dart';
@@ -42,7 +43,7 @@ List<HomeOptionCard> adminOptions = [
       title: "Receivers",
       imagePath: AssetsPath.persons,
       onTap: () {
-        Get.lazyPut<MerchantController>(() => MerchantController());
+        Get.to(const ReceiversScreen());
       }),
 
   HomeOptionCard(

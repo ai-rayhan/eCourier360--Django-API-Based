@@ -1,6 +1,6 @@
 class Urls {
-  static const String baseUrl = 'http://192.168.0.193:8000/api';//Base API URL
-  // static const String baseUrl = 'http://10.0.2.2:8000/api';//Base API URL
+  // static const String baseUrl = 'http://192.168.0.193:8000/api';//Base API URL
+  static const String baseUrl = 'http://10.0.2.2:8000/api';//Base API URL
   // static const String baseUrl = 'https://courier.2ndhandmarketbd.com/api';
   
   static String signin = '$baseUrl/signin/';
@@ -17,14 +17,17 @@ class Urls {
   static String sendOtpToPhone = '$baseUrl/send-otp/';
   static String verifyPhoneOtp = '$baseUrl/verifyphone-otp/';
   static String updateProfile = '$baseUrl/updateprofile/';
+  static String viewProfile = '$baseUrl/viewprofile/';
 
   static String allMerchants = '$baseUrl/merchants/allmerchants/';
-  static String activateMerchant = '$baseUrl/merchants/activate/';
+  static String merchantDetails(int mcid) => '$baseUrl/merchants/merchant/$mcid/';
+  static String merchantActivate = '$baseUrl/merchants/activate/';
 
-  static String viewProfile = '$baseUrl/viewprofile/';
+
   
   static String riders = '$baseUrl/rider/list-create/';
-
+  static String riderDetails(int riderId) => '$baseUrl/rider/riderdetails/$riderId/';
+  static String riderActivate = '$baseUrl/rider/activate/';
 
   //Admin settings
   static String branch = '$baseUrl/branch/branches/';

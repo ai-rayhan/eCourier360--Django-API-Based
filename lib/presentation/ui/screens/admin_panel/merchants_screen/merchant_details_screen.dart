@@ -1,8 +1,10 @@
 import 'package:e_courier_360/comming_soon_module/parcel_summary_screen.dart';
 import 'package:e_courier_360/data/helper/string_converter.dart';
 import 'package:e_courier_360/data/models/merchant.dart';
+import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/widgets/shop_info_card.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_tabbar.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/speace_between_row.dart';
 import 'package:e_courier_360/presentation/ui/widgets/merchant/credential_form.dart';
@@ -56,6 +58,9 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Get.find<MerchantController>().getMerchantDetails(widget.merchant.id);
+    });
   }
 
   @override
@@ -77,14 +82,8 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
         child: TabBarView(
           controller: _tabController,
           children:  [
-
-            // Padding(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: MerchantEditScreen(merchant:widget.merchant),
-            // ),
-            // CredentialEditScreen(merchant: widget.merchant,),
-            MerchantBussinessInfo(merchant: widget.merchant,),
-            ParcelSummaryScreen(),
+            const MerchantBussinessInfo(),
+            const ParcelSummaryScreen(),
 
           ],
         ),
@@ -94,50 +93,56 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
 }
 
 class MerchantBussinessInfo extends StatelessWidget {
-  const MerchantBussinessInfo({super.key, required this.merchant});
-final Merchant merchant;
+  const MerchantBussinessInfo({super.key});
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Column(
-          children: [
-            AppSizedBox.h16,
-             CircleAvatar(
-              radius: 30.0,
-              backgroundColor: Colors.purple,
-              child: Text(
-               getFirstCharactersOfWords(merchant.shopName),
-                style: TextStyle(fontSize: 24.0, color: Colors.white),
+      child: GetBuilder<MerchantController>(
+        builder: (controller) {
+          return Visibility(
+            visible: controller.merchantDetails!=null,
+            replacement:const EmptyDataPage(),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                children: [
+                  AppSizedBox.h16,
+                   CircleAvatar(
+                    radius: 30.0,
+                    backgroundColor: Colors.purple,
+                    child: Text(
+                     getFirstCharactersOfWords(controller.merchantDetails?.shopName??"Empty"),
+                      style: const TextStyle(fontSize: 24.0, color: Colors.white),
+                    ),
+                  ),
+                  AppSizedBox.h10,
+                  //  Text(
+                  //   merchant.user.username,
+                  //   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+                  // ),
+                  AppSizedBox.h16,
+                  const HeaderText(title: "Shop Information:"),
+                  const ShopInfoScreen(),
+                  AppSizedBox.h16,
+                  const HeaderText(title: "Bank Information:"),
+                  controller.merchantDetails!.bankInformation!=null?Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: controller.merchantDetails!.bankInformation!.map((bankInfo) {
+                      return Container(
+                        decoration: AppBoxDecoration.whiteDecoration,
+                        child: ListTile(
+                          title: Text( "Bank Name :${bankInfo.bankName}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                          subtitle: Text("Acc.No:${bankInfo.accountNumber}  Branch:${bankInfo.branch}"),
+                        ),
+                      );
+                    }).toList(),
+                  ):const Center(child:  Text("No Bank Information Added"),),
+                  
+                ],
               ),
             ),
-            AppSizedBox.h10,
-             Text(
-              merchant.user.username,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
-            ),
-            AppSizedBox.h16,
-            const HeaderText(title: "Shop Information:"),
-             ShopInfoScreen(merchant:merchant),
-            AppSizedBox.h16,
-            const HeaderText(title: "Bank Information:"),
-            //  BankInfoScreen(merchant: merchant,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: merchant.bankInformation.map((bankInfo) {
-                return Container(
-                  decoration: AppBoxDecoration.whiteDecoration,
-                  child: ListTile(
-                    title: Text( "Bank Name :${bankInfo.bankName}",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                    subtitle: Text("Acc.No:${bankInfo.accountNumber}  Branch:${bankInfo.branch}"),
-                  ),
-                );
-              }).toList(),
-            ),
-            
-          ],
-        ),
+          );
+        }
       ),
     );
   }

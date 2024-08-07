@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:e_courier_360/data/models/receiver.dart';
 import 'package:e_courier_360/data/services/network_caller/network_caller.dart';
+import 'package:e_courier_360/data/services/network_caller/request_methods/delete_request.dart';
+import 'package:e_courier_360/data/services/network_caller/request_methods/dynamic_post_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
@@ -63,4 +65,34 @@ class ReceiverController extends GetxController {
       return false;
     }
   }
+
+  List<int>receiverIDList=[];
+
+  updateReceiverId(int receiverId){
+    if(receiverIDList.contains(receiverId)){
+      receiverIDList.remove(receiverId);
+    }else{
+      receiverIDList.add(receiverId);
+    }
+    update();
+  }
+
+ Future<bool>  deleteReceivers()async{
+     _inProgress = true;
+     update();
+      NetworkCallerReturnObject? response;
+    for (int id in receiverIDList){
+        response =await DeleteRequest.execute("${Urls.receiverList}$id/",token: AuthController.token);
+    }
+    _inProgress = false;
+    if (response!.success) {
+      receiverIDList.clear();
+      getReceivers();
+      return true;
+    } else {
+      _errorMessage = response.errorMessage;
+      update();
+      return false;
+    }
+}
 }

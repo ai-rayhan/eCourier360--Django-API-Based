@@ -12,8 +12,8 @@ class MerchantController extends GetxController {
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
 
-  List <Merchant> _merchant=[];
-  List <Merchant> get merchantList=>_merchant;
+  List <Merchant> _merchants=[];
+  List <Merchant> get merchantList=>_merchants;
 
   Future<bool> getAllMerchants() async {
     _inProgress = true;
@@ -21,7 +21,7 @@ class MerchantController extends GetxController {
      final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.allMerchants, token: AuthController.token,);
     _inProgress = false;
     if (response.success) {
-     _merchant = (response.returnValue as List<dynamic>)
+     _merchants = (response.returnValue as List<dynamic>)
           .map((json) => Merchant.fromJson(json))
           .toList();
     //  _merchant.sort((a, b) => a.user.compareTo(b.user));
@@ -34,6 +34,26 @@ class MerchantController extends GetxController {
     }
   }
 
+  Merchant? _merchantDetails;
+  Merchant? get merchantDetails=>_merchantDetails;
+
+  Future<bool> getMerchantDetails(int mcId) async {
+    _inProgress = true;
+    update();
+     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.merchantDetails(mcId), token: AuthController.token,);
+    _inProgress = false;
+    if (response.success) {
+     _merchantDetails = Merchant.fromJson(response.returnValue);
+      update();
+      return true;
+    } else {
+      _errorMessage = response.errorMessage;
+      update();
+      return false;
+    }
+  }
+
+  ///////Activate Merchant///////////
   List<int>merchantIDList=[];
   int? selectedStatus;
 
@@ -49,7 +69,7 @@ class MerchantController extends GetxController {
   Future<bool> activateMerchant() async {
     _inProgress = true;
     update();
-     final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.activateMerchant, token: AuthController.token,{
+     final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.merchantActivate, token: AuthController.token,{
          "status":selectedStatus,
          "merchant_ids":merchantIDList
 

@@ -1,14 +1,16 @@
 import 'package:e_courier_360/data/models/merchant.dart';
-import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
+import 'package:e_courier_360/data/models/rider.dart';
+import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/info_row.dart';
 import 'package:flutter/material.dart';
 import 'package:e_courier_360/presentation/utility/box_decoration.dart';
 import 'package:get/get.dart';
-class ShopInfoScreen extends StatelessWidget {
-  const ShopInfoScreen({super.key});
+
+class ProfileInfoScreen extends StatelessWidget {
+  const ProfileInfoScreen({super.key});
   @override
   Widget build(BuildContext context) {
-   final Merchant? merchant= Get.find<MerchantController>().merchantDetails;
+   final Rider? rider =Get.find<RiderController>().riderDetails;
     return Container(
       decoration: AppBoxDecoration.whiteDecoration,
       child:  Column(
@@ -16,25 +18,31 @@ class ShopInfoScreen extends StatelessWidget {
           InfoRow(
             icon: Icons.business,
             title: 'Business Name',
-            subtitle:merchant?.shopName??"Not added",
+            subtitle:rider?.fullName??'Not Added',
           ),
           Divider(),
           InfoRow(
             icon: Icons.phone,
             title: 'Pickup Phone',
-            subtitle: merchant?.pickupPhone??"Not added",
+            subtitle: rider?.phone??'Not Added',
           ),
           Divider(),
           InfoRow(
             icon: Icons.location_on,
             title: 'Business Address',
-            subtitle: merchant?.shopAddress??"Not added",
+            subtitle: rider?.address??'Not Added',
           ),
           Divider(),
           InfoRow(
-            icon: Icons.location_on,
-            title: 'Pickup Address',
-            subtitle: merchant?.pickupAddress??"Not added",
+            icon: Icons.fire_truck,
+            title: 'Vehicle Type',
+            subtitle: rider?.vehicleType??'Not Added',
+          ),
+          Divider(),
+          InfoRow(
+            icon: Icons.receipt_long_sharp,
+            title: 'Registration Number',
+            subtitle: rider?.registrationNumber??'Not Added',
           ),
         ],
       ),

@@ -1,3 +1,6 @@
+import 'package:e_courier_360/data/models/common/bank_information.dart';
+import 'package:e_courier_360/data/models/common/user.dart';
+
 class Rider {
   int id;
   String fullName;
@@ -7,9 +10,12 @@ class Rider {
   String vehicleType;
   String registrationNumber;
   dynamic riderCommission;
+  String? status;
   DateTime createdAt;
   DateTime updatedAt;
   dynamic user;
+  final User? userdetails;
+  final List<BankInformation>? bankInformation;
 
   Rider({
     required this.id,
@@ -23,6 +29,9 @@ class Rider {
     required this.createdAt,
     required this.updatedAt,
     this.user,
+    this.status,
+    this.userdetails,
+    this.bankInformation,
   });
 
   factory Rider.fromJson(Map<String, dynamic> json) {
@@ -35,9 +44,14 @@ class Rider {
       vehicleType: json['vehicle_type'],
       registrationNumber: json['registration_number'],
       riderCommission: json['rider_commission'],
+      status: json['status'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       user: json['user'],
+      userdetails: json['userdetails'] != null ? User.fromJson(json['userdetails']) : null,
+      bankInformation: json['bank_information'] != null
+          ? (json['bank_information'] as List).map((item) => BankInformation.fromJson(item)).toList()
+          : null,
     );
   }
 
@@ -51,9 +65,12 @@ class Rider {
       'vehicle_type': vehicleType,
       'registration_number': registrationNumber,
       'rider_commission': riderCommission,
+      'status': status,
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
       'user': user,
+       'userdetails': userdetails?.toJson(),
+      'bank_information': bankInformation?.map((item) => item.toJson()).toList(),
     };
   }
 }
