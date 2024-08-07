@@ -1,9 +1,8 @@
-
 class User {
-  final int id;
-  final String username;
-  final String email;
-  final String phoneNumber;
+  int id;
+  String username;
+  String email;
+  String phoneNumber;
 
   User({
     required this.id,
@@ -31,40 +30,93 @@ class User {
   }
 }
 
-class Merchant {
-  final int id;
-  final User user;
-  final String shopName;
-  final String pickupPhone;
-  final String shopAddress;
-  final String status;
-  final String? pickupAddress;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+class BankInformation {
+  int id;
+  String bankName;
+  String accountNumber;
+  String accountName;
+  String branch;
+  String mobileNo;
+  int userId;
+  int paymentMethod;
 
-  Merchant( {
+  BankInformation({
+    required this.id,
+    required this.bankName,
+    required this.accountNumber,
+    required this.accountName,
+    required this.branch,
+    required this.mobileNo,
+    required this.userId,
+    required this.paymentMethod,
+  });
+
+  factory BankInformation.fromJson(Map<String, dynamic> json) {
+    return BankInformation(
+      id: json['id'],
+      bankName: json['bank_name'],
+      accountNumber: json['account_number'],
+      accountName: json['account_name'],
+      branch: json['branch'],
+      mobileNo: json['mobile_no'],
+      userId: json['user'],
+      paymentMethod: json['payment_method'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'bank_name': bankName,
+      'account_number': accountNumber,
+      'account_name': accountName,
+      'branch': branch,
+      'mobile_no': mobileNo,
+      'user': userId,
+      'payment_method': paymentMethod,
+    };
+  }
+}
+
+class Merchant {
+  int id;
+  User user;
+  String shopName;
+  String pickupPhone;
+  String shopAddress;
+  String pickupAddress;
+  String status;
+  DateTime createdAt;
+  DateTime updatedAt;
+  List<BankInformation> bankInformation;
+
+  Merchant({
     required this.id,
     required this.user,
     required this.shopName,
     required this.pickupPhone,
     required this.shopAddress,
+    required this.pickupAddress,
     required this.status,
-    this.pickupAddress,
     required this.createdAt,
     required this.updatedAt,
+    required this.bankInformation,
   });
 
   factory Merchant.fromJson(Map<String, dynamic> json) {
     return Merchant(
       id: json['id'],
-      status:json['status'],
       user: User.fromJson(json['user']),
       shopName: json['shop_name'],
       pickupPhone: json['pickup_phone'],
       shopAddress: json['shop_address'],
       pickupAddress: json['pickup_address'],
+      status: json['status'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
+      bankInformation: (json['bank_information'] as List)
+          .map((i) => BankInformation.fromJson(i))
+          .toList(),
     );
   }
 
@@ -76,8 +128,11 @@ class Merchant {
       'pickup_phone': pickupPhone,
       'shop_address': shopAddress,
       'pickup_address': pickupAddress,
+      'status': status,
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
+      'bank_information':
+          bankInformation.map((bankInfo) => bankInfo.toJson()).toList(),
     };
   }
 }

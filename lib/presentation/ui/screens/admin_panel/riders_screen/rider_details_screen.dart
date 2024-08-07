@@ -47,8 +47,8 @@ class RiderDetailsScreenState extends State<RiderDetailsScreen>
         child: TabBarView(
           controller: _tabController,
           children:  [
-            MerchantBussinessInfo(),
-            ParcelSummaryScreen(),
+            // MerchantBussinessInfo(merchant: null,),
+            // ParcelSummaryScreen(),
 
           ],
         ),

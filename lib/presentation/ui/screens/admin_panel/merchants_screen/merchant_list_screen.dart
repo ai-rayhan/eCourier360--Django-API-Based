@@ -2,7 +2,7 @@ import 'package:e_courier_360/data/models/merchant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/merchant_profile_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/merchant_details_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:e_courier_360/presentation/utility/box_decoration.dart';

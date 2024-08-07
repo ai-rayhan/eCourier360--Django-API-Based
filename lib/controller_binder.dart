@@ -7,7 +7,6 @@ import 'package:e_courier_360/presentation/state_holders/local/onboard_controlle
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
-import 'package:e_courier_360/presentation/state_holders/merchant_profile_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/otp_time_decrease_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/product_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/receiver_controller.dart';
