@@ -60,7 +60,7 @@ class RolePermissionController extends GetxController {
       _permissions =(response.returnValue['permissions'] as List<dynamic>)
           .map((json) => Permission.fromJson(json))
           .toList();
-      _permissions.sort((a, b) => a.id.compareTo(b.id));
+      groupPermissionsByContentTypeModel(_permissions);
       update();
       showSuccess("success");
       return true;
@@ -71,7 +71,20 @@ class RolePermissionController extends GetxController {
       return false;
     }
   }
-  
+  List<List<Permission>> grpPerm=[];
+  List<List<Permission>> groupPermissionsByContentTypeModel(List<Permission> permissions) {
+  Map<String, List<Permission>> groupedPermissions = {};
+
+  for (var permission in permissions) {
+    if (groupedPermissions.containsKey(permission.contentTypeModel)) {
+      groupedPermissions[permission.contentTypeModel]!.add(permission);
+    } else {
+      groupedPermissions[permission.contentTypeModel] = [permission];
+    }
+  }
+  grpPerm=groupedPermissions.values.toList();
+  return groupedPermissions.values.toList();
+}
   Future<bool> addPickupZone(String name,int branchId) async {
     showloading('Loading..');
     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.pickupZone,token: AuthController.token, {

@@ -30,7 +30,7 @@ class TrackingCard extends StatelessWidget {
             }
           },
           onLongPress: () {
-            if (AuthController.userRole == "Superadmin" &&
+            if ((AuthController.userRole == 1||AuthController.userRole == 2) &&
                 parcel.deliveryStatus < 8) {
               controller.toggleSelection(parcel);
             }

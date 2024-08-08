@@ -46,6 +46,8 @@ class Urls {
   static String getParcelDetails(int id)=>'$baseUrl/parcels/parceldetails/?parcel=$id';
   static String updateParcel(int id) =>'$baseUrl/parcels/update-destroy/$id/';
   static String updateParcelDetails(int id) =>'$baseUrl/parcels/parceldetails/$id/';
+  
+  static String updateStatusByBatch = '$baseUrl/parcels/update-status/';
 
   static String deliveryType = '$baseUrl/settings/delivery-time/';
   static String updateDeliveryType(int id) => '$baseUrl/settings/delivery-time/$id/';

@@ -1,6 +1,7 @@
 // import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 // import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/update_status_screen.dart';
@@ -103,6 +104,7 @@ class ParcelsTrackScreenState extends State<ParcelsTrackScreen> with SingleTicke
       floatingActionButton:GetBuilder<ParcelStatusController>(
         builder: (parcelController) {
           return parcelController.isSelectionMode()?SizedBox(width: 200, child: FilledButton (onPressed: (){
+            Get.lazyPut<RiderController>(() => RiderController());
             Get.to(const UpdateStatusScreen());
           }, child:const Text("Update Status"),)):Container();
         }

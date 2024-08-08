@@ -50,24 +50,65 @@ class EditRolesPermissionScreenState extends State<EditRolesPermissionScreen> {
                 AppSizedBox.h10,
                 const HeaderText(title: "Permissions"),
                 ListTile(
-                  title: const Text('All'),
-                  leading: Checkbox(
-                    value: controller.isAllSelected,
-                    onChanged: controller.toggleSelectAll,
+                  title: const Text('Role'),
+                  leading: CircleAvatar(child: Text('R.ID')),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('All'),
+                      Checkbox(
+                        value: controller.isAllSelected,
+                        onChanged: controller.toggleSelectAll,
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
+                // Expanded(
+                //   child: ListView.builder(
+                //         itemCount: controller.permissions.length,
+                //         itemBuilder: (context, index) {
+                //           final permission = controller.permissions[index];
+                //           return ListTile(
+                //             title: Text(permission.codename),
+                //             subtitle: Text('${permission.contentTypeAppLabel} - ${permission.contentTypeModel}'),
+                //             leading: CircleAvatar(child: Text("${permission.id}")),
+                //             trailing: Checkbox(
+                //               value: permission.isSelected,
+                //               onChanged: (value) => controller.togglePermissionSelection(permission, value),
+                //             ),
+                //           );
+                //         },
+                //       )
+                    
+                // ),
+                  Expanded(
                   child: ListView.builder(
-                        itemCount: controller.permissions.length,
+                        itemCount:  controller.grpPerm.length,
                         itemBuilder: (context, index) {
-                          final permission = controller.permissions[index];
-                          return ListTile(
-                            title: Text(permission.codename),
-                            subtitle: Text('${permission.contentTypeAppLabel} - ${permission.contentTypeModel}'),
-                            leading: Checkbox(
-                              value: permission.isSelected,
-                              onChanged: (value) => controller.togglePermissionSelection(permission, value),
-                            ),
+                          final permissionGroups =  controller.grpPerm[index];
+                          return Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(8.0,8,0,0),
+                                child: HeaderText(title: permissionGroups.first.contentTypeModel.toUpperCase(),),
+                              ),
+                              ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: permissionGroups.length,
+                                itemBuilder: (context,index2){
+                                Permission permission=permissionGroups[index2];
+                                return ListTile(
+                                title: Text(permission.codename),
+                                subtitle: Text('${permission.contentTypeAppLabel} - ${permission.contentTypeModel}'),
+                                leading: CircleAvatar(child: Text("${permission.id}")),
+                                trailing: Checkbox(
+                                  value: permission.isSelected,
+                                  onChanged: (value) => controller.togglePermissionSelection(permission, value),
+                                ),
+                              );
+                              }),
+                            ],
                           );
                         },
                       )

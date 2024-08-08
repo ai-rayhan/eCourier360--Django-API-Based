@@ -7,6 +7,7 @@ import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.
 import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/product_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/receiver_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/update_status_screen.dart';
@@ -159,7 +160,7 @@ class _PercelViewScreenState extends State<PercelViewScreen> {
                               ),
                             ),
                                    const SizedBox(width: 10,),
-                                 if((AuthController.userRole=='Superadmin'||AuthController.userRole=='Rider') && widget.parcelData.deliveryStatus!=13)
+                                 if((AuthController.userRole==1||AuthController.userRole==2||AuthController.userRole==4) && widget.parcelData.deliveryStatus!=13)
                               Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
@@ -167,6 +168,7 @@ class _PercelViewScreenState extends State<PercelViewScreen> {
                                 if(widget.parcelData.deliveryStatus==8||widget.parcelData.deliveryStatus==9){
                                 // Get.to(const MakePaymentScreen());
                                 }else{
+                                 Get.lazyPut<RiderController>(() => RiderController());
                                  Get.to(const UpdateStatusScreen());
                                 }
                                 },

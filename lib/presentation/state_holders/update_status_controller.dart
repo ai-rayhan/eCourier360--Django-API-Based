@@ -1,6 +1,7 @@
 import 'package:e_courier_360/data/models/parcel.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/dynamic_post_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
+import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:get/get.dart';
 
@@ -14,11 +15,12 @@ class ParcelStatusController extends GetxController {
     Future<bool> updateStatusByBatch({int? pickupRider,int? deliveryRider,int? partialCash,String? reason}) async {
     _inProgress = true;
     update();
-    final  NetworkCallerReturnObject response =await DynamicPostRequest.execute("Urls.updateStatusByBatch",token: AuthController.token,{
-    "booking_id":bookingIds,
-    "update_status_id":_selectedStatusId,
-    "pickup_update_rider":pickupRider,
-    "delivery_update_rider":deliveryRider,
+    final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.updateStatusByBatch,token: AuthController.token,{
+   
+    "parcel_ids": bookingIds,
+    "status":_selectedStatusId,
+    "pickup_rider":pickupRider,
+    "delivery_rider":deliveryRider,
     "partial_collection_amount":partialCash,
     "reason":reason,
     "delivery_amount":null,

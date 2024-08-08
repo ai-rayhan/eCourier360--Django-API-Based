@@ -64,7 +64,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                       decoration: const InputDecoration(
                         labelText: 'Parcel Status:',
                       ),
-                      value:controller.selectedParcels.isNotEmpty? controller.selectedParcels.first.deliveryStatus.toString():null,
+                      value:null,
                       items: dashBoardController.updateStatusNames.map((level) {
                         return DropdownMenuItem<String>(
                           value: level,

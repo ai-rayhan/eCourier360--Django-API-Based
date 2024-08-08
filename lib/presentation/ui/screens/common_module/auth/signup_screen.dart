@@ -70,7 +70,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               Map<String,dynamic> merchantInfo={
                                      "shop_name":_shopNameTEController.text,
                                     //  "shop_email": _shopEmailTEController.text,
-                                     "pickup_phone": _pickupPhoneTEController.text,
+                                     "pickup_phone": _phoneTEController.text,
                                      "shop_address": _shopAddressTEController.text,
                                      "pickup_address": _pickupAddressTEController.text,
                               };
@@ -78,7 +78,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                       _userNameTEController.text, 
                                       _emailTEController.text, 
                                       _phoneTEController.text, 
-                                     'password',"Merchant",merchantInfo
+                                     'password',"merchant",merchantInfo
                                         );
                             }else{
                               Map<String,dynamic> riderInfo={
