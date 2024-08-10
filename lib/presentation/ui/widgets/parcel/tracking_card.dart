@@ -1,6 +1,8 @@
 
 import 'package:e_courier_360/data/helper/date_converter.dart';
 import 'package:e_courier_360/data/models/parcel.dart';
+import 'package:e_courier_360/data/utility/urls.dart';
+import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/percel_view_screen.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:e_courier_360/presentation/utility/box_decoration.dart';
@@ -71,14 +73,15 @@ class TrackingCard extends StatelessWidget {
                           children: [
                             Container(
                               decoration: const BoxDecoration(
-                                color: Color.fromARGB(143, 255, 187, 61),
+                                color: Color(0xffF0E4E1),
                                 borderRadius: BorderRadius.all(Radius.circular(12)),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: Row(
                                   children: [
-                                    Icon(statusIcons[parcel.deliveryStatus - 1],size: 15,color: colors[parcel.deliveryStatus-1],),
+                                    Image.network(height: 20,width: 20, "${Urls.siteUrl}${Get.find<DeliveryStatusController>().deliveryStatus(parcel.deliveryStatus).image!}"),
+                                    // Icon(statusIcons[parcel.deliveryStatus - 1],size: 15,color: colors[parcel.deliveryStatus-1],),
                                     const SizedBox(width: 2),
                                     Text(
                                       '',

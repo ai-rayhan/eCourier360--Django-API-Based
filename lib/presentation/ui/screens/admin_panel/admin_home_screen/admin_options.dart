@@ -3,6 +3,7 @@ import 'package:e_courier_360/presentation/state_holders/merchant_controller.dar
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/payment_screen/payment_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/receiver_screen/receivers_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/riders_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/send_parcel_screen.dart';
@@ -50,6 +51,6 @@ List<HomeOptionCard> adminOptions = [
       title: "Payment",
       imagePath: AssetsPath.payment,
       onTap: () {
-        // Get.to(const AdminPaymentScreen());
+        Get.to(const AdminPaymentScreen());
       }),
 ];

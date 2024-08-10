@@ -55,14 +55,14 @@ List<String> get updateStatusNames =>updateStatusList.map((status) => status.sta
 void reduceDeliveryStatusForUpdate(int statusID) {
   // Define a mapping from statusID to the list of desired delivery status IDs
   final statusMapping = {
-    1: [statusID,2, 12],
-    2: [statusID,3, 12],
-    3: [statusID,4, 12],
-    4: [statusID,5, 12],
-    5: [statusID,6, 7, 8, 9, 10, 12],
-    8:[statusID,13],
-    9:[statusID,13],
-    11:[statusID,13],
+    1: [statusID,2, 11],
+    2: [statusID,3, 11],
+    3: [statusID,4, 11],
+    4: [statusID,5, 11],
+    5: [statusID,6, 7, 8, 9, 11],
+    8:[statusID,12],
+    9:[statusID,12],
+    11:[statusID,12],
   };
 
   // Clear the existing list

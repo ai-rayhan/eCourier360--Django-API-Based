@@ -10,6 +10,7 @@ import 'package:e_courier_360/presentation/state_holders/receiver_controller.dar
 import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/payment_screen/make_payment_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/update_status_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/send_parcel_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
@@ -166,7 +167,7 @@ class _PercelViewScreenState extends State<PercelViewScreen> {
                                 onPressed: () {
                                 Get.find<ParcelStatusController>().toggleSelection(widget.parcelData);
                                 if(widget.parcelData.deliveryStatus==8||widget.parcelData.deliveryStatus==9){
-                                // Get.to(const MakePaymentScreen());
+                                Get.to(const MakePaymentScreen());
                                 }else{
                                  Get.lazyPut<RiderController>(() => RiderController());
                                  Get.to(const UpdateStatusScreen());

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_courier_360/data/models/parcel.dart';
 import 'package:e_courier_360/data/models/body/parcel_data.dart';
 import 'package:e_courier_360/data/models/product.dart';
@@ -140,6 +142,27 @@ class ParcelController extends GetxController {
       _errorMessage = response.errorMessage;
       update();
       return false;
+    }
+  }
+  final List<Parcel> _allStatusParcels=[];
+  List<Parcel> get allStatusParcels=> _allStatusParcels;
+  
+  List<Parcel>get riderPendingBooking=>_allStatusParcels.where((element) => element.driverPaymentStatus==1).toList();
+  List<Parcel>get merchantPendingBooking=>_allStatusParcels.where((element) => element.paymentStatus==1).toList();
+
+    Future<void> getParcelsByMultipleStatuses(List<int> statusIdsList) async {
+    _allStatusParcels.clear();
+    for (var statusId in statusIdsList) {
+      bool success = await getMerchantParcelsByStatus(statusId);
+      _allStatusParcels.addAll(_parcels);
+      _allStatusParcels.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      if (success) {
+        log("Successfully fetched parcels for status IDs: $statusId");
+        // Additional logic for handling the data can be added here
+      } else {
+        log("Failed to fetch parcels for status IDs: $statusId");
+        // Additional logic for handling errors can be added here
+      }
     }
   }
 }

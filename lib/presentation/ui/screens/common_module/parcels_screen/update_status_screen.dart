@@ -18,7 +18,7 @@ class UpdateStatusScreen extends StatefulWidget {
 }
 
 class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
-  final DeliveryStatusController dashBoardController = Get.find();
+  final DeliveryStatusController deliveryStatusController = Get.find();
   final RiderController parcelController = Get.find();
   final ParcelStatusController parcelSatusController = Get.find();
 
@@ -31,7 +31,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
   
  @override
   void initState() {
-  dashBoardController.reduceDeliveryStatusForUpdate(parcelSatusController.selectedParcels.first.deliveryStatus);
+  deliveryStatusController.reduceDeliveryStatusForUpdate(parcelSatusController.selectedParcels.first.deliveryStatus);
     super.initState();
   }
   @override
@@ -64,8 +64,8 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                       decoration: const InputDecoration(
                         labelText: 'Parcel Status:',
                       ),
-                      value:null,
-                      items: dashBoardController.updateStatusNames.map((level) {
+                      value:parcelSatusController.selectedParcels.isNotEmpty?deliveryStatusController.deliveryStatus(parcelSatusController.selectedParcels.first.deliveryStatus).status:null,
+                      items: deliveryStatusController.updateStatusNames.map((level) {
                         return DropdownMenuItem<String>(
                           value: level,
                           child: Text(
@@ -75,8 +75,11 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                         );
                       }).toList(),
                       onChanged: (value) {
-                        int selectedIndex = dashBoardController.updateStatusNames.indexOf(value!);
-                        controller.selectedStatusId = dashBoardController.updateStatusIds[selectedIndex];
+                        int selectedIndex = deliveryStatusController.updateStatusNames.indexOf(value!);
+                        controller.selectedStatusId = deliveryStatusController.updateStatusIds[selectedIndex];
+                         if (controller.selectedStatusId == 3 || controller.selectedStatusId == 5){
+                          Get.find<RiderController>().getAllRiders();
+                         }
                       },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -109,8 +112,11 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                             }).toList(),
                             onChanged: (value) {
                               int selectedIndex = parcelController.combinedRiders.indexOf(value!);
-                              deliveryRider = parcelController.riderIds[selectedIndex];
-                              pickupRider = parcelController.riderIds[selectedIndex];
+                               if (controller.selectedStatusId == 3){
+                                pickupRider = parcelController.riderIds[selectedIndex];
+                               }else{
+                                deliveryRider = parcelController.riderIds[selectedIndex];
+                               }
                             },
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -123,7 +129,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                       ],
                     ),
                   AppSizedBox.h5,
-                  if (controller.selectedStatusId == 6 || controller.selectedStatusId == 7 || controller.selectedStatusId == 8 || controller.selectedStatusId == 10)
+                  if (controller.selectedStatusId == 6 || controller.selectedStatusId == 7 || controller.selectedStatusId == 9)
                     Column(
                       children: [
                         const HeaderText(title: "Reason"),
@@ -135,7 +141,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                         ),
                       ],
                     ),
-                  if (controller.selectedStatusId == 8)
+                  if (controller.selectedStatusId == 7)
                     Column(
                       children: [
                         const HeaderText(title: "Partial Cash Collection"),

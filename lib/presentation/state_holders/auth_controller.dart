@@ -65,8 +65,9 @@ class AuthController extends GetxController {
     }, isLogin: false);
     _inProgress = false;
     if (response.success) {
-      log("message:${response.returnValue['data']}");
-      saveUserDetails( response.returnValue['data']['access'], UserProfile.fromJson(response.returnValue),response.returnValue['data']['id'].toString());
+      UserProfile userProfile= UserProfile.fromJson(response.returnValue);
+      userRole=userProfile.data.role;
+      saveUserDetails( response.returnValue['data']['access'],userProfile,response.returnValue['data']['id'].toString());
       saveVerification(response.returnValue['data']['is_phone_verified']);
       update();
       return true;

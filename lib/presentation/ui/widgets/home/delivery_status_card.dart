@@ -11,7 +11,7 @@ class SummaryCard extends StatelessWidget {
 final String status;
 final String count;
 final Color countColor;
-final Icon image;
+final String image;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,10 +25,10 @@ final Icon image;
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(children: [
-                // Image.network(image,height: 40,width: 40,),
-                SizedBox(
-                  child: image
-                  ),
+                Image.network(image,height: 35,width: 35,),
+                // SizedBox(
+                //   child: image
+                //   ),
                 Text(status,style: AppTextStyle.primary14w600.copyWith(fontSize: 12),maxLines: 1,overflow: TextOverflow.ellipsis,),
               ],),
             ),

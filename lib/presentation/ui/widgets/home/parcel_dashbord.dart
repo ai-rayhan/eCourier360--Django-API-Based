@@ -14,6 +14,7 @@ class ParcelDashBoard extends StatelessWidget {
   final DeliveryStatusController dashBoardController;
   @override
   Widget build(BuildContext context) {
+    String url="http://10.0.2.2:8000";
     return Skeletonizer(
       enabled: dashBoardController.inProgress,
       child: GridView.builder(
@@ -45,9 +46,10 @@ class ParcelDashBoard extends StatelessWidget {
                   .toString(),
               countColor: colors[dashBoardController
                   .deliveryStatuses[index].id-1],
-              image: Icon(statusIcons[dashBoardController
-                  .deliveryStatuses[index].id-1],size: 40,color: colors[dashBoardController
-                  .deliveryStatuses[index].id-1]),
+              image:"$url/${dashBoardController.deliveryStatuses[index].image}"
+              //  Icon(statusIcons[dashBoardController
+              //     .deliveryStatuses[index].id-1],size: 40,color: colors[dashBoardController
+              //     .deliveryStatuses[index].id-1]),
             ),
           );
         },
