@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:e_courier_360/data/models/body/parcel_data.dart';
 import 'package:e_courier_360/data/models/product.dart';
+import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
@@ -193,7 +194,7 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                                       sellingPrice: _parcelDataController.sellingPriceValue ?? "",
                                       weight: _parcelDataController.weightValue ?? '',
                                       deliveryCharge: _deliveryChargeInfoController.totalCharge),
-                                  widget.products);
+                                  widget.products,AuthController.mcid.toString());
                               if (response) {
                                 Get.snackbar("Great", "Parcel Created");
                                 Get.to(const ParcelsTrackScreen());
@@ -228,7 +229,7 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                                       weight: _parcelDataController.weightValue ?? '',
                                       deliveryCharge: _deliveryChargeInfoController.totalCharge),
                                   widget.products,
-                                  widget.parcelId ?? 0);
+                                  widget.parcelId ?? 0,AuthController.mcid.toString());
                               if (response) {
                                 Get.snackbar("Great", "Parcel Updated");
                                 Get.to(const ParcelsTrackScreen());

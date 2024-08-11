@@ -16,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _userNameTEController = TextEditingController();
+  final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -40,9 +40,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   CustomInputField(
-                    controller: _userNameTEController,
-                    hintText: 'User Name',
-                    icon: const Icon(Icons.account_circle_rounded),
+                    controller: _emailTEController,
+                    hintText: 'Email',
+                    icon: const Icon(Icons.email),
                   ),
                   AppSizedBox.h5,
                   CustomInputField(
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               return;
                             }
                             final bool response = await authController.logIn(
-                                _userNameTEController.text.trim(),
+                                _emailTEController.text.trim(),
                                 _passwordTEController.text);
                             if (response) {
                               if (mounted) {
@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    _userNameTEController.dispose();
+    _emailTEController.dispose();
     _passwordTEController.dispose();
     super.dispose();
   }

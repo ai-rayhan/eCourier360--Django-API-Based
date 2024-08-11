@@ -11,7 +11,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
   const VerifyOTPScreen({super.key, required this.phone});
-
   final String phone;
 
   @override

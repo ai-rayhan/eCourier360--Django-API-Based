@@ -81,7 +81,7 @@ class ParcelController extends GetxController {
     }
   }
 
-  Future<bool> addParcel(ParcelData parcelData,List<Product> productList) async {
+  Future<bool> addParcel(ParcelData parcelData,List<Product> productList,String merchantId) async {
    int pickupZoneId= Get.find<PickUpZoneController>().pickupZones.where((element) => element.name==parcelData.pickupLocation).toList().first.id;
    int deliveryZoneId= Get.find<DeliveryZoneController>().deliveryZones.where((element) => element.name==parcelData.deliveryZone).toList().first.id;
     _inProgress = true;
@@ -91,9 +91,8 @@ class ParcelController extends GetxController {
     "pickup_address": parcelData.pickupLocation,
     "cod": parcelData.cod,
     "parcel_equivalent_price": parcelData.sellingPrice,
-    "merchant": AuthController.mcid??"",
+    "merchant": merchantId,
     "merchant_invoice_id": parcelData.invoiceId,
-    // "user": null,
     "receiver": parcelData.customerId.toString(),
     "pickup_zone": pickupZoneId.toString(),
     "delivery_zone": deliveryZoneId.toString(),
@@ -113,7 +112,7 @@ class ParcelController extends GetxController {
     }
   }
 
-  Future<bool> updateParcel(ParcelData parcelData,List<Product> productList,int parcelId) async {
+  Future<bool> updateParcel(ParcelData parcelData,List<Product> productList,int parcelId,String merchantId) async {
    int pickupZoneId= Get.find<PickUpZoneController>().pickupZones.where((element) => element.name==parcelData.pickupLocation).toList().first.id;
    int deliveryZoneId= Get.find<DeliveryZoneController>().deliveryZones.where((element) => element.name==parcelData.deliveryZone).toList().first.id;
     _inProgress = true;
@@ -123,7 +122,7 @@ class ParcelController extends GetxController {
     "pickup_address": parcelData.pickupLocation,
     "cod": parcelData.cod,
     "parcel_equivalent_price": '344',
-    "merchant": AuthController.mcid??"",
+    "merchant": merchantId,
      "merchant_invoice_id": parcelData.invoiceId,
     // "user": null,
     "receiver": parcelData.customerId.toString(),

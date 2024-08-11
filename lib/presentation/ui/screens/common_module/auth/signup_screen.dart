@@ -1,5 +1,6 @@
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_otp_screen.dart';
+import 'package:e_courier_360/presentation/ui/widgets/merchant/credential_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/logo_with_name.dart';
@@ -15,16 +16,16 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  final TextEditingController _userNameTEController = TextEditingController();
   final TextEditingController _fullNameTEController = TextEditingController();
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _shopNameTEController = TextEditingController();
   final TextEditingController _phoneTEController = TextEditingController();
-  final TextEditingController _pickupPhoneTEController = TextEditingController();
-  final TextEditingController _shopAddressTEController =
-      TextEditingController();
-  final TextEditingController _pickupAddressTEController =
-      TextEditingController();
+  final TextEditingController _shopAddressTEController =TextEditingController();
+  final TextEditingController _pickupAddressTEController =TextEditingController();
+  final TextEditingController _passwordTEController =TextEditingController();
+  final TextEditingController _confirmPasswordTEController =TextEditingController();
+
+  
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -45,9 +46,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   if(widget.role=="Merchant")
-                  MerchantForm(userNameController: _userNameTEController, fullNameController: _fullNameTEController, shopEmailController: _emailTEController, shopNameController: _shopNameTEController, pickPhoneController: _phoneTEController, shopAddressController: _shopAddressTEController, pickupAddressController: _pickupAddressTEController),
+                  MerchantForm(fullNameController: _fullNameTEController, emailController: _emailTEController, shopNameController: _shopNameTEController, pickPhoneController: _phoneTEController, shopAddressController: _shopAddressTEController, pickupAddressController: _pickupAddressTEController),
                   if(widget.role=="Rider")
-                  RiderForm(userNameController: _userNameTEController, fullNameController: _fullNameTEController, emailController: _emailTEController, phoneController: _phoneTEController, addressController: _shopAddressTEController, vehicleTypeController: _shopNameTEController, registrationNumberController: _pickupAddressTEController),
+                  RiderForm(fullNameController: _fullNameTEController, emailController: _emailTEController, phoneController: _phoneTEController, addressController: _shopAddressTEController, vehicleTypeController: _shopNameTEController, registrationNumberController: _pickupAddressTEController),
+                  CredentialForm(passwordController: _passwordTEController, confimPasswordController: _confirmPasswordTEController),
                  const SizedBox(
                     height: 16,
                   ),
@@ -69,16 +71,15 @@ class _SignupScreenState extends State<SignupScreen> {
                             if(widget.role=="Merchant"){
                               Map<String,dynamic> merchantInfo={
                                      "shop_name":_shopNameTEController.text,
-                                    //  "shop_email": _shopEmailTEController.text,
                                      "pickup_phone": _phoneTEController.text,
                                      "shop_address": _shopAddressTEController.text,
                                      "pickup_address": _pickupAddressTEController.text,
                               };
                              response = await authController.signUp(
-                                      _userNameTEController.text, 
+                                      _fullNameTEController.text,
                                       _emailTEController.text, 
                                       _phoneTEController.text, 
-                                     'password',"merchant",merchantInfo
+                                     _confirmPasswordTEController.text,"merchant",merchantInfo
                                         );
                             }else{
                               Map<String,dynamic> riderInfo={
@@ -91,10 +92,10 @@ class _SignupScreenState extends State<SignupScreen> {
                               };
 
                               response = await authController.signUp(
-                                 _userNameTEController.text, 
+                                 _fullNameTEController.text, 
                                  _emailTEController.text, 
                                   _phoneTEController.text, 
-                                  'password',"rider",
+                                  _confirmPasswordTEController.text,"rider",
                                   riderInfo);
                                  
                                   // await authController.riderRegister(
@@ -165,12 +166,13 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   void dispose() {
     _emailTEController.dispose();
-    _userNameTEController.dispose();
     _fullNameTEController.dispose();
     _phoneTEController.dispose();
     _pickupAddressTEController.dispose();
     _shopNameTEController.dispose();
     _shopAddressTEController.dispose();
+    _passwordTEController.dispose();
+    _confirmPasswordTEController.dispose();
     super.dispose();
   }
 }

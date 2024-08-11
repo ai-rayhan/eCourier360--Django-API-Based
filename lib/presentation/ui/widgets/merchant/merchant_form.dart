@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
 import 'package:e_courier_360/presentation/utility/sizedbox.dart';
+import 'package:get/get.dart';
 
 class MerchantForm extends StatefulWidget {
-  final TextEditingController userNameController;
   final TextEditingController fullNameController;
-  final TextEditingController shopEmailController;
+  final TextEditingController emailController;
   final TextEditingController shopNameController;
   final TextEditingController pickPhoneController;
   final TextEditingController shopAddressController;
@@ -13,9 +13,8 @@ class MerchantForm extends StatefulWidget {
 
   const MerchantForm({
     super.key,
-    required this.userNameController,
     required this.fullNameController,
-    required this.shopEmailController,
+    required this.emailController,
     required this.shopNameController,
     required this.pickPhoneController,
     required this.shopAddressController,
@@ -35,27 +34,28 @@ class _MerchantFormState extends State<MerchantForm> {
       children: [
         AppSizedBox.h8,
         CustomInputField(
-          controller: widget.userNameController,
-          hintText: 'Username',
-          icon: const Icon(Icons.account_circle_sharp),
-        ),
-        AppSizedBox.h8,
-        CustomInputField(
           controller: widget.fullNameController,
           hintText: 'Full name',
           icon: const Icon(Icons.near_me_rounded),
         ),
         AppSizedBox.h8,
         CustomInputField(
-          controller: widget.shopNameController,
-          hintText: 'Shop name',
-          icon: const Icon(Icons.storefront),
+          controller: widget.emailController,
+          hintText: 'Email',
+          icon: const Icon(Icons.email),
+          validator:(String? value ){
+            if(value==null|| !value.contains('@')||!value.contains('.')){
+              return 'Enter valid Email address';
+            }else{
+              return null;
+            }
+          }
         ),
         AppSizedBox.h8,
         CustomInputField(
-          controller: widget.shopEmailController,
-          hintText: 'Shop Email',
-          icon: const Icon(Icons.email),
+          controller: widget.shopNameController,
+          hintText: 'Shop name',
+          icon: const Icon(Icons.storefront),
         ),
         AppSizedBox.h8,
         CustomInputField(
@@ -68,6 +68,13 @@ class _MerchantFormState extends State<MerchantForm> {
           controller: widget.pickPhoneController,
           hintText: 'Pickup Phone',
           icon: const Icon(Icons.phone),
+          validator:(String? value ){
+            if(value==null|| !value.isNumericOnly||value.length<10){
+              return 'Enter valid phone number';
+            }else{
+              return null;
+            }
+          }
         ),
         AppSizedBox.h8,
         CustomInputField(

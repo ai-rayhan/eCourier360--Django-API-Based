@@ -70,7 +70,7 @@ class UserDataDetails {
       email: json['email'],
       name: json['name'],
       phone: json['phone'],
-      role: json['role'],
+      role: json['role']??0,
       merchantId: json['merchant_id'],
       riderId: json['rider_id'],
       receiverId: json['receiver_id'],

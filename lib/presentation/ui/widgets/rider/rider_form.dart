@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
 import 'package:e_courier_360/presentation/utility/sizedbox.dart';
+import 'package:get/get.dart';
 
 class RiderForm extends StatefulWidget {
-  final TextEditingController userNameController;
   final TextEditingController fullNameController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
@@ -13,7 +13,6 @@ class RiderForm extends StatefulWidget {
 
   const RiderForm({
     super.key,
-    required this.userNameController,
     required this.fullNameController,
     required this.emailController,
     required this.phoneController,
@@ -34,12 +33,6 @@ class _RiderFormState extends State<RiderForm> {
       children: [
         AppSizedBox.h8,
         CustomInputField(
-          controller: widget.userNameController,
-          hintText: 'Username',
-          icon: const Icon(Icons.account_circle_sharp),
-        ),
-        AppSizedBox.h8,
-        CustomInputField(
           controller: widget.fullNameController,
           hintText: 'Full Name',
           icon: const Icon(Icons.near_me_rounded),
@@ -49,12 +42,26 @@ class _RiderFormState extends State<RiderForm> {
           controller: widget.emailController,
           hintText: 'Email',
           icon: const Icon(Icons.email),
+          validator:(String? value ){
+            if(value==null|| !value.contains('@')||!value.contains('.')){
+              return 'Enter valid Email address';
+            }else{
+              return null;
+            }
+          }
         ),
         AppSizedBox.h8,
         CustomInputField(
           controller: widget.phoneController,
           hintText: 'Phone',
           icon: const Icon(Icons.phone),
+          validator:(String? value ){
+            if(value==null|| !value.isNumericOnly||value.length<10){
+              return 'Enter valid phone number';
+            }else{
+              return null;
+            }
+          }
         ),
         AppSizedBox.h8,
         CustomInputField(

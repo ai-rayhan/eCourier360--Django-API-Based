@@ -13,8 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthController extends GetxController {
   static String? token;
   static String? userId;
-  // static String? merchantId;
-  static String? mcid='1';
+  static int? mcid=2;
   static int? userRole=1;
   static bool? isActiveUser=true;
   UserProfile? profile;
@@ -125,30 +124,11 @@ class AuthController extends GetxController {
     }
   }
 
+  updateMerchantId(int mcId){
+  mcid=mcId;
+  update();
+   }
 
-
-  // Future<bool> logIn(String userName,String password) async {
-  //   _inProgress = true;
-  //   update();
-  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.signin, {
-  //       'username' : userName,
-  //       'password' : password,
-  //   }, isLogin: false);
-  //   _inProgress = false;
-   
-  //   if (response.success) {
-  //     LoginResponse  reponseData=LoginResponse.fromJson(response.returnValue);
-  //     token=reponseData.data.token;
-  //     userRole=reponseData.data.user.roles![0].name;
-  //     saveUserDetails(reponseData);
-  //     update();
-  //     return true;
-  //   } else {
-  //     _errorMessage = response.errorMessage;
-  //     update();
-  //     return false;
-  //   }
-  // }
   Future<void> saveUserDetails(String userToken, UserProfile userProfile,String uid) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('token', userToken);
@@ -156,7 +136,7 @@ class AuthController extends GetxController {
     await sharedPreferences.setString('uid', uid);
     token = userToken;
     profile = userProfile;
-    userRole=userProfile.data?.role;
+    userRole=userProfile.data.role;
     userId=uid;
     log("ueiytrueyntre yt "+userProfile.toString());
   }
@@ -170,7 +150,8 @@ class AuthController extends GetxController {
     token = await _getToken();
     profile = await _getProfile();
     _isPhoneVerifiedUser = await _checkIsphoneVerified();
-    userRole = profile?.data?.role;
+    userRole = profile?.data.role;
+    mcid = profile?.data.merchantId;
   }
 
   Future<bool> isLoggedIn() async {
@@ -210,26 +191,8 @@ class AuthController extends GetxController {
     Get.to(() => const VerifyPhoneScreen());
   }
 
-  // Future<bool> createMerchant(String name,String phone,String address) async {
-  //   _inProgress = true;
-  //   update();
-  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.createMerchant, {
-  //        "merchant_name": name,
-  //        "bussiness_contact_info": phone,
-  //        "bussiness_address": address,
-  //   }, token: token);
-  //   _inProgress = false;
-  //   if (response.success) {
-     
-  //     update();
-  //     return true;
-  //   } else {
-  //     _errorMessage = response.errorMessage;
-  //     update();
-  //     return false;
-  //   }
-  // }
-saveMerchantProfile(String mcid)async{
+  
+saveMerchantId(String mcid)async{
    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
    sharedPreferences.setString("mcid", mcid);
 }
