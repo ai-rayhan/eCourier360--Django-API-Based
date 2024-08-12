@@ -23,13 +23,13 @@ class _ParcelListState extends State<ParcelList> {
       // if(widget.deliveryStatusId==-1){
       //   parcelController.getMerchantParcels();
       // }else
-       if(widget.voucherId!=null){
-         parcelController.getParcelsByVoucherId(widget.voucherId??"");
-      }
-      else{
-        parcelController.getMerchantParcelsByStatus(widget.deliveryStatusId);
+      //  if(widget.voucherId!=null){
+      //    parcelController.getParcelsByVoucherId(widget.voucherId??"");
+      // }
+      // else{
+        parcelController.getParcelsByStatus(widget.deliveryStatusId);
          log("message:${widget.deliveryStatusId}");
-      }
+      // }
     });
     super.initState();
   }

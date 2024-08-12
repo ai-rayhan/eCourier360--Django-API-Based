@@ -1,4 +1,6 @@
 import 'package:e_courier_360/data/models/parcel.dart';
+import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
@@ -38,6 +40,48 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
             height: 10,
           ),
           const HeaderText(title: "Percel Information"),
+        GetBuilder<MerchantController>(
+          builder: (merchantController) {
+         List<String>  pickupZones= merchantController.merchantList.map((zone) => zone.shopName).toList();
+            return InputCard(
+              child: Visibility(
+                visible: !merchantController.inProgress,
+                replacement: const Center(child: SizedBox( child:Text('Loading..')),),
+                child: DropdownButtonFormField<String>(
+                  decoration: const InputDecoration(
+                    labelText: 'Pickup Zone',
+                    prefixIcon: Icon(Icons.local_taxi_rounded),
+                  ),
+                  value:null,
+                  // value:pickUpZoneController.getPickupZoneById(widget.parcel?.pickupZone??0)?.name,
+                  items: pickupZones.map((level) {
+                    return DropdownMenuItem<String>(
+                      value: level,
+                      child: Text(
+                        level,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    Get.find<AuthController>().updateMerchantId(1);
+                    // parcelDataController.pickupZoneValue=value;
+                    // parcelDataController.parcel.pickupZone=pickUpZoneController.getIdFromPickupZone(value??'');
+                    // setState(() {
+                    //   _pickupZone = value;
+                    // });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select your pickup Zone';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+            );
+          }
+        ),
           InputCard(
             child: TextFormField(
               controller: _merchantInvoiceTEController,

@@ -43,10 +43,13 @@ class Urls {
 
 
   static String addParcel = '$baseUrl/parcels/list-create/';
+  static String getParcels(int statusId) => '$baseUrl/parcels/getparcels/?delivery_status=$statusId';
   static String addParcelDetails= '$baseUrl/parcels/parceldetails/';
   static String getParcelDetails(int id)=>'$baseUrl/parcels/parceldetails/?parcel=$id';
   static String updateParcel(int id) =>'$baseUrl/parcels/update-destroy/$id/';
   static String updateParcelDetails(int id) =>'$baseUrl/parcels/parceldetails/$id/';
+  static String trackingParcel(String voucherId) =>
+      '$baseUrl/parcels/tracking/$voucherId/';
   
   static String updateStatusByBatch = '$baseUrl/parcels/update-status/';
 
@@ -55,9 +58,8 @@ class Urls {
   static String deliveryStatus = '$baseUrl/settings/ds-parcel-count/';
 
   static String merchantParcels = '$baseUrl/merchants/parcels/';
-  static String merchantParcelsByStatus(int statusId) =>
-      '$baseUrl/merchants/parcels-status/?delivery_status=$statusId';
-  static String merchantParcelsByVoucherId(String voucherId) =>
-      '$baseUrl/merchants/parcel-id/?voucher_id=$voucherId';
+  // static String merchantParcelsByStatus(int statusId) =>
+  //     '$baseUrl/merchants/parcels-status/?delivery_status=$statusId';
+
 
 }

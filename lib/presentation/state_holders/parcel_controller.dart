@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:e_courier_360/data/models/parcel.dart';
 import 'package:e_courier_360/data/models/body/parcel_data.dart';
 import 'package:e_courier_360/data/models/product.dart';
+import 'package:e_courier_360/data/models/tracking_parcel.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/get_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/post_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/put_request.dart';
@@ -45,10 +46,10 @@ class ParcelController extends GetxController {
     }
   }
 
-  Future<bool> getMerchantParcelsByStatus(int statusId) async {
+  Future<bool> getParcelsByStatus(int statusId) async {
     _inProgress = true;
     update();
-     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.merchantParcelsByStatus(statusId),);
+     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.getParcels(statusId),);
     _inProgress = false;
     if (response.success) {
      _parcels = (response.returnValue as List<dynamic>)
@@ -63,15 +64,18 @@ class ParcelController extends GetxController {
       return false;
     }
   }
-  Future<bool> getParcelsByVoucherId(String voucherId) async {
+  
+  List<ParcelStatus> _parcelUpdateList = [];
+  List<ParcelStatus> get parcelUpdateList=>_parcelUpdateList;
+  Future<bool> trackingParcel(String voucherId) async {
     _inProgress = true;
     update();
-     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.merchantParcelsByVoucherId(voucherId),);
+     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.trackingParcel(voucherId),);
     _inProgress = false;
     if (response.success) {
-     _parcel= (response.returnValue as List<dynamic>)
-          .map((json) => Parcel.fromJson(json))
-          .toList().first;
+     _parcelUpdateList= (response.returnValue as List<dynamic>)
+          .map((json) => ParcelStatus.fromJson(json))
+          .toList();
       update();
       return true;
     } else {
@@ -152,7 +156,7 @@ class ParcelController extends GetxController {
     Future<void> getParcelsByMultipleStatuses(List<int> statusIdsList) async {
     _allStatusParcels.clear();
     for (var statusId in statusIdsList) {
-      bool success = await getMerchantParcelsByStatus(statusId);
+      bool success = await getParcelsByStatus(statusId);
       _allStatusParcels.addAll(_parcels);
       _allStatusParcels.sort((a, b) => b.createdAt.compareTo(a.createdAt));
       if (success) {

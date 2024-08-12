@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthController extends GetxController {
   static String? token;
   static String? userId;
-  static int? mcid=2;
+  static int? mcid=3;
   static int? userRole=1;
   static bool? isActiveUser=true;
   UserProfile? profile;
@@ -149,9 +149,12 @@ class AuthController extends GetxController {
   Future<void> initialize() async {
     token = await _getToken();
     profile = await _getProfile();
+
+    
     _isPhoneVerifiedUser = await _checkIsphoneVerified();
     userRole = profile?.data.role;
     mcid = profile?.data.merchantId;
+    log(mcid.toString());
   }
 
   Future<bool> isLoggedIn() async {
