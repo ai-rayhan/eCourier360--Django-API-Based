@@ -1,5 +1,8 @@
 
+import 'dart:developer';
+
 import 'package:e_courier_360/data/models/parcel.dart';
+import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +36,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
   double getNumber() {
     bookingAmount = 0; 
     for (Parcel parcel in parcelSatusController.selectedParcels) {
-      bookingAmount += parcel.cashCollection - parcel.deliveryCharge;
+      bookingAmount += (double.tryParse(parcel.cod)??0) -(double.tryParse( parcel.deliveryCharge)??0);
       // status = parcel.status?.status ?? 'Pending';
       merchantID = parcel.merchant;
     }
@@ -77,12 +80,13 @@ List <String> statuses=['Deliverd',"Payment Settled"];
                           ),
                         );
                       }).toList(),
-                      onChanged: (value) {
+                      onChanged: (value) async{
                         int selectedIndex = dashBoardController.updateStatusNames.indexOf(value!);
                         controller.selectedStatusId = dashBoardController.updateStatusIds[selectedIndex];
-                        // if (controller.selectedStatusId == 13) {
-                        //   Get.find<MerchantProfileController>().merchantProfile(controller.selectedParcels.first.merchentId);
-                        // }
+                        if (controller.selectedStatusId == 12) {
+                          log(AuthController.mcid.toString());
+                         await Get.find<MerchantController>().getMerchantDetails(merchantID!);
+                        }
                       },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -111,7 +115,7 @@ List <String> statuses=['Deliverd',"Payment Settled"];
                             return;
                           }
                          
-                          if (controller.selectedStatusId == 13) {
+                          if (controller.selectedStatusId == 12) {
                            if(controller.paymentTabID==0){
                              response=await controller.makeMerchantPayment(
                               paymentMethod: paymentTypeId == 1 ? "Bank" : "Mobile Banking",
@@ -172,7 +176,7 @@ riderPayment(){
        ),
      );
 }
-  GetBuilder<MerchantController> merchantPayment() {
+merchantPayment() {
     return GetBuilder<MerchantController>(builder: (mcController) {
                     return Column(
                       children: [
@@ -207,6 +211,7 @@ riderPayment(){
                         // ),
                         const HeaderText(title: "Select Payment Method Name:"),
                         // if (paymentTypeId != null)
+                        if(mcController.merchantDetails?.bankInformation!=null)
                           InputCard(
                             child: DropdownButtonFormField<String>(
                               decoration:  InputDecoration(
