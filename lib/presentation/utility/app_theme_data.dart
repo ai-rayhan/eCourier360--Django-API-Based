@@ -50,6 +50,14 @@ class AppThemeData {
         foregroundColor: Colors.white,
       ),
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        backgroundColor: AppColors.lightPrimaryColor.withOpacity(.5),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+        textStyle: const TextStyle(fontSize: 15, letterSpacing: 0.5,fontWeight: FontWeight.w600,fontFamily: 'Poppins'),
+        foregroundColor: Colors.white,
+      ),
+    ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
@@ -59,11 +67,6 @@ class AppThemeData {
         padding: const EdgeInsets.symmetric(vertical: 10),
         textStyle: const TextStyle(fontSize: 15, letterSpacing: 0.5,color: AppColors.secondaryColor),
         foregroundColor: AppColors.secondaryColor
-      ),
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        foregroundColor: AppColors.primaryColor,
       ),
     ),
     

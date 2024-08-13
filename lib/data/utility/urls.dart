@@ -23,9 +23,12 @@ class Urls {
   static String allMerchants = '$baseUrl/merchants/allmerchants/';
   static String merchantDetails(int mcid) => '$baseUrl/merchants/merchant/$mcid/';
   static String merchantActivate = '$baseUrl/merchants/activate/';
+  static String updatemerchantProfile(int? mcId)=> '$baseUrl/merchants/update/$mcId/';
 
 
-  
+  static String bankInfo = '$baseUrl/bank/bank-info/';
+  static String updateBankInfo(int? id)=> '$baseUrl/bank/bank-info/$id/';
+
   static String riders = '$baseUrl/rider/list-create/';
   static String riderDetails(int riderId) => '$baseUrl/rider/riderdetails/$riderId/';
   static String riderActivate = '$baseUrl/rider/activate/';

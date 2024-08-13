@@ -1,4 +1,6 @@
+import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/ui/base/base_settings_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/bussiness_profile.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/customer_address_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,7 @@ class MerchantProfileScreen extends StatelessWidget {
             iconData: Icons.account_circle_outlined,
             hasDivider: false,
             ontap: () {
-              // Get.to(const EditProfileScreen());
+              Get.to( MerchantDetailsScreen(merchantId: AuthController.mcid,));
             }),
         SettingsCard(
             title: "Customer Address book",

@@ -24,7 +24,7 @@ class MerchantInfoSummuryCard extends StatelessWidget {
           },
           onTap: (){
              if(controller.merchantIDList.isEmpty){
-             Get.to( MerchantDetailsScreen(merchant:merchant));
+             Get.to( MerchantDetailsScreen(merchant:merchant.id));
              }else{
                controller.updateMerchantId(merchant.id);
              }

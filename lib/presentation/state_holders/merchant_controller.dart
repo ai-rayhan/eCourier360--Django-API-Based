@@ -1,9 +1,11 @@
 import 'package:e_courier_360/data/models/merchant.dart';
 import 'package:e_courier_360/data/services/network_caller/network_caller.dart';
 import 'package:e_courier_360/data/services/network_caller/request_methods/dynamic_post_request.dart';
+import 'package:e_courier_360/data/services/network_caller/request_methods/dynamic_put_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/global_loading.dart';
 import 'package:get/get.dart';
 
 class MerchantController extends GetxController {
@@ -15,6 +17,7 @@ class MerchantController extends GetxController {
   List <Merchant> _merchants=[];
   List <Merchant> get merchantList=>_merchants;
   Merchant getMerchantFromId(int id)=>_merchants.firstWhere((element)=>element.id==id);
+
   Future<bool> getAllMerchants() async {
     _inProgress = true;
     update();
@@ -52,7 +55,84 @@ class MerchantController extends GetxController {
       return false;
     }
   }
+/////////////////////Update Profile///////////////////
 
+  Future<bool> updateProfile(String shopName,String shopAddress,String pickupAddress,String pickupPhone) async {
+    _inProgress = true;
+    update();
+     final  NetworkCallerReturnObject response =await DynamicPutRequest.execute(Urls.updatemerchantProfile(AuthController.mcid), token: AuthController.token,{
+    "shop_name":shopName ,
+    "pickup_phone":pickupPhone,
+    "shop_address": shopAddress,
+    "pickup_address":pickupAddress,
+     "user":AuthController.userId
+     });
+    _inProgress = false;
+    if (response.success) {
+      getMerchantDetails(AuthController.mcid!);
+      return true;
+    } else {
+      _errorMessage = response.errorMessage;
+      update();
+      return false;
+    }
+  }
+  ///////////Bank Information//////////
+  
+  
+  Future<bool> addBankInfo(String bankName,String accountNumber,String accountName,String branch,String mobileNumber) async {
+    _inProgress = true;
+    update();
+    showloading('Loading..');
+     final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.bankInfo, token: AuthController.token,{
+
+    "bank_name": bankName,
+    "account_number": accountNumber,
+    "account_name":accountName,
+    "branch":branch,
+    "mobile_no":mobileNumber,
+    "user": AuthController.userId,
+    "payment_method": 1
+     });
+    _inProgress = false;
+    if (response.success) {
+      showSuccess("success");
+      getMerchantDetails(AuthController.mcid!);
+      return true;
+    } else {
+      _errorMessage = response.errorMessage;
+      update();
+      showError(response.errorMessage);
+      return false;
+    }
+  }
+  
+  Future<bool> updateBankInfo(String bankName,String accountNumber,String accountName,String branch,String mobileNumber,int id) async {
+    _inProgress = true;
+    update();
+    showloading('Loading..');
+     final  NetworkCallerReturnObject response =await DynamicPutRequest.execute(Urls.updateBankInfo(id), token: AuthController.token,{
+
+    "bank_name": bankName,
+    "account_number": accountNumber,
+    "account_name":accountName,
+    "branch":branch,
+    "mobile_no":mobileNumber,
+    "user": AuthController.userId,
+    "payment_method": 1
+     });
+    _inProgress = false;
+    if (response.success) {
+      showSuccess("success");
+      getMerchantDetails(AuthController.mcid!);
+      return true;
+    } else {
+      _errorMessage = response.errorMessage;
+      update();
+      showError(response.errorMessage);
+      return false;
+    }
+  }
   ///////Activate Merchant///////////
   List<int>merchantIDList=[];
   int? selectedStatus;

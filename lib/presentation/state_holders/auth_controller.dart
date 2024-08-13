@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController {
   static String? token;
-  static String? userId;
+  static int? userId;
   static int? mcid=3;
   static int? userRole=1;
   static bool? isActiveUser=true;
@@ -39,7 +39,7 @@ class AuthController extends GetxController {
     }, isLogin: false);
     _inProgress = false;
     if (response.success) {
-      userId=response.returnValue['id'].toString();
+      userId=response.returnValue['id'];
       _tempEmail=email;
       _tempPassword=password;
       update();
@@ -66,7 +66,7 @@ class AuthController extends GetxController {
     if (response.success) {
       UserProfile userProfile= UserProfile.fromJson(response.returnValue);
       userRole=userProfile.data.role;
-      saveUserDetails( response.returnValue['data']['access'],userProfile,response.returnValue['data']['id'].toString());
+      saveUserDetails( response.returnValue['data']['access'],userProfile);
       saveVerification(response.returnValue['data']['is_phone_verified']);
       update();
       return true;
@@ -129,15 +129,13 @@ class AuthController extends GetxController {
   update();
    }
 
-  Future<void> saveUserDetails(String userToken, UserProfile userProfile,String uid) async {
+  Future<void> saveUserDetails(String userToken, UserProfile userProfile) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('token', userToken);
     await sharedPreferences.setString('profile', jsonEncode(userProfile.toJson()));
-    await sharedPreferences.setString('uid', uid);
     token = userToken;
     profile = userProfile;
     userRole=userProfile.data.role;
-    userId=uid;
     log("ueiytrueyntre yt "+userProfile.toString());
   }
 
@@ -154,7 +152,7 @@ class AuthController extends GetxController {
     _isPhoneVerifiedUser = await _checkIsphoneVerified();
     userRole = profile?.data.role;
     mcid = profile?.data.merchantId;
-    log(mcid.toString());
+    userId = profile?.data.id;
   }
 
   Future<bool> isLoggedIn() async {

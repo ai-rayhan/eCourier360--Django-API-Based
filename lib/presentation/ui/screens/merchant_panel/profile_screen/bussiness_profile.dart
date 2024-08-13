@@ -1,53 +1,28 @@
 import 'package:e_courier_360/data/helper/string_converter.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/widgets/shop_info_card.dart';
+import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/add_bank_info.dart';
+import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/edit_profile_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_tabbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/speace_between_row.dart';
-import 'package:e_courier_360/presentation/utility/box_decoration.dart';
-import 'package:e_courier_360/presentation/utility/sizedbox.dart';
+import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:flutter/material.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:get/get.dart';
 
-// class MerchantDetailsScreen extends StatefulWidget {
-//   const MerchantDetailsScreen({super.key, required this.merchant});
-//   final Merchant merchant;
-//   @override
-//   MerchantDetailsScreenState createState() => MerchantDetailsScreenState();
-// }
-
-// class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
-//     with SingleTickerProviderStateMixin {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: const CourierAppBar(
-//         title: "Merchant",
-//       ),
-//       body: Padding(
-//               padding: const EdgeInsets.all(16.0),
-//               child: MerchantEditScreen(merchant:widget.merchant),
-//             ),
-//     );
-//   }
-// }
-
-
 class MerchantDetailsScreen extends StatefulWidget {
-  const MerchantDetailsScreen({super.key, required this.merchant});
-  final int? merchant;
+  const MerchantDetailsScreen({super.key, required this.merchantId});
+  final int? merchantId;
   @override
   MerchantDetailsScreenState createState() => MerchantDetailsScreenState();
 }
 
-class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
-    with SingleTickerProviderStateMixin {
+class MerchantDetailsScreenState extends State<MerchantDetailsScreen>with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final List<String> _tabs = [
     'Bussiness Information',
-    // 'Credential',
     'Parcel Summury'
   ];
 
@@ -56,8 +31,7 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Future.delayed(Duration(milliseconds: 100));
-      await Get.find<MerchantController>().getMerchantDetails(widget.merchant!);
+      await Get.find<MerchantController>().getMerchantDetails(widget.merchantId!);
     });
   }
 
@@ -71,7 +45,7 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:  CourierAppBar(
-        title: "Merchant",
+        title: "Bussiness Profile",
         bottom: CustomTabBar(tabController: _tabController, tabs: _tabs),
       ),
       body: 
@@ -114,23 +88,49 @@ class MerchantBussinessInfo extends StatelessWidget {
                     ),
                   ),
                   AppSizedBox.h10,
-                  //  Text(
-                  //   merchant.user.username,
-                  //   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
-                  // ),
-                  AppSizedBox.h16,
-                  const HeaderText(title: "Shop Information:"),
+                
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const HeaderText(title: "Shop Information:"),
+                      TextButton(onPressed: (){
+                        Get.to(const EditProfileScreen());
+                      }, child: const Text("Edit",),
+                      
+                      )
+                      //  IconButton(onPressed: (){}, icon: Icon(Icons.edit))
+                    ],
+                  ),
+                    AppSizedBox.h5,
                   const ShopInfoScreen(),
-                  AppSizedBox.h16,
-                  const HeaderText(title: "Bank Information:"),
-                  controller.merchantDetails?.bankInformation!=null?Column(
+                  AppSizedBox.h5,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const HeaderText(title: "Bank Information:"),
+                      TextButton(onPressed: (){
+                       Get.to(const EditBankInfoScreen());
+                      }, child: const Text("Add",),
+                      
+                      )
+                      //  IconButton(onPressed: (){}, icon: Icon(Icons.edit))
+                    ],
+                  ),
+                  controller.merchantDetails!.bankInformation!=null?Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: controller.merchantDetails!.bankInformation!.map((bankInfo) {
-                      return Container(
-                        decoration: AppBoxDecoration.whiteDecoration,
-                        child: ListTile(
-                          title: Text( "Bank Name :${bankInfo.bankName}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                          subtitle: Text("Acc.No:${bankInfo.accountNumber}  Branch:${bankInfo.branch}"),
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 3),
+                        child: Container(
+                          decoration: AppBoxDecoration.whiteDecoration,
+                          child: ListTile(
+                            title: Text( "Bank Name :${bankInfo.bankName}",style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600),),
+                            subtitle: Text("Acc.No:${bankInfo.accountNumber}  Branch:${bankInfo.branch}"),
+                            trailing: TextButton(onPressed: (){
+                            Get.to(EditBankInfoScreen(bankInformation: bankInfo,));
+                            }, child: const Text("edit"),
+                            ),
+                          ),
                         ),
                       );
                     }).toList(),
