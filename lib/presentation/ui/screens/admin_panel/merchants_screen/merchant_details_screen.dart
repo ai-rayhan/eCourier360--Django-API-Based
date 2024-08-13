@@ -1,4 +1,3 @@
-import 'package:e_courier_360/comming_soon_module/parcel_summary_screen.dart';
 import 'package:e_courier_360/data/helper/string_converter.dart';
 import 'package:e_courier_360/data/models/merchant.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
@@ -7,7 +6,6 @@ import 'package:e_courier_360/presentation/ui/widgets/common/custom_tabbar.dart'
 import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/speace_between_row.dart';
-import 'package:e_courier_360/presentation/ui/widgets/merchant/credential_form.dart';
 import 'package:e_courier_360/presentation/utility/box_decoration.dart';
 import 'package:e_courier_360/presentation/utility/sizedbox.dart';
 import 'package:flutter/material.dart';
@@ -81,9 +79,9 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
         padding: const EdgeInsets.all(12.0),
         child: TabBarView(
           controller: _tabController,
-          children:  [
-            const MerchantBussinessInfo(),
-            const ParcelSummaryScreen(),
+          children:  const [
+            MerchantBussinessInfo(),
+            ParcelSummaryScreen(),
 
           ],
         ),

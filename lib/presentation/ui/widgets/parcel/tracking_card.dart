@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
-import 'package:e_courier_360/presentation/utility/status_icon.dart';
 
 
 class TrackingCard extends StatelessWidget {
@@ -83,10 +82,10 @@ class TrackingCard extends StatelessWidget {
                                     Image.network(height: 20,width: 20, "${Urls.siteUrl}${Get.find<DeliveryStatusController>().deliveryStatus(parcel.deliveryStatus).image}"),
                                     // Icon(statusIcons[parcel.deliveryStatus - 1],size: 15,color: colors[parcel.deliveryStatus-1],),
                                     const SizedBox(width: 2),
-                                    Text(
+                                    const Text(
                                       '',
                                       // Get.find<DeliveryStatusController>().deliveryStatus(parcel.deliveryStatus).status,
-                                      style: const TextStyle(fontSize: 12),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),

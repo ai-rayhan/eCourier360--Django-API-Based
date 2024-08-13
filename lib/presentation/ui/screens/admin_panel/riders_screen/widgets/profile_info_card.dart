@@ -1,4 +1,3 @@
-import 'package:e_courier_360/data/models/merchant.dart';
 import 'package:e_courier_360/data/models/rider.dart';
 import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/info_row.dart';
@@ -20,25 +19,25 @@ class ProfileInfoScreen extends StatelessWidget {
             title: 'Business Name',
             subtitle:rider?.fullName??'Not Added',
           ),
-          Divider(),
+          const Divider(),
           InfoRow(
             icon: Icons.phone,
             title: 'Pickup Phone',
             subtitle: rider?.phone??'Not Added',
           ),
-          Divider(),
+          const Divider(),
           InfoRow(
             icon: Icons.location_on,
             title: 'Business Address',
             subtitle: rider?.address??'Not Added',
           ),
-          Divider(),
+          const Divider(),
           InfoRow(
             icon: Icons.fire_truck,
             title: 'Vehicle Type',
             subtitle: rider?.vehicleType??'Not Added',
           ),
-          Divider(),
+          const Divider(),
           InfoRow(
             icon: Icons.receipt_long_sharp,
             title: 'Registration Number',
