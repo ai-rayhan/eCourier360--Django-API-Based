@@ -4,6 +4,7 @@ import 'package:e_courier_360/presentation/state_holders/merchant_controller.dar
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
+import 'package:e_courier_360/presentation/utility/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,6 +31,7 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
     _merchantInvoiceTEController.text=widget.parcel!.merchantInvoiceId??'';
     _cashAmountTEController.text=widget.parcel!.cod;
     _sellingPriceTEController.text=widget.parcel!.parcelEquivalentPrice;
+    Get.find<AuthController>().updateMerchantId(widget.parcel!.merchant);
   }
   @override
   Widget build(BuildContext context) {
@@ -40,21 +42,22 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
             height: 10,
           ),
           const HeaderText(title: "Percel Information"),
-        GetBuilder<MerchantController>(
+         if(AuthController.userRole==1||AuthController.userRole==2)
+         GetBuilder<MerchantController>(
           builder: (merchantController) {
-         List<String>  pickupZones= merchantController.merchantList.map((zone) => zone.shopName).toList();
+          List<String>  merchantsShopName= merchantController.merchantList.map((zone) => zone.shopName).toList();
             return InputCard(
               child: Visibility(
                 visible: !merchantController.inProgress,
                 replacement: const Center(child: SizedBox( child:Text('Loading..')),),
                 child: DropdownButtonFormField<String>(
                   decoration: const InputDecoration(
-                    labelText: 'Pickup Zone',
+                    labelText: 'Merchant',
                     prefixIcon: Icon(Icons.local_taxi_rounded),
                   ),
-                  value:null,
+                  value:AuthController.mcid==null?null:merchantController.getMerchantFromId(AuthController.mcid!).shopName,
                   // value:pickUpZoneController.getPickupZoneById(widget.parcel?.pickupZone??0)?.name,
-                  items: pickupZones.map((level) {
+                  items: merchantsShopName.map((level) {
                     return DropdownMenuItem<String>(
                       value: level,
                       child: Text(
@@ -65,11 +68,6 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
                   }).toList(),
                   onChanged: (value) {
                     Get.find<AuthController>().updateMerchantId(1);
-                    // parcelDataController.pickupZoneValue=value;
-                    // parcelDataController.parcel.pickupZone=pickUpZoneController.getIdFromPickupZone(value??'');
-                    // setState(() {
-                    //   _pickupZone = value;
-                    // });
                   },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -82,6 +80,7 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
             );
           }
         ),
+          AppSizedBox.h10,
           InputCard(
             child: TextFormField(
               controller: _merchantInvoiceTEController,

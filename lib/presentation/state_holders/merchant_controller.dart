@@ -14,7 +14,7 @@ class MerchantController extends GetxController {
 
   List <Merchant> _merchants=[];
   List <Merchant> get merchantList=>_merchants;
-  Merchant getMerchantFromId(int id)=>_merchants.firstWhere()
+  Merchant getMerchantFromId(int id)=>_merchants.firstWhere((element)=>element.id==id);
   Future<bool> getAllMerchants() async {
     _inProgress = true;
     update();
