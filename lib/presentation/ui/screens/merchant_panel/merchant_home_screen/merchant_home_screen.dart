@@ -1,6 +1,8 @@
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/payment_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/ui/base/base_home_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/merchant_panel/payment_history_screen/payment_history_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/home/home_option_card.dart';
 import 'package:e_courier_360/presentation/ui/widgets/home/support_card.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/send_parcel_screen.dart';
@@ -46,7 +48,8 @@ class MerchantHomeScreen extends StatelessWidget {
                         title: 'Payment History',
                         imagePath: AssetsPath.payment, 
                         onTap: () {
-                        // Get.to(const PaymentHistoryScreen());
+                        Get.lazyPut<PaymentController>(() => PaymentController());
+                        Get.to(const PaymentHistoryScreen());
                         },
                       ),
                     ],

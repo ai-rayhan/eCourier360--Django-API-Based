@@ -38,6 +38,7 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
     for (Parcel parcel in parcelSatusController.selectedParcels) {
       bookingAmount += (double.tryParse(parcel.cod)??0) -(double.tryParse( parcel.deliveryCharge)??0);
       // status = parcel.status?.status ?? 'Pending';
+      paymentAmount=bookingAmount;
       merchantID = parcel.merchant;
     }
     return bookingAmount;

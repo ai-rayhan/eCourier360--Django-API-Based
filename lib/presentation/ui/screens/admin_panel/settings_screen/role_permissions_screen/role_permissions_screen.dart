@@ -119,6 +119,19 @@ class EditRolesPermissionScreenState extends State<EditRolesPermissionScreen> {
           );
         }
       ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ElevatedButton(onPressed: (){
+          if(_nameTEController.text==''){
+            return;
+          }
+          if(widget.role==null){
+            Get.find<RolePermissionController>().addRole(_nameTEController.text);
+          }else{
+             Get.find<RolePermissionController>().updateRole(_nameTEController.text,widget.role!.id);
+          }
+        }, child: Text(widget.role==null?"Add Role":"Update Role")),
+      ),
     );
   }
   @override

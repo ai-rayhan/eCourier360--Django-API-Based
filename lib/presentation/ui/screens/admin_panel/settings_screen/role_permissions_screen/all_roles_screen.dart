@@ -40,9 +40,6 @@ class _AllRolesScreenState extends State<AllRolesScreen> {
              subtitle: controller.roleList[index].permissions.toString(), iconData: Icons.admin_panel_settings, ontap: (){
               Get.to( EditRolesPermissionScreen(role:controller.roleList[index],));
              },
-             trailling: IconButton(icon: const Icon(Icons.edit),onPressed: (){
-
-             },),
              ))
 
           );

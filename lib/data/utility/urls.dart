@@ -25,6 +25,8 @@ class Urls {
   static String merchantActivate = '$baseUrl/merchants/activate/';
   static String updatemerchantProfile(int? mcId)=> '$baseUrl/merchants/update/$mcId/';
 
+  static String merchantPaymentHistory(int? mcId)=> '$baseUrl/accounts/payment-by-merchant/$mcId/';
+
 
   static String bankInfo = '$baseUrl/bank/bank-info/';
   static String updateBankInfo(int? id)=> '$baseUrl/bank/bank-info/$id/';
@@ -55,6 +57,8 @@ class Urls {
       '$baseUrl/parcels/tracking/$voucherId/';
   
   static String updateStatusByBatch = '$baseUrl/parcels/update-status/';
+  static String makeMerchantPayment = '$baseUrl/parcels/merchant-payment/';
+  static String makeRiderPayment = '$baseUrl/parcels/rider-payment/';
 
   static String deliveryType = '$baseUrl/settings/delivery-time/';
   static String updateDeliveryType(int id) => '$baseUrl/settings/delivery-time/$id/';

@@ -3,7 +3,8 @@
 import 'package:e_courier_360/data/models/permission.dart';
 import 'package:e_courier_360/data/models/role.dart';
 import 'package:e_courier_360/data/services/network_caller/network_caller.dart';
-import 'package:e_courier_360/data/services/network_caller/request_methods/put_request.dart';
+import 'package:e_courier_360/data/services/network_caller/request_methods/dynamic_post_request.dart';
+import 'package:e_courier_360/data/services/network_caller/request_methods/dynamic_put_request.dart';
 import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
@@ -85,26 +86,26 @@ class RolePermissionController extends GetxController {
   grpPerm=groupedPermissions.values.toList();
   return groupedPermissions.values.toList();
 }
-  Future<bool> addPickupZone(String name,int branchId) async {
+  Future<bool> addRole(String name) async {
     showloading('Loading..');
-    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.pickupZone,token: AuthController.token, {
+    final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.roles,token: AuthController.token, {
     "name":name ,
-    "branch_id": branchId.toString(),
+    "permissions":selectedPermissionId,
     });
     if (response.success) {
-      // await getPickupZone(branchId: branchId);
       showSuccess("success");
+      await getRoles();
       return true;
     } else {
       showError(response.errorMessage);
       return false;
     }
   }
-  Future<bool> updatePickupZone(String name,int branchId,int zoneId) async {
+  Future<bool> updateRole(String name,int roleId) async {
     showloading('Loading..');
-    final  NetworkCallerReturnObject response =await PutRequest.execute(Urls.updatePickupZone(zoneId),token: AuthController.token, {
+    final  NetworkCallerReturnObject response =await DynamicPutRequest.execute("${Urls.roles}$roleId/",token: AuthController.token, {
      "name":name ,
-    "branch_id": branchId.toString(),
+    "permissions": selectedPermissionId,
     });
     if (response.success) {
       // await getPickupZone(branchId: branchId);
@@ -116,7 +117,7 @@ class RolePermissionController extends GetxController {
   }
 
 bool isAllSelected = false;
-List<int> selectedPermissionId = [];
+List<int> get selectedPermissionId =>selectedPermission.map((permission)=>permission.id).toList();
 List<Permission> selectedPermission = [];
 
 void toggleSelectAll(bool? value) {

@@ -40,19 +40,27 @@ class ParcelStatusController extends GetxController {
     Future<bool> makeMerchantPayment({String? paymentMethod,double? amount}) async {
     _inProgress = true;
     update();
-    final  NetworkCallerReturnObject response =await DynamicPostRequest.execute("Urls.makeMerchantPayment",token: AuthController.token,{
-    "merchent_id": selectedParcels.first.merchant,
-    "payment_method": ['1'],
-    "payment": ["$amount"],
-    "booking_id": ["${selectedParcels.first.id}"],
-    "update_status_id": 13,
-    "payment_note": ["Payment Made By Admin"],
+    final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.makeMerchantPayment,token: AuthController.token,{
+    "merchant_id": selectedParcels.first.merchant,
+    "payment_method": 1,
+    "payment": amount,
+    "parcels_id": [selectedParcels.first.id],
+    "status": 12,
+    "payment_note": "Payment Made By Admin",
     "note": "Monthly settlement"
+
+    // "parcels_id": [2],
+    // "merchant_id":1,
+    // "status":12,
+    // "payment_method": 1,
+    // "payment":2100,
+    // "payment_note": "Payment Made By Admin",
+    // "note": "Monthly settlement"
     } , isLogin: true);
     if (response.success) {
-     if(selectedParcels.first.driverPaymentStatus==2){
-      updateStatusByBatch();
-    }
+    //  if(selectedParcels.first.driverPaymentStatus==2){
+    //   updateStatusByBatch();
+    // }
       _inProgress = false;
       update();
       return true;
@@ -65,20 +73,24 @@ class ParcelStatusController extends GetxController {
     Future<bool> makeRiderPayment({String? paymentMethod}) async {
     _inProgress = true;
     update();
-    final  NetworkCallerReturnObject response =await DynamicPostRequest.execute("Urls.makeRiderPayment",token: AuthController.token,{
+    final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.makeRiderPayment,token: AuthController.token,{
+
+        // "drider_id": selectedParcels.first.driver,
+        // "booking_id" : ["${selectedParcels.first.id}"],
+        // "payment_method" : [1],
+        // "payment" : ["${selectedParcels.first.cashCollection}"],
+        // "payment_note" : ["Payment Made By Admin"]
 
         "drider_id": selectedParcels.first.driver,
-        "booking_id" : ["${selectedParcels.first.id}"],
-        "payment_method" : [1],
-        "payment" : ["${selectedParcels.first.cashCollection}"],
-        "payment_note" : ["Payment Made By Admin"]
+        "parcels_id" : [selectedParcels.first.id],
+        "payment_method" : 1,
+        "payment" : selectedParcels.first.cod,
+        "status" : 12,
+        "payment_note" : "Payment Made By Admin"
 
     } , isLogin: true);
  
     if (response.success) {
-    if(selectedParcels.first.paymentStatus==2){
-      updateStatusByBatch();
-    }
     _inProgress = false;
       update();
       return true;
