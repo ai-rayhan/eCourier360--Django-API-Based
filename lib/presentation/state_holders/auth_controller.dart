@@ -66,6 +66,7 @@ class AuthController extends GetxController {
     if (response.success) {
       UserProfile userProfile= UserProfile.fromJson(response.returnValue);
       userRole=userProfile.data.role;
+      token=response.returnValue['data']['access'];
       saveUserDetails( response.returnValue['data']['access'],userProfile);
       saveVerification(response.returnValue['data']['is_phone_verified']);
       update();
@@ -133,10 +134,10 @@ class AuthController extends GetxController {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('token', userToken);
     await sharedPreferences.setString('profile', jsonEncode(userProfile.toJson()));
-    token = userToken;
-    profile = userProfile;
-    userRole=userProfile.data.role;
-    log("ueiytrueyntre yt "+userProfile.toString());
+    // token = userToken;
+    // profile = userProfile;
+    // userRole=userProfile.data.role;
+    // log("ueiytrueyntre yt "+userProfile.toString());
   }
 
   Future<void> saveVerification(bool isPhoneVerified) async {
@@ -147,8 +148,6 @@ class AuthController extends GetxController {
   Future<void> initialize() async {
     token = await _getToken();
     profile = await _getProfile();
-
-    
     _isPhoneVerifiedUser = await _checkIsphoneVerified();
     userRole = profile?.data.role;
     mcid = profile?.data.merchantId;
