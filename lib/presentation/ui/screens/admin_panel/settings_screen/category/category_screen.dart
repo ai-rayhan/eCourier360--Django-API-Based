@@ -44,7 +44,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
              trailling: Icon(Icons.edit),
               ontap: (){
               _titleTEController.text=controller.categories[index].title;
-              showInputDialog(context: context, title: "Update Category",content:CustomInputField(hintText: 'Title',controller: _titleTEController,),
+              showCustomDialog(context: context, title: "Update Category",content:CustomInputField(hintText: 'Title',controller: _titleTEController,),
                onSubmitPressed: () async{
               await Get.find<CategoryController>().updateCategory(_titleTEController.text,controller.categories[index].id);
               _titleTEController.clear();
@@ -60,7 +60,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
            bottomNavigationBar: Padding(
              padding: const EdgeInsets.all(8.0),
              child: ElevatedButton(onPressed: (){
-             showInputDialog(context: context, title: "Add Category",content:CustomInputField(hintText: 'Category',controller: _titleTEController,),
+             showCustomDialog(context: context, title: "Add Category",content:CustomInputField(hintText: 'Category',controller: _titleTEController,),
              onSubmitPressed: () async{
               await Get.find<CategoryController>().addCategory(_titleTEController.text);
                _titleTEController.clear();

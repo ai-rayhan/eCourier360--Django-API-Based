@@ -44,7 +44,7 @@ class ReceiversScreenState extends State<ReceiversScreen> with SingleTickerProvi
               width: 200,
               child: ElevatedButton(onPressed:(){
                 if(controller.receiverIDList.isNotEmpty){
-                  showInputDialog(
+                  showCustomDialog(
                   context: context, title: "Delete Receiver",
                   content: const Text("Are you sure to delete this receiver"),
                     onSubmitPressed: () {
@@ -151,7 +151,7 @@ final Receiver receiver;
             
                   if(val==1){
                     controller.updateReceiverId(receiver.id);
-                    showInputDialog(
+                    showCustomDialog(
                   context: context, title: "Delete Receiver",
                   content: const Text("Are you sure to delete this receiver"),
                     onSubmitPressed: () {

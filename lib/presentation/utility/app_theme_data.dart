@@ -42,7 +42,7 @@ class AppThemeData {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(10),
         ),
         backgroundColor: AppColors.secondaryColor,
         padding: const EdgeInsets.symmetric(vertical: 14),
@@ -61,7 +61,7 @@ class AppThemeData {
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(10),
         ),
         side: const BorderSide(color: AppColors.secondaryColor,width: 2),
         padding: const EdgeInsets.symmetric(vertical: 10),

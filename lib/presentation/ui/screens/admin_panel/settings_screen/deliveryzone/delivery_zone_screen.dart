@@ -45,7 +45,7 @@ class _DeliveryZoneScreenState extends State<DeliveryZoneScreen> {
              },
              trailling: IconButton(icon: Icon(Icons.edit),onPressed: (){
               _nameTEController.text=controller.deliveryZones[index].name;
-              showInputDialog(context: context, title: "Update PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
+              showCustomDialog(context: context, title: "Update PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
                onSubmitPressed: () async{
               await Get.find<DeliveryZoneController>().updateDeliveryZone(_nameTEController.text, widget.branch.id,controller.deliveryZones[index].id);
               _nameTEController.clear();
@@ -60,7 +60,7 @@ class _DeliveryZoneScreenState extends State<DeliveryZoneScreen> {
            bottomNavigationBar: Padding(
              padding: const EdgeInsets.all(8.0),
              child: ElevatedButton(onPressed: (){
-             showInputDialog(context: context, title: "Add PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
+             showCustomDialog(context: context, title: "Add PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
              onSubmitPressed: () async{
               await Get.find<DeliveryZoneController>().addDeliveryZone(_nameTEController.text, widget.branch.id);
                _nameTEController.clear();

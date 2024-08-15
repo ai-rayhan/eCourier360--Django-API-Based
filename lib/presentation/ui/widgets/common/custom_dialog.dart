@@ -1,11 +1,12 @@
+import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class InputDialog extends StatelessWidget {
+class CustomDialog extends StatelessWidget {
   final String title;
   final Widget? content;
   final VoidCallback? onSubmitPressed;
 
-  InputDialog({
+  const CustomDialog({super.key, 
     required this.title,
     this.onSubmitPressed, 
     this.content,
@@ -24,13 +25,13 @@ class InputDialog extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black,
-            offset: Offset(0, 10),
-            blurRadius: 10.0,
-          ),
+          // BoxShadow(
+          //   color: Colors.black,
+          //   offset: Offset(0, 10),
+          //   blurRadius: 10.0,
+          // ),
         ],
       ),
       child: Column(
@@ -46,24 +47,58 @@ class InputDialog extends StatelessWidget {
           SizedBox(height: 15.0),
           content??Container(),
           SizedBox(height: 22.0),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              if (onSubmitPressed != null) {
-                onSubmitPressed!();
-              }
-            },
-            child: Text(
-              'OK',
-              style: TextStyle(fontSize: 18.0),
-            ),
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: ()=>Navigator.pop(context),
+                  child: const Text('Cancel'),
+                  style:  TextButton.styleFrom(
+        backgroundColor: const Color.fromARGB(255, 150, 143, 172).withOpacity(.5),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+        textStyle: const TextStyle(fontSize: 15, letterSpacing: 0.5,fontWeight: FontWeight.w600,fontFamily: 'Poppins'),
+        foregroundColor: Colors.white,
+      ),
+                ),
+                const SizedBox(width:15.0),
+                ElevatedButton(
+                  onPressed: (){
+                      Navigator.of(context).pop();
+                      if (onSubmitPressed != null) {
+                        onSubmitPressed!();
+                      }
+                    },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10,),
+                    child: Text('OK'),
+                  ),
+                  style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(12.0),
               ),
             ),
-          ),
+                ),
+              ],
+            ),
+          // ElevatedButton( 
+          //   onPressed: () {
+          //     Navigator.of(context).pop();
+          //     if (onSubmitPressed != null) {
+          //       onSubmitPressed!();
+          //     }
+          //   },
+          //   child: Text(
+          //     'OK',
+          //     style: TextStyle(fontSize: 18.0),
+          //   ),
+          //   style: ElevatedButton.styleFrom(
+          //     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(8.0),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     )
@@ -71,7 +106,7 @@ class InputDialog extends StatelessWidget {
   }
 }
 
-void showInputDialog({
+void showCustomDialog({
   required BuildContext context,
   required String title,
   Widget? content,
@@ -80,7 +115,7 @@ void showInputDialog({
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return InputDialog(
+      return CustomDialog(
         title: title,
         content: content,
         onSubmitPressed: onSubmitPressed,

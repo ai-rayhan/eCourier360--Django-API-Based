@@ -34,7 +34,7 @@ class _ApplicationSubmittedScreenState extends State<ApplicationSubmittedScreen>
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                   IconButton(onPressed: (){
-                    showInputDialog(context: context,title: "Logout?",content: Text("Are you sure logout this account"),onSubmitPressed: () {
+                    showCustomDialog(context: context,title: "Logout?",content: Text("Are you sure logout this account"),onSubmitPressed: () {
                     AuthController.clearAuthData();
                     Get.offAll(const SplashScreen());
                     },);

@@ -45,7 +45,7 @@ class _PickUpZoneScreenState extends State<PickUpZoneScreen> {
              },
              trailling: IconButton(icon: Icon(Icons.edit),onPressed: (){
               _nameTEController.text=controller.pickupZones[index].name;
-              showInputDialog(context: context, title: "Update PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
+              showCustomDialog(context: context, title: "Update PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
                onSubmitPressed: () async{
               await Get.find<PickUpZoneController>().updatePickupZone(_nameTEController.text, widget.branch.id,controller.pickupZones[index].id);
               _nameTEController.clear();
@@ -60,7 +60,7 @@ class _PickUpZoneScreenState extends State<PickUpZoneScreen> {
            bottomNavigationBar: Padding(
              padding: const EdgeInsets.all(8.0),
              child: ElevatedButton(onPressed: (){
-             showInputDialog(context: context, title: "Add PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
+             showCustomDialog(context: context, title: "Add PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
              onSubmitPressed: () async{
               await Get.find<PickUpZoneController>().addPickupZone(_nameTEController.text, widget.branch.id);
                _nameTEController.clear();

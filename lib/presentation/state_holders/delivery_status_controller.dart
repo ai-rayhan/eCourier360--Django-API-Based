@@ -15,10 +15,11 @@ class DeliveryStatusController extends GetxController {
   
   List<DeliveryStatus> _deliveryStatuses = [];
   List<DeliveryStatus> get deliveryStatuses=>_deliveryStatuses;
-  List<int> get statusCount =>_deliveryStatuses.map((status) => status.parcelCount??0).toList();
+  
 
   List<String> get statusNames =>deliveryStatuses.map((status) => status.status).toList();
   List<int> get statusIds =>deliveryStatuses.map((status) => status.id).toList();
+  List<int> get statusCount =>deliveryStatuses.map((status) => status.parcelCount??0).toList();
   DeliveryStatus  deliveryStatus (int id) =>deliveryStatuses.where((status) => status.id==id).toList().first;
   Future<bool> getDeliveryStatus() async {
     _inProgress = true;
@@ -39,6 +40,30 @@ class DeliveryStatusController extends GetxController {
       return false;
     }
   }
+
+  // List<DeliveryStatus> _dsParcels = [];
+  // List<DeliveryStatus> get dsParcels=>_dsParcels;
+  // List<String> get dsName =>dsParcels.map((status) => status.status).toList();
+  // List<int> get dsIds =>dsParcels.map((status) => status.id).toList();
+  // Future<bool> getDSParcelCount() async {
+  //   _inProgress = true;
+  //   update();
+  //    final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.dsParcelCount,);
+  //    log(response.responseCode.toString());
+  //   _inProgress = false;
+  //   if (response.success) {
+  //    _dsParcels = (response.returnValue as List<dynamic>)
+  //         .map((json) => DeliveryStatus.fromJson(json))
+  //         .toList();
+  //    _dsParcels.sort((a, b) => a.id.compareTo(b.id));
+  //     update();
+  //     return true;
+  //   } else {
+  //     _errorMessage = response.errorMessage;
+  //     update();
+  //     return false;
+  //   }
+  // }
 
 int _tabindex=0;
 int get tabindex=>_tabindex;

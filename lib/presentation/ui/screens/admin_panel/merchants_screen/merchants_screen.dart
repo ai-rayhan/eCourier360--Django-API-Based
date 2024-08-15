@@ -42,7 +42,7 @@ class MerchantsScreenState extends State<MerchantsScreen> with SingleTickerProvi
             child: SizedBox(
               width: 200,
               child: ElevatedButton(onPressed:(){
-                showInputDialog(
+                showCustomDialog(
                   context: context, title: "Change Status",
                   content: InputCard(child:  CustomDropdownButton(
                     initialItem: 'Pending',items:statuses,
