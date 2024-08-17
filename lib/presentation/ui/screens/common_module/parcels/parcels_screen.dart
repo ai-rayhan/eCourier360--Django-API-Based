@@ -1,12 +1,10 @@
-// import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
-// import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/update_status_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/update_status_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/common/parcel_list.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/common/parcel_list.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -97,7 +95,7 @@ class ParcelsTrackScreenState extends State<ParcelsTrackScreen> with SingleTicke
         controller: _tabController,
         children: _tabs.map((String tab) {
           int index = _tabs.indexOf(tab);
-          return  Center(child: ParcelList(deliveryStatusId:statusId[index] ,));
+          return  Center(child: ParcelList(deliveryStatusId:statusId[index]));
         }).toList(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

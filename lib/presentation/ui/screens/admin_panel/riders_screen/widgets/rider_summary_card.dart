@@ -49,7 +49,7 @@ final Rider rider;
                   height: 28,
                   width: 60,
                   decoration:  BoxDecoration(
-                    color: rider.status=='0'?AppColors.darkGreyColor:Colors.green,
+                    color: rider.status=='0'?AppColors.dark14:Colors.green,
                     borderRadius: const BorderRadius.all(Radius.circular(12)),
                   ),
                   child: Padding(

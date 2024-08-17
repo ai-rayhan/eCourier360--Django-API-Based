@@ -2,8 +2,8 @@
 import 'dart:developer';
 
 import 'package:e_courier_360/data/models/delivery_status.dart';
-import 'package:e_courier_360/data/services/network_caller/network_caller.dart';
-import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
+import 'package:e_courier_360/core/network_caller/network_caller.dart';
+import 'package:e_courier_360/core/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:get/get.dart';
 

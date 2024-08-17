@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/parcel/tracking_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,18 +17,9 @@ class _ParcelListState extends State<ParcelList> {
  final ParcelController parcelController=Get.find<ParcelController>();
  @override
   void initState() {
-  
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // if(widget.deliveryStatusId==-1){
-      //   parcelController.getMerchantParcels();
-      // }else
-      //  if(widget.voucherId!=null){
-      //    parcelController.getParcelsByVoucherId(widget.voucherId??"");
-      // }
-      // else{
         parcelController.getParcelsByStatus(widget.deliveryStatusId);
-         log("message:${widget.deliveryStatusId}");
-      // }
+
     });
     super.initState();
   }
@@ -40,7 +30,10 @@ class _ParcelListState extends State<ParcelList> {
         return Visibility(
           visible: !parcelController.inProgress,
           replacement: const CircularProgressIndicator(),
-          child: ListView.builder(
+          child:
+          parcelController.parcels.isEmpty?
+           const EmptyDataPage(msg: "No Parcel Found!",):
+           ListView.builder(
             itemCount: parcelController.parcels.length,
             itemBuilder: (context,index)=>TrackingCard(parcel: parcelController.parcels[index])),
         );

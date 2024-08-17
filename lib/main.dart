@@ -1,10 +1,13 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:e_courier_360/app.dart';
+import 'package:e_courier_360/presentation/state_holders/theme_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  // Run the application with DevicePreview if needed(disabled for production)
+  ThemeController themeController = Get.put(ThemeController());
+  await themeController.loadThemeStatus();
   runApp(
     DevicePreview(
       enabled: false,

@@ -11,8 +11,8 @@ import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/payment_screen/make_payment_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/update_status_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/send_parcel_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/update_status_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/send_parcel_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
 import 'package:e_courier_360/presentation/ui/widgets/parcel/parcel_view_txt.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../send_parcel_screen/common/product_listview.dart';
+import '../send_parcel/common/product_listview.dart';
 
 
 class PercelViewScreen extends StatefulWidget {

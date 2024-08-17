@@ -4,10 +4,10 @@ import 'package:e_courier_360/presentation/state_holders/category_controller.dar
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/receiver_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/delivery_information_form.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/parcel_information_form.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/parcel_preview_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/product_information_form.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/delivery_information_form.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/parcel_information_form.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/parcel_preview_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/product_information_form.dart';
 
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';

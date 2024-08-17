@@ -4,10 +4,10 @@ import 'package:e_courier_360/data/models/body/parcel_data.dart';
 import 'package:e_courier_360/data/models/product.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/parcels_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel_screen/common/product_listview.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/common/product_listview.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
 import 'package:e_courier_360/presentation/ui/widgets/parcel/parcel_view_txt.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
@@ -18,8 +18,7 @@ import 'package:get/get.dart';
 class ParcelPreviewScreen extends StatefulWidget {
   final List<Product> products;
   final int? parcelId;
-  const ParcelPreviewScreen({Key? key, required this.products, this.parcelId})
-      : super(key: key);
+  const ParcelPreviewScreen({super.key, required this.products, this.parcelId});
 
   @override
   State<ParcelPreviewScreen> createState() => _ParcelPreviewScreenState();
@@ -33,7 +32,6 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //  final int deliveryTypeIndex=_deliveryChargeInfoController.deliveryTypes.where((dt) => dt.deliveryType==_parcelDataController.deliveryTypeValue).toList().first.id??0;
     final int deliveryTypeIndex = _deliveryChargeInfoController.deliveryTypes
         .indexWhere(
             (dt) => dt.deliveryType == _parcelDataController.deliveryTypeValue);
@@ -196,8 +194,10 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                                       deliveryCharge: _deliveryChargeInfoController.totalCharge),
                                   widget.products,AuthController.mcid.toString());
                               if (response) {
-                                Get.snackbar("Great", "Parcel Created");
-                                Get.to(const ParcelsTrackScreen());
+                                Get.snackbar("Great", "Parcel Added");
+                                Get.back();
+                                Get.back();
+                                Get.find< MainBottomNavController>().changeIndex(2);
                               }
                             } else {
                               bool response = await Get.find<ParcelController>().updateParcel(
@@ -232,7 +232,9 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                                   widget.parcelId ?? 0,AuthController.mcid.toString());
                               if (response) {
                                 Get.snackbar("Great", "Parcel Updated");
-                                Get.to(const ParcelsTrackScreen());
+                                Get.back();
+                                Get.back();
+                                Get.find< MainBottomNavController>().changeIndex(2);
                               }
                             }
                           },

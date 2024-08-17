@@ -1,6 +1,6 @@
 import 'package:e_courier_360/controller_binder.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/splash_screen.dart';
 import 'package:e_courier_360/presentation/utility/app_theme_data.dart';
+import 'package:e_courier_360/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -13,7 +13,10 @@ class ECourier360 extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppThemeData.lightThemData,
-      home: const SplashScreen(),
+      darkTheme: AppThemeData.darkThemeData,
+      themeMode: ThemeMode.system,
+      initialRoute: '/',
+      getPages: AppPages.routes,
       initialBinding: ControllerBinder(),
       builder: EasyLoading.init(),
     );

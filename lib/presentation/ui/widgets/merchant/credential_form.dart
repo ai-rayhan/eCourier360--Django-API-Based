@@ -8,7 +8,7 @@ class CredentialForm extends StatefulWidget {
   const CredentialForm({
     super.key,
     required this.passwordController,
-    required this.confimPasswordController, 
+    required this.confimPasswordController,
   });
 
   @override
@@ -16,7 +16,7 @@ class CredentialForm extends StatefulWidget {
 }
 
 class _CredentialFormState extends State<CredentialForm> {
-
+  bool showPassword = false;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,14 +26,22 @@ class _CredentialFormState extends State<CredentialForm> {
         CustomInputField(
           controller: widget.passwordController,
           hintText: 'Password',
-          icon: const Icon(Icons.visibility),
-          validator:(String? value ){
-            if(value==null|| value.length<6){
+          icon: const Icon(Icons.lock),
+          obscureText: !showPassword,
+          keyboardType: TextInputType.visiblePassword,
+          validator: (String? value) {
+            if (value == null || value.length < 6) {
               return 'Enter a strong password';
-            }else{
+            } else {
               return null;
             }
-          }
+          },
+          suffixIcon: IconButton(
+          onPressed: () {
+                showPassword = !showPassword;
+                setState(() {});
+              },
+          icon:Icon(showPassword ? Icons.visibility_off : Icons.visibility)),
         ),
         AppSizedBox.h8,
         CustomInputField(
@@ -41,12 +49,19 @@ class _CredentialFormState extends State<CredentialForm> {
           hintText: 'Confirm Password',
           icon: const Icon(Icons.visibility),
           validator: (p0) {
-           if(widget.passwordController.text!=widget.confimPasswordController.text){
+            if (widget.passwordController.text !=
+                widget.confimPasswordController.text) {
               return 'Password doesn\'t match';
-            }else{
+            } else {
               return null;
             }
           },
+          suffixIcon: IconButton(
+          onPressed: () {
+                showPassword = !showPassword;
+                setState(() {});
+              },
+          icon:Icon(showPassword ? Icons.visibility_off : Icons.visibility)),
         ),
         AppSizedBox.h8,
       ],

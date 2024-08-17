@@ -41,6 +41,7 @@ class _RiderFormState extends State<RiderForm> {
         CustomInputField(
           controller: widget.emailController,
           hintText: 'Email',
+          keyboardType: TextInputType.emailAddress,
           icon: const Icon(Icons.email),
           validator:(String? value ){
             if(value==null|| !value.contains('@')||!value.contains('.')){
@@ -55,6 +56,7 @@ class _RiderFormState extends State<RiderForm> {
           controller: widget.phoneController,
           hintText: 'Phone',
           icon: const Icon(Icons.phone),
+          keyboardType: TextInputType.phone,
           validator:(String? value ){
             if(value==null|| !value.isNumericOnly||value.length<10){
               return 'Enter valid phone number';

@@ -1,3 +1,4 @@
+import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
@@ -6,6 +7,7 @@ import 'package:e_courier_360/presentation/utility/status_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 class ParcelDashBoard extends StatelessWidget {
   const ParcelDashBoard({
     super.key,
@@ -14,7 +16,6 @@ class ParcelDashBoard extends StatelessWidget {
   final DeliveryStatusController dashBoardController;
   @override
   Widget build(BuildContext context) {
-    String url="http://10.0.2.2:8000";
     return Skeletonizer(
       enabled: dashBoardController.inProgress,
       child: GridView.builder(
@@ -46,10 +47,7 @@ class ParcelDashBoard extends StatelessWidget {
                   .toString(),
               countColor: colors[dashBoardController
                   .deliveryStatuses[index].id-1],
-              image:"$url/${dashBoardController.deliveryStatuses[index].image}"
-              //  Icon(statusIcons[dashBoardController
-              //     .deliveryStatuses[index].id-1],size: 40,color: colors[dashBoardController
-              //     .deliveryStatuses[index].id-1]),
+              image:"${Urls.siteUrl}${dashBoardController.deliveryStatuses[index].image}"
             ),
           );
         },

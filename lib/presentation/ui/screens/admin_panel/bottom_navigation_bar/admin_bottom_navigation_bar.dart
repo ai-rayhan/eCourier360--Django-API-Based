@@ -10,7 +10,7 @@ import 'package:e_courier_360/presentation/ui/base/base_bottom_navigationbar.dar
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/admin_home_screen/admin_home_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/merchants_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/settings_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/parcels_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/parcels_screen.dart';
 import 'package:flutter/material.dart';
 
 class AdminBottomNavigationBar extends StatefulWidget {

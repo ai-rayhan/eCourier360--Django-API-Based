@@ -39,10 +39,10 @@ class SettingsCard extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: AppColors.primaryColor,
+                  // backgroundColor: AppColors.primaryColor,
                   child: Icon(
                     iconData,
-                    color: AppColors.secondaryColor.withOpacity(.8),
+                    color: AppColors.secondaryColor.withOpacity(.6),
                     size: 25,
                   ),
                 ),
@@ -66,7 +66,7 @@ class SettingsCard extends StatelessWidget {
                  trailling?? const Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 14,
-                  color: AppColors.darkGreyColor,
+                  color: AppColors.dark14,
                 ),
                 const SizedBox(
                   width: 15,

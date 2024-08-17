@@ -1,11 +1,13 @@
+import 'package:e_courier_360/data/helper/route_panel_checker.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/signup_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/splash/signup_screen.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/center_outlined_button.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
+import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:e_courier_360/quick_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/logo_with_name.dart';
-import 'package:e_courier_360/home_route.dart';
 import 'package:e_courier_360/presentation/utility/sizedbox.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  bool showPassword=true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,14 +43,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   CustomInputField(
                     controller: _emailTEController,
+                    keyboardType:TextInputType.emailAddress,
                     hintText: 'Email',
                     icon: const Icon(Icons.email),
                   ),
                   AppSizedBox.h5,
                   CustomInputField(
                     controller: _passwordTEController,
+                    keyboardType:TextInputType.visiblePassword,
+                    suffixIcon: IconButton(onPressed: (){
+                      showPassword=!showPassword;
+                      setState(() {
+                        
+                      });
+                    }, icon: Icon(showPassword?Icons.visibility:Icons.visibility_off)),
+                    obscureText: showPassword,
                     hintText: 'Password',
-                    icon: const Icon(Icons.visibility),
+                    icon: const Icon(Icons.lock),
                   ),
                   AppSizedBox.h10,
                   SizedBox(
@@ -70,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _passwordTEController.text);
                             if (response) {
                               if (mounted) {
-                                Get.offAll(goPanelHomeScreen());
+                                checkUserPanel();
                               }
                             } else {
                               if (mounted) {
@@ -102,6 +113,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                       Get.snackbar("Contact", "Contact Support:${QuickConfig.supportEmail}");
                       },
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.grey[100]
+                      ),
                       child: Text(
                         'Forgot Password?',
                         style: TextStyle(color: Colors.grey[400], fontSize: 16),
@@ -159,24 +173,4 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class CenterMediumOutlinedbutton extends StatelessWidget {
-  const CenterMediumOutlinedbutton({
-    super.key,
-    required this.labelText,
-    required this.icon,
-    required this.onPressed,
-  });
-  final String labelText;
-  final Icon icon;
-  final VoidCallback onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: 280,
-        child: OutlinedButton.icon(
-            onPressed: onPressed, icon: icon, label: Text(labelText)),
-      ),
-    );
-  }
-}
+

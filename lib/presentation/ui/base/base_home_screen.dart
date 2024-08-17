@@ -1,6 +1,6 @@
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/order_tracking_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/order_tracking/order_tracking_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:e_courier_360/presentation/ui/widgets/home/parcel_dashbord.dart';
@@ -65,7 +65,7 @@ class BaseHomeScreen extends StatelessWidget {
                                   if(voucherId!=null && voucherId!.length>5){
                                     final bool response=await parcelController.trackingParcel(voucherId!);
                                     if(response){
-                                    Get.to(OrderTrackingScreen(voucherId: voucherId??'',));
+                                    Get.to(const OrderTrackingScreen());
                                     }
                                   }
                                 },

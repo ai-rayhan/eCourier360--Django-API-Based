@@ -5,6 +5,7 @@ import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_scree
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/category/category_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/delivery_type/delivery_type_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/role_permissions_screen/all_roles_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/system_config/system_config_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,16 +51,13 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
               Get.lazyPut<SettingsController>(() => SettingsController());
               Get.to(const CategoriesScreen());
             }),
-        // SettingsCard(
-        //     title: "Rise Issue",
-        //     subtitle: "Exit from app",
-        //     iconData: Icons.report_problem_outlined,
-        //     ontap: () {}),
         SettingsCard(
             title: "System Config",
             subtitle: "Manage app system settings,Appname",
             iconData: Icons.settings_brightness_rounded,
-            ontap: () {}),
+            ontap: () {
+              Get.to(SystemConfigScreen());
+            }),
         SettingsCard(
             title: "Roles and permissions",
             subtitle: "Manage Roles and User Permissions",

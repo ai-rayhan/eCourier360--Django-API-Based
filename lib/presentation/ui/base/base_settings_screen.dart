@@ -1,8 +1,8 @@
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/splash_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/app_logo.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
@@ -74,7 +74,7 @@ class SettingsScreen extends StatelessWidget {
                             ontap: () {
                               Get.find<MainBottomNavController>().changeIndex(0);
                               AuthController.clearAuthData();
-                              Get.offAll(const SplashScreen());
+                              Get.offAllNamed(RoutePath.initial);
                             }),
                         const SizedBox(
                           height: 10,

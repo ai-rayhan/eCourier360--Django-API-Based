@@ -49,7 +49,7 @@ class MerchantInfoSummuryCard extends StatelessWidget {
                   height: 28,
                   width: 60,
                               decoration:  BoxDecoration(
-                                color:merchant.status=='1'?Colors.green:AppColors.darkGreyColor,
+                                color:merchant.status=='1'?Colors.green:AppColors.dark14,
                                 borderRadius: const BorderRadius.all(Radius.circular(12)),
                               ),
                               child: Padding(

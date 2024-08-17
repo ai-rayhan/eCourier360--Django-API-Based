@@ -1,4 +1,3 @@
-import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomDialog extends StatelessWidget {
@@ -21,32 +20,25 @@ class CustomDialog extends StatelessWidget {
       elevation: 0.0,
       backgroundColor: Colors.transparent,
       child:Container(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          // BoxShadow(
-          //   color: Colors.black,
-          //   offset: Offset(0, 10),
-          //   blurRadius: 10.0,
-          // ),
-        ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 22.0,
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 15.0),
+          const SizedBox(height: 15.0),
           content??Container(),
-          SizedBox(height: 22.0),
+          const SizedBox(height: 22.0),
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -73,7 +65,7 @@ class CustomDialog extends StatelessWidget {
                     child: Text('OK'),
                   ),
                   style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),

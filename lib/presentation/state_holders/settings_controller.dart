@@ -1,8 +1,8 @@
 import 'package:e_courier_360/data/models/branch.dart';
-import 'package:e_courier_360/data/services/network_caller/request_methods/get_request.dart';
-import 'package:e_courier_360/data/services/network_caller/request_methods/post_request.dart';
-import 'package:e_courier_360/data/services/network_caller/request_methods/put_request.dart';
-import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
+import 'package:e_courier_360/core/network_caller/request_methods/get_request.dart';
+import 'package:e_courier_360/core/network_caller/request_methods/post_request.dart';
+import 'package:e_courier_360/core/network_caller/request_methods/put_request.dart';
+import 'package:e_courier_360/core/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/global_loading.dart';

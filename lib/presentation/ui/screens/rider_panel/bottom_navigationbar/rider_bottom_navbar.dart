@@ -1,5 +1,5 @@
 import 'package:e_courier_360/presentation/ui/base/base_bottom_navigationbar.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/parcels_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/parcels_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/ui/screens/rider_panel/rider_home_screen/rider_home_screen.dart';

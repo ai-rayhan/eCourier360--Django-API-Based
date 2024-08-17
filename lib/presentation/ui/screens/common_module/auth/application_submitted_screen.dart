@@ -5,14 +5,14 @@ import 'package:e_courier_360/presentation/ui/widgets/common/custom_dialog.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ApplicationSubmittedScreen extends StatefulWidget {
-  const ApplicationSubmittedScreen({super.key, });
+class ApplicationInReviewScreen extends StatefulWidget {
+  const ApplicationInReviewScreen({super.key, });
 
   @override
-  State<ApplicationSubmittedScreen> createState() => _ApplicationSubmittedScreenState();
+  State<ApplicationInReviewScreen> createState() => _ApplicationInReviewScreenState();
 }
 
-class _ApplicationSubmittedScreenState extends State<ApplicationSubmittedScreen> {
+class _ApplicationInReviewScreenState extends State<ApplicationInReviewScreen> {
 
 
   @override

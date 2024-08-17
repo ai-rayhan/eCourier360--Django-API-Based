@@ -10,7 +10,7 @@ class CustomInputField extends StatelessWidget {
     this.initialValue,
     required this.hintText,
     this.canblank,
-    this.icon, this.headerText,  this.onSavedForm, this.onChangedForm, this.enabled, this.validator,
+    this.icon, this.headerText,  this.onSavedForm, this.onChangedForm, this.enabled, this.validator, this.keyboardType, this.textInputAction, this.suffixIcon, this.obscureText,
   });
 
   final TextEditingController? controller;
@@ -21,6 +21,10 @@ class CustomInputField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String? headerText;
   final bool? enabled;
+  final bool? obscureText;
+  final Widget? suffixIcon;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
   final void Function(String)? onSavedForm;
   final void Function(String)? onChangedForm;
 
@@ -45,8 +49,11 @@ class CustomInputField extends StatelessWidget {
               controller: controller,
               enabled: enabled??true,
               initialValue: initialValue,
-              textInputAction: TextInputAction.next,
+              keyboardType: keyboardType,
+              textInputAction: textInputAction??TextInputAction.next,
+              obscureText:obscureText??false,
               decoration: InputDecoration(
+                suffixIcon: suffixIcon,
                 errorMaxLines: 1,
                 errorStyle: TextStyle(fontSize: 12),
                 labelText: hintText,

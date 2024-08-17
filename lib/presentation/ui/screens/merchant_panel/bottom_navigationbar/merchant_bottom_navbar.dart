@@ -8,7 +8,7 @@ import 'package:e_courier_360/presentation/state_holders/receiver_controller.dar
 import 'package:e_courier_360/presentation/ui/base/base_bottom_navigationbar.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/merchant_home_screen/merchant_home_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/profile_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/parcels_screen/parcels_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/parcels_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/calculate_screen/calculate_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

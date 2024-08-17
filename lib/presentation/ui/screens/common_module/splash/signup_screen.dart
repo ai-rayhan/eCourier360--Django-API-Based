@@ -1,6 +1,7 @@
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_otp_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/merchant/credential_form.dart';
+import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/logo_with_name.dart';
@@ -97,16 +98,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                   _phoneTEController.text, 
                                   _confirmPasswordTEController.text,"rider",
                                   riderInfo);
-                                 
-                                  // await authController.riderRegister(
-                                  //   username: _userNameTEController.text,
-                                  //   fullName: _fullNameTEController.text,
-                                  //   vehicleType: _shopNameTEController.text,
-                                  //   email: _shopEmailTEController.text,
-                                  //   address: _shopAddressTEController.text,
-                                  //   phone: _pickPhoneTEController.text,
-                                  //   registrationNo:
-                                  //       _pickupAddressTEController.text);
                             }
 
                             if (response) {
@@ -149,6 +140,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         onPressed: () {
                           Get.back();
                         },
+                        style:  TextButton.styleFrom(
+                        backgroundColor: AppColors.white70,foregroundColor:AppColors.dark26 ,
+                      ),
                         child: const Text(
                           'Log in',
                           style: TextStyle(fontSize: 16),

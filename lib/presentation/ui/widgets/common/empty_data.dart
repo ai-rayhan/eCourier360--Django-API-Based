@@ -6,9 +6,12 @@ class EmptyDataPage extends StatelessWidget {
   final String? msg;
   @override
   Widget build(BuildContext context) {
-    return Center(child: Column(children: [
+    return Center(child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
       Image.asset(AssetsPath.wentWrong,height: 150,width: 150,),
-      Center(child: Text(msg ??"No Data Found",style: Theme.of(context).textTheme.titleLarge,),)
+      Center(child: Text(msg ??"No Data Found",style: Theme.of(context).textTheme.titleLarge,),),
+      const SizedBox(height: 50,)
     ],),);
   }
 }

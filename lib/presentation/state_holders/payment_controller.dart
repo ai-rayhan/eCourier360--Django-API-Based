@@ -1,7 +1,7 @@
 
 import 'package:e_courier_360/data/models/payment.dart';
-import 'package:e_courier_360/data/services/network_caller/network_caller.dart';
-import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
+import 'package:e_courier_360/core/network_caller/network_caller.dart';
+import 'package:e_courier_360/core/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/global_loading.dart';

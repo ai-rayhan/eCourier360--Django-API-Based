@@ -42,6 +42,7 @@ class _MerchantFormState extends State<MerchantForm> {
         CustomInputField(
           controller: widget.emailController,
           hintText: 'Email',
+          keyboardType: TextInputType.emailAddress,
           icon: const Icon(Icons.email),
           validator:(String? value ){
             if(value==null|| !value.contains('@')||!value.contains('.')){
@@ -68,6 +69,7 @@ class _MerchantFormState extends State<MerchantForm> {
           controller: widget.pickPhoneController,
           hintText: 'Pickup Phone',
           icon: const Icon(Icons.phone),
+          keyboardType: TextInputType.phone,
           validator:(String? value ){
             if(value==null|| !value.isNumericOnly||value.length<10){
               return 'Enter valid phone number';

@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:e_courier_360/data/models/profile.dart';
-import 'package:e_courier_360/data/services/network_caller/request_methods/dynamic_post_request.dart';
-import 'package:e_courier_360/data/services/network_caller/request_methods/post_request.dart';
-import 'package:e_courier_360/data/services/network_caller/request_return_object.dart';
+import 'package:e_courier_360/data/repositories/auth_repo.dart';
+import 'package:e_courier_360/core/network_caller/request_methods/post_request.dart';
+import 'package:e_courier_360/core/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_phone_screen.dart';
 import 'package:get/get.dart';
@@ -24,22 +24,14 @@ class AuthController extends GetxController {
   bool get inProgress => _inProgress;
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
- 
+
+  final AuthRepo authRepo=AuthRepo();
   Future<bool> signUp(String name,String email,String phone,String password,String userType,Map<String,dynamic> businessInfo) async {
     _inProgress = true;
     update();
-     final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.signup, {
-        'username':name,
-        'email' : email,
-        'password' : password,
-        'phone_number':phone,
-        "user_type":userType,
-         userType:businessInfo,
-
-    }, isLogin: false);
+    final  NetworkCallerReturnObject response=await authRepo.signUp(name,email,phone,password,userType,businessInfo);
     _inProgress = false;
     if (response.success) {
-      userId=response.returnValue['id'];
       _tempEmail=email;
       _tempPassword=password;
       update();

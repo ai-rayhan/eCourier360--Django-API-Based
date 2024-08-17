@@ -18,6 +18,6 @@ Widget goPanelHomeScreen(){
   return const RiderBottomNavigationBar();
   }
   else{
-    return const ApplicationSubmittedScreen();
+    return const ApplicationInReviewScreen();
   }
 }
