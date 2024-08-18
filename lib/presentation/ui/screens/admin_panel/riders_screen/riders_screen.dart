@@ -1,6 +1,7 @@
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dialog.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dropdown.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:flutter/material.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/widgets/rider_summary_card.dart';
@@ -25,8 +26,8 @@ class RidersScreenState extends State<RidersScreen> with SingleTickerProviderSta
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: CourierAppBar(title: "Riders",),
-      body: Center(child: RiderList()),
+      appBar: const CourierAppBar(title: "Riders",),
+      body: const Center(child: RiderList()),
        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: GetBuilder<RiderController>(
         builder: (controller) {
@@ -77,6 +78,9 @@ class _RiderListState extends State<RiderList> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RiderController>(builder: (controller) {
+        if(controller.riderList.isEmpty){
+            return const EmptyDataPage(msg: "No Rider available",);
+          }
       return Visibility(
         visible: !controller.inProgress,
         replacement: const CenterCircularProgressIndicator(),

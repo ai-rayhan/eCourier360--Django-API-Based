@@ -3,6 +3,7 @@ import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_scre
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dialog.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dropdown.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
@@ -87,6 +88,9 @@ MerchantController merchantController=Get.find();
       padding: const EdgeInsets.all(8.0),
       child: GetBuilder<MerchantController>(
         builder: (controller) {
+          if(controller.merchantList.isEmpty){
+            return const EmptyDataPage(msg: "No Merchant available",);
+          }
           return Visibility(
             visible: !controller.inProgress,
             replacement: const CenterCircularProgressIndicator(),

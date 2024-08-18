@@ -9,13 +9,14 @@ class AppThemeData {
       elevation: 3,
       titleTextStyle: TextStyle(fontSize: 18, color: Colors.black),
     ),
+    
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 8,
       ),
-      hintStyle: TextStyle(color: Colors.grey.shade400),
-      labelStyle: TextStyle(color: Colors.grey.shade400),
+      hintStyle: TextStyle(color: Colors.grey.shade400,fontSize: 13),
+      labelStyle: TextStyle(color: Colors.grey.shade400,fontSize: 13),
       prefixIconColor: Colors.grey.shade400,
       suffixIconColor: Colors.grey.shade400,
       border: const OutlineInputBorder(

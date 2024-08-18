@@ -34,7 +34,7 @@ class AdminPaymentScreenState extends State<AdminPaymentScreen> with SingleTicke
       body: TabBarView(
         controller: _tabController,
         children: _tabs.map((String tab) {
-          return  Center(child: ParcelList(deliveryStatusIdList: const[8,9],tabId: _tabs.indexOf(tab),));
+          return  Center(child: PayableParcelList(deliveryStatusIdList: const[8,9],tabId: _tabs.indexOf(tab),));
         }).toList(),
       ),
     );

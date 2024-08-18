@@ -1,7 +1,12 @@
 import 'package:e_courier_360/data/models/parcel.dart';
 import 'package:e_courier_360/data/models/product.dart';
+import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/category_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/delivery_zone_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/receiver_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/delivery_information_form.dart';
@@ -39,6 +44,16 @@ class _SendPercelScreenState extends State<SendPercelScreen> {
       }
       _parcelDataController.setParcel=widget.parcel!;
     }
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Get.find<PickUpZoneController>().getPickupZone();
+      await Get.find<DeliveryZoneController>().getDeliveryZone();
+      await Get.find<ReceiverController>().getReceivers();
+      await Get.find<CategoryController>().getCategories();
+      await Get.find<DeliveryTypeInfoController>().getDeliveryTypeInfo();
+      if(AuthController.userRole==0||AuthController.userRole==1){
+        await Get.find<MerchantController>().getAllMerchants();
+      }
+    });
   }
 
   @override

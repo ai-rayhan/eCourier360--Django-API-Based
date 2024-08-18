@@ -67,9 +67,9 @@ final TextEditingController _addressTEController=TextEditingController();
                 visible: !pickUpZoneController.inProgress,
                 replacement: const Center(child: SizedBox( child:Text('Loading..')),),
                 child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     labelText: 'Pickup Zone',
-                    prefixIcon: Icon(Icons.local_taxi_rounded),
+                    prefixIcon: Icon(Icons.local_shipping,size: 25,),
                   ),
                   value:parcelDataController.pickupZoneValue,
                   // value:pickUpZoneController.getPickupZoneById(widget.parcel?.pickupZone??0)?.name,
@@ -111,11 +111,12 @@ final TextEditingController _addressTEController=TextEditingController();
               child: EasyAutocomplete(
                 controller: _nameTEController,
                 suggestions: filteredSuggestions,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                     hintText: 'Receiver Name',
+                    hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(fontSize: 13),
                     prefixIcon: Icon(
-                      Icons.open_in_browser,
-                      size: 30,
+                      Icons.person,
+                      size: 25,
                     )),
                    
                 // onSubmitted: (newValue) => setState(() {
@@ -155,11 +156,12 @@ final TextEditingController _addressTEController=TextEditingController();
         ),InputCard(
           child: TextFormField(
             controller: _phoneTEController,
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
                 hintText: 'Receiver Phone',
+            
                 prefixIcon: Icon(
-                  Icons.open_in_browser,
-                  size: 30,
+                  Icons.phone,
+                  size: 25,
                 )),
             validator: (String? value) {
               if (value?.trim().isEmpty ?? true) {
@@ -175,11 +177,12 @@ final TextEditingController _addressTEController=TextEditingController();
         ), InputCard(
           child: TextFormField(
             controller: _addressTEController,
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
                 hintText: 'Reciver Address',
+            
                 prefixIcon: Icon(
-                  Icons.open_in_browser,
-                  size: 30,
+                  Icons.location_history_rounded,
+                  size: 25,
                 )),
             onSaved: (newValue) => parcelDataController.receiverAddressValue=newValue,
             validator: (String? value) {
@@ -206,9 +209,10 @@ final TextEditingController _addressTEController=TextEditingController();
                 visible: !deliveryZoneController.inProgress,
                 replacement: const Center(child: SizedBox( child:Text('Loading..')),),
                 child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     labelText: 'Delivery Area',
-                    prefixIcon: Icon(Icons.system_update_alt_sharp),
+                
+                    prefixIcon: Icon(Icons.map,size: 25,),
                   ),
                   value: parcelDataController.deliveryZoneValue,
                   items: deliveryZone.map((level) {
@@ -245,9 +249,10 @@ final TextEditingController _addressTEController=TextEditingController();
                 visible: !deliveryTypeInfoController.inProgress,
                 replacement: const Center(child: SizedBox( child:Text('Loading..')),),
                 child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     labelText: 'Delivery Type',
-                    prefixIcon: Icon(Icons.system_update_alt_sharp),
+                    prefixIcon: Icon(Icons.delivery_dining,size: 25,),
+                    labelStyle: Theme.of(context).inputDecorationTheme.labelStyle!.copyWith(fontSize: 13),
                   ),
                   value: parcelDataController.deliveryTypeValue,
                   items: deliveryZone.map((level) {

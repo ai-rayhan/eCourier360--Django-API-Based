@@ -1,11 +1,8 @@
 
 import 'package:e_courier_360/data/models/delivery_type_info.dart';
 import 'package:e_courier_360/data/models/product.dart';
-import 'package:e_courier_360/core/network_caller/network_caller.dart';
-import 'package:e_courier_360/core/network_caller/request_methods/put_request.dart';
 import 'package:e_courier_360/core/network_caller/request_return_object.dart';
-import 'package:e_courier_360/data/utility/urls.dart';
-import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
+import 'package:e_courier_360/data/repositories/delivery_type_repo.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/global_loading.dart';
 
 import 'package:get/get.dart';
@@ -16,36 +13,18 @@ class DeliveryTypeInfoController extends GetxController {
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
   
+  final DeliveryTypeInfoRepo _deliveryTypeInfoRepo=DeliveryTypeInfoRepo();
+
   List<DeliveryInfo> _deliveryTypes = [];
   List<DeliveryInfo> get deliveryTypes=>_deliveryTypes;
   DeliveryInfo getDeliveryTypeFromId(int deliveryTypeID)=>_deliveryTypes.where((delType) => delType.id==deliveryTypeID).toList().first;
   DeliveryInfo getDeliveryTypeFromName(String deliveryType)=>_deliveryTypes.where((delType) => delType.deliveryType==deliveryType).toList().first;
-  
-  // Future<bool> getDeliveryTypeInfo() async {
-  //   _inProgress = true;
-  //   update();
-  //    final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.deliveryChargeInfo,);
-  //   _inProgress = false;
-  //   log("calledd");
-  //   if (response.success) {
-  //     List<dynamic> data=response.returnValue;
-  //    _deliveryTypes = data.map((deliveryTypeJson) => DeliveryInfo.fromJson(deliveryTypeJson)).toList();
-  //     _deliveryTypes.sort((a, b) => a.deliveryType.compareTo(b.deliveryType));
-  //     log(_deliveryTypes.toString());
-  //     update();
-  //     return true;
-  //   } else {
-  //     _errorMessage = response.errorMessage;
-  //     update();
-  //     return false;
-  //   }
-  // }
 
   Future<bool> getDeliveryTypeInfo() async {
     _inProgress = true;
     showloading('Loading..');
     update();
-     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.deliveryType);
+     final  NetworkCallerReturnObject response =await _deliveryTypeInfoRepo.getDeliveryType();
     _inProgress = false;
     if (response.success) {
      List<dynamic> data=response.returnValue;
@@ -62,9 +41,10 @@ class DeliveryTypeInfoController extends GetxController {
     }
   }
   
-  Future<bool> addDeliveryType(Map<String,String> deliveryTypeJson) async {
+  // Future<bool> addDeliveryType(String typeName,String timeslot,String estimatedTimes,String basicCharge,String perheightCharge,String perWidthCharge, String perWeightCharge,String codCharge) async {
+  Future<bool> addDeliveryType(DeliveryInfo deliveryInfo) async {
     showloading('Loading..');
-    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.deliveryType,token: AuthController.token, deliveryTypeJson);
+    final  NetworkCallerReturnObject response =await _deliveryTypeInfoRepo.addDeliveryType(deliveryInfo);
     if (response.success) {
       await getDeliveryTypeInfo();
       showSuccess("success");
@@ -74,9 +54,9 @@ class DeliveryTypeInfoController extends GetxController {
       return false;
     }
   }
-  Future<bool> updateDeliveryType(Map<String,String> deliveryTypeJson,int deliveryTypeId) async {
+  Future<bool> updateDeliveryType(DeliveryInfo deliveryInfo,int deliveryTypeId) async {
     showloading('Loading..');
-    final  NetworkCallerReturnObject response =await PutRequest.execute(Urls.updateDeliveryType(deliveryTypeId),token: AuthController.token,deliveryTypeJson);
+    final  NetworkCallerReturnObject response =await _deliveryTypeInfoRepo.updateDeliveryType(deliveryInfo,deliveryTypeId);
     if (response.success) {
       await getDeliveryTypeInfo();
       return true;

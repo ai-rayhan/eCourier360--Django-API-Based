@@ -47,7 +47,7 @@ class ParcelDashBoard extends StatelessWidget {
                   .toString(),
               countColor: colors[dashBoardController
                   .deliveryStatuses[index].id-1],
-              image:"${Urls.siteUrl}${dashBoardController.deliveryStatuses[index].image}"
+              image:"${Urls.siteUrl}/${dashBoardController.deliveryStatuses[index].image}"
             ),
           );
         },

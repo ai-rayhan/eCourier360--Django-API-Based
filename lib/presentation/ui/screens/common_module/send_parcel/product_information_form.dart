@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:e_courier_360/presentation/state_holders/category_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
+import 'package:e_courier_360/presentation/utility/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,22 +46,25 @@ class ProductInfoForm extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                InputCard(
-                  child: TextFormField(
-                    initialValue: stepperController.productList[index].name,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      labelText: 'Item Name',
-                      hintText: 'Item Name',
-                      prefixIcon: Icon(Icons.hourglass_top_outlined),
-                    ),
-                    onSaved: (newValue) => stepperController
-                        .productList[index].name = newValue ?? '',
+                CustomInputField(
+                  hintText: "Item Name",
+                  initialValue: stepperController.productList[index].name,
+                  onSavedForm:(newValue) => stepperController.productList[index].name = newValue ,
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+                // InputCard(
+                //   child: TextFormField(
+                //     initialValue: stepperController.productList[index].name,
+                //     keyboardType: TextInputType.emailAddress,
+                //     decoration: const InputDecoration(
+                //       labelText: 'Item Name',
+                //       hintText: 'Item Name',
+                //       prefixIcon: Icon(Icons.hourglass_top_outlined),
+                //     ),
+                //     onSaved: (newValue) => stepperController
+                //         .productList[index].name = newValue ?? '',
+                //   ),
+                // ),
+                AppSizedBox.h10,
                 GetBuilder<CategoryController>(builder: (categoryController) {
                   List<String> productCategories = categoryController.categories
                       .map((category) => category.title)
@@ -73,7 +78,6 @@ class ProductInfoForm extends StatelessWidget {
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(
                           labelText: 'Product Category',
-                          prefixIcon: Icon(Icons.category_rounded),
                         ),
                         value: stepperController.productCategory[index],
                         items: productCategories.map((level) {
@@ -99,131 +103,133 @@ class ProductInfoForm extends StatelessWidget {
                     ),
                   );
                 }),
-                const SizedBox(
-                  height: 10,
-                ),
+                AppSizedBox.h10,
                 Row(
                   children: [
                     Expanded(
-                      child: InputCard(
-                        child: TextFormField(
-                          initialValue:
-                              stepperController.productList[index].weight,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                            labelText: 'Weight(Kg)',
-                            hintText: 'Weight(Kg)',
-                            prefixIcon: Icon(Icons.hourglass_top_outlined),
-                          ),
-                          onSaved: (newValue) => stepperController
-                              .productList[index].weight = newValue,
-                          validator: (String? value) {
-                            if (value?.trim().isEmpty ?? true) {
-                              return 'Enter weight';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: InputCard(
-                        child: TextFormField(
-                          initialValue:
-                              stepperController.productList[index].quantity,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                            labelText: 'Quantity',
-                            hintText: 'Quantity',
-                            prefixIcon: Icon(Icons.hourglass_top_outlined),
-                          ),
-                          onSaved: (newValue) => stepperController
-                              .productList[index].quantity = newValue,
-                          validator: (String? value) {
-                            if (value?.trim().isEmpty ?? true) {
-                              return 'Enter quantity';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: InputCard(
-                        child: TextFormField(
-                          initialValue:
-                              stepperController.productList[index].height,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                            labelText: 'Height(Inch.)',
-                            hintText: 'Height(Inch.)',
-                            prefixIcon: Icon(Icons.hourglass_top_outlined),
-                          ),
-                          onSaved: (newValue) => stepperController
-                              .productList[index].height = newValue,
-                          validator: (String? value) {
-                            if (value?.trim().isEmpty ?? true) {
-                              return 'Enter Height';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: InputCard(
-                        child: TextFormField(
-                          initialValue:
-                              stepperController.productList[index].width,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                            labelText: 'Width(Inch.)',
-                            hintText: 'Width(Inch.)',
-                            prefixIcon: Icon(Icons.hourglass_top_outlined),
-                          ),
-                          onSaved: (newValue) => stepperController
-                              .productList[index].width = newValue,
-                          validator: (String? value) {
-                            if (value?.trim().isEmpty ?? true) {
-                              return 'Enter Width';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                InputCard(
-                  child: TextFormField(
-                    initialValue:
-                        stepperController.productList[index].description,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      labelText: 'Customer Note',
-                      hintText: 'Customer Note',
-                      prefixIcon: Icon(Icons.hourglass_top_outlined),
-                    ),
-                    onSaved: (newValue) => stepperController
-                        .productList[index].description = newValue,
+                      child: CustomInputField(
+                  hintText: "Weight(Kg)",
+                  initialValue: stepperController.productList[index].weight,
+                  onSavedForm: (newValue) => stepperController.productList[index].weight = newValue ,
                   ),
+                      // InputCard(
+                      //   child: TextFormField(
+                      //     initialValue:
+                      //         stepperController.productList[index].weight,
+                      //     keyboardType: TextInputType.emailAddress,
+                      //     decoration: const InputDecoration(
+                      //       labelText: 'Weight(Kg)',
+                      //       hintText: 'Weight(Kg)',
+                      //       prefixIcon: Icon(Icons.hourglass_top_outlined),
+                      //     ),
+                      //     onSaved: (newValue) => stepperController
+                      //         .productList[index].weight = newValue,
+                      //     validator: (String? value) {
+                      //       if (value?.trim().isEmpty ?? true) {
+                      //         return 'Enter weight';
+                      //       }
+                      //       return null;
+                      //     },
+                      //   ),
+                      // ),
+                    ),
+                    AppSizedBox.w10,
+                    Expanded(
+                      child: 
+                       CustomInputField(
+                  hintText: "Quantity",
+                 initialValue:
+                              stepperController.productList[index].quantity,
+                  onSavedForm:(newValue) => stepperController
+                              .productList[index].quantity = newValue ,
+                  ),
+                      // InputCard(
+                      //   child: TextFormField(
+                      //     initialValue:
+                      //         stepperController.productList[index].quantity,
+                      //     keyboardType: TextInputType.emailAddress,
+                      //     decoration: const InputDecoration(
+                      //       labelText: 'Quantity',
+                      //       hintText: 'Quantity',
+                      //       prefixIcon: Icon(Icons.hourglass_top_outlined),
+                      //     ),
+                      //     onSaved: (newValue) => stepperController
+                      //         .productList[index].quantity = newValue,
+                      //     validator: (String? value) {
+                      //       if (value?.trim().isEmpty ?? true) {
+                      //         return 'Enter quantity';
+                      //       }
+                      //       return null;
+                      //     },
+                      //   ),
+                      // ),
+                    ),
+                  ],
                 ),
+                AppSizedBox.h16,
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomInputField(
+                                        hintText: "Height(Inch.)",
+                                         initialValue:
+                            stepperController.productList[index].height,
+                                        onSavedForm:(newValue) => stepperController
+                            .productList[index].height = newValue ,
+                                        ),
+                    ),
+                    AppSizedBox.w10,
+                    Expanded(
+                      child:  CustomInputField(
+                  hintText: "Width(Inch.)",
+                  initialValue: stepperController.productList[index].width,
+                  onSavedForm:(newValue) => stepperController.productList[index].width = newValue ,
+                  ),
+                      // InputCard(
+                      //   child: TextFormField(
+                      //     initialValue:
+                      //         stepperController.productList[index].width,
+                      //     keyboardType: TextInputType.emailAddress,
+                      //     decoration: const InputDecoration(
+                      //       labelText: 'Width(Inch.)',
+                      //       hintText: 'Width(Inch.)',
+                      //       prefixIcon: Icon(Icons.hourglass_top_outlined),
+                      //     ),
+                      //     onSaved: (newValue) => stepperController
+                      //         .productList[index].width = newValue,
+                      //     validator: (String? value) {
+                      //       if (value?.trim().isEmpty ?? true) {
+                      //         return 'Enter Width';
+                      //       }
+                      //       return null;
+                      //     },
+                      //   ),
+                      // ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                 CustomInputField(
+                  hintText: "Customer Note",
+                  initialValue: stepperController.productList[index].description,
+                  onSavedForm:(newValue) => stepperController.productList[index].description = newValue ,
+                  ),
+                // InputCard(
+                //   child: TextFormField(
+                //     initialValue:
+                //         stepperController.productList[index].description,
+                //     keyboardType: TextInputType.emailAddress,
+                //     decoration: const InputDecoration(
+                //       labelText: 'Customer Note',
+                //       hintText: 'Customer Note',
+                //       prefixIcon: Icon(Icons.hourglass_top_outlined),
+                //     ),
+                //     onSaved: (newValue) => stepperController
+                //         .productList[index].description = newValue,
+                //   ),
+                // ),
                 const SizedBox(
                   height: 16,
                 ),

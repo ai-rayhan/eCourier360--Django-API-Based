@@ -8,8 +8,8 @@ class DeliveryInfo {
   final double perHeight;
   final double perWidth;
   final double cashCollectionChargePercent;
-  final String createdAt;
-  final String updatedAt;
+  final String? createdAt;
+  final String? updatedAt;
 
   DeliveryInfo({
     this.id,
@@ -21,8 +21,8 @@ class DeliveryInfo {
     required this.perHeight,
     required this.perWidth,
     required this.cashCollectionChargePercent,
-    required this.createdAt,
-    required this.updatedAt,
+     this.createdAt,
+     this.updatedAt,
   });
 
   factory DeliveryInfo.fromJson(Map<String, dynamic> json) {
@@ -52,8 +52,6 @@ class DeliveryInfo {
       'per_inch_height': perHeight.toString(),
       'per_inch_width': perWidth.toString(),
       'cash_collection_charge_percent': cashCollectionChargePercent.toString(),
-      'created_at': createdAt,
-      'updated_at': updatedAt,
     };
   }
 }

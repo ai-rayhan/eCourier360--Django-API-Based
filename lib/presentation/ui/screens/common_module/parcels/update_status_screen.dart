@@ -94,37 +94,41 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     Column(
                       children: [
                         const HeaderText(title: "Select Rider:"),
-                        InputCard(
-                          child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              labelText: 'Rider',
-                              prefixIcon: Icon(Icons.apartment),
-                            ),
-                            value: parcelController.combinedRiders.isNotEmpty ? parcelController.combinedRiders.first : null,
-                            items: parcelController.combinedRiders.map((level) {
-                              return DropdownMenuItem<String>(
-                                value: level,
-                                child: Text(
-                                  level,
-                                  overflow: TextOverflow.ellipsis,
+                        GetBuilder<RiderController>(
+                          builder: (rController) {
+                            return InputCard(
+                              child:rController.inProgress? const Center(child: SizedBox( child:Text('Loading..')),): DropdownButtonFormField<String>(
+                                decoration: const InputDecoration(
+                                  labelText: 'Rider',
+                                  prefixIcon: Icon(Icons.apartment),
                                 ),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              int selectedIndex = parcelController.combinedRiders.indexOf(value!);
-                               if (controller.selectedStatusId == 3){
-                                pickupRider = parcelController.riderIds[selectedIndex];
-                               }else{
-                                deliveryRider = parcelController.riderIds[selectedIndex];
-                               }
-                            },
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please select Rider';
-                              }
-                              return null;
-                            },
-                          ),
+                                value: parcelController.combinedRiders.isNotEmpty ? parcelController.combinedRiders.first : null,
+                                items: parcelController.combinedRiders.map((level) {
+                                  return DropdownMenuItem<String>(
+                                    value: level,
+                                    child: Text(
+                                      level,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  int selectedIndex = parcelController.combinedRiders.indexOf(value!);
+                                   if (controller.selectedStatusId == 3){
+                                    pickupRider = parcelController.riderIds[selectedIndex];
+                                   }else{
+                                    deliveryRider = parcelController.riderIds[selectedIndex];
+                                   }
+                                },
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please select Rider';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            );
+                          }
                         ),
                       ],
                     ),

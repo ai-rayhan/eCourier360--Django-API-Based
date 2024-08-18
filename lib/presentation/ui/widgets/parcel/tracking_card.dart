@@ -79,7 +79,7 @@ class TrackingCard extends StatelessWidget {
                                 padding: const EdgeInsets.all(5.0),
                                 child: Row(
                                   children: [
-                                    Image.network(height: 20,width: 20, "${Urls.siteUrl}${Get.find<DeliveryStatusController>().deliveryStatus(parcel.deliveryStatus).image}"),
+                                    Image.network(height: 20,width: 20, "${Urls.siteUrl}/${Get.find<DeliveryStatusController>().deliveryStatus(parcel.deliveryStatus).image}"),
                                     // Icon(statusIcons[parcel.deliveryStatus - 1],size: 15,color: colors[parcel.deliveryStatus-1],),
                                     const SizedBox(width: 2),
                                     const Text(

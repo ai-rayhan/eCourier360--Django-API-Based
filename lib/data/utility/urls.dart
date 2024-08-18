@@ -1,71 +1,71 @@
 class Urls {
   // static const String baseUrl = 'http://192.168.0.193:8000/api';//Base API URL
-  static const String baseUrl = 'http://10.0.2.2:8000/api';//Base API URL
-  static const String siteUrl = 'http://10.0.2.2:8000/';//Base API URL
-  // static const String baseUrl = 'https://courier.2ndhandmarketbd.com/api';
+  // static const String baseUrl = 'http://10.0.2.2:8000/api';//Base API URL
+  static const String siteUrl = 'https://courier.2ndhandmarketbd.com/test2';//Base API URL
+  static  String get apiUrl => '$siteUrl/api';
   
-  static String signin = '$baseUrl/signin/';
-  static String signup = '$baseUrl/signup/';
-  static String roles = '$baseUrl/roles/';
-  static String permission = '$baseUrl/permissions/';
+  static String signin = '$apiUrl/signin/';
+  static String signup = '$apiUrl/signup/';
+  static String roles = '$apiUrl/roles/';
+  static String permission = '$apiUrl/permissions/';
 
-  static String merchantRegister = '$baseUrl/signup/';
-  static String riderRegister = '$baseUrl/signup/';
+  static String merchantRegister = '$apiUrl/signup/';
+  static String riderRegister = '$apiUrl/signup/';
   // static String createMerchant = '$baseUrl/merchants/create/';
-  static String addShop = '$baseUrl/merchants/allshop/';
-  static String shopList = '$baseUrl/merchants/shop/';
-  static String updateShop(int id) =>'$baseUrl/merchants/shop-update/$id/';
-  static String sendOtpToPhone = '$baseUrl/send-otp/';
-  static String verifyPhoneOtp = '$baseUrl/verifyphone-otp/';
-  static String updateProfile = '$baseUrl/updateprofile/';
-  static String viewProfile = '$baseUrl/viewprofile/';
+  static String addShop = '$apiUrl/merchants/allshop/';
+  static String shopList = '$apiUrl/merchants/shop/';
+  static String updateShop(int id) =>'$apiUrl/merchants/shop-update/$id/';
+  static String sendOtpToPhone = '$apiUrl/send-otp/';
+  static String verifyPhoneOtp = '$apiUrl/verifyphone-otp/';
+  static String updateProfile = '$apiUrl/updateprofile/';
+  static String viewProfile = '$apiUrl/viewprofile/';
 
-  static String allMerchants = '$baseUrl/merchants/allmerchants/';
-  static String merchantDetails(int mcid) => '$baseUrl/merchants/merchant/$mcid/';
-  static String merchantActivate = '$baseUrl/merchants/activate/';
-  static String updatemerchantProfile(int? mcId)=> '$baseUrl/merchants/update/$mcId/';
+  static String allMerchants = '$apiUrl/merchants/allmerchants/';
+  static String merchantDetails(int mcid) => '$apiUrl/merchants/merchant/$mcid/';
+  static String merchantActivate = '$apiUrl/merchants/activate/';
+  static String updatemerchantProfile(int? mcId)=> '$apiUrl/merchants/update/$mcId/';
 
-  static String merchantPaymentHistory(int? mcId)=> '$baseUrl/accounts/payment-by-merchant/$mcId/';
+  static String merchantPaymentHistory(int? mcId)=> '$apiUrl/accounts/payment-by-merchant/$mcId/';
 
 
-  static String bankInfo = '$baseUrl/bank/bank-info/';
-  static String updateBankInfo(int? id)=> '$baseUrl/bank/bank-info/$id/';
+  static String bankInfo = '$apiUrl/bank/bank-info/';
+  static String updateBankInfo(int? id)=> '$apiUrl/bank/bank-info/$id/';
 
-  static String riders = '$baseUrl/rider/list-create/';
-  static String riderDetails(int riderId) => '$baseUrl/rider/riderdetails/$riderId/';
-  static String riderActivate = '$baseUrl/rider/activate/';
+  static String riders = '$apiUrl/rider/list-create/';
+  static String riderDetails(int riderId) => '$apiUrl/rider/riderdetails/$riderId/';
+  static String riderActivate = '$apiUrl/rider/activate/';
 
   //Admin settings
-  static String branch = '$baseUrl/branch/branches/';
-  static String updateBranch(int id) =>'$baseUrl/branch/branches/$id/';
-  static String deliveryZone = '$baseUrl/branch/delivery-zone/';
-  static String updateDeliveryZone(int id) =>'$baseUrl/branch/delivery-zone/$id/';
-  static String pickupZone = '$baseUrl/branch/pickup-zone/';
-  static String updatePickupZone(int id) => '$baseUrl/branch/pickup-zone/$id/';
-  static String category = '$baseUrl/settings/product-type/';
-  static String updateCategory(id) => '$baseUrl/settings/product-type/$id/';
-  static String receiverList= '$baseUrl/receiver/receivers/';
+  static String branch = '$apiUrl/branch/branches/';
+  static String updateBranch(int id) =>'$apiUrl/branch/branches/$id/';
+  static String deliveryZone = '$apiUrl/branch/delivery-zone/';
+  static String updateDeliveryZone(int id) =>'$apiUrl/branch/delivery-zone/$id/';
+  static String pickupZone = '$apiUrl/branch/pickup-zone/';
+  static String updatePickupZone(int id) => '$apiUrl/branch/pickup-zone/$id/';
+  static String category = '$apiUrl/settings/product-type/';
+  static String updateCategory(id) => '$apiUrl/settings/product-type/$id/';
+  static String receiverList= '$apiUrl/receiver/receivers/';
 
 
-  static String addParcel = '$baseUrl/parcels/list-create/';
-  static String getParcels(int statusId) => '$baseUrl/parcels/getparcels/?delivery_status=$statusId';
-  static String addParcelDetails= '$baseUrl/parcels/parceldetails/';
-  static String getParcelDetails(int id)=>'$baseUrl/parcels/parceldetails/?parcel=$id';
-  static String updateParcel(int id) =>'$baseUrl/parcels/update-destroy/$id/';
-  static String updateParcelDetails(int id) =>'$baseUrl/parcels/parceldetails/$id/';
+  static String addParcel = '$apiUrl/parcels/list-create/';
+  static String getParcels(int statusId) => '$apiUrl/parcels/getparcels/?delivery_status=$statusId';
+  static String addParcelDetails= '$apiUrl/parcels/parceldetails/';
+  static String getParcelDetails(int id)=>'$apiUrl/parcels/parceldetails/?parcel=$id';
+  static String updateParcel(int id) =>'$apiUrl/parcels/update-destroy/$id/';
+  static String updateParcelDetails(int id) =>'$apiUrl/parcels/parceldetails/$id/';
   static String trackingParcel(String voucherId) =>
-      '$baseUrl/parcels/tracking/$voucherId/';
+      '$apiUrl/parcels/tracking/$voucherId/';
   
-  static String updateStatusByBatch = '$baseUrl/parcels/update-status/';
-  static String makeMerchantPayment = '$baseUrl/parcels/merchant-payment/';
-  static String makeRiderPayment = '$baseUrl/parcels/rider-payment/';
+  static String updateStatusByBatch = '$apiUrl/parcels/update-status/';
+  static String makeMerchantPayment = '$apiUrl/parcels/merchant-payment/';
+  static String makeRiderPayment = '$apiUrl/parcels/rider-payment/';
 
-  static String deliveryType = '$baseUrl/settings/delivery-time/';
-  static String updateDeliveryType(int id) => '$baseUrl/settings/delivery-time/$id/';
+  static String deliveryType = '$apiUrl/settings/delivery-time/';
+  static String updateDeliveryType(int id) => '$apiUrl/settings/delivery-time/$id/';
   // static String deliveryStatus = '$baseUrl/settings/delivery-status/';
-  static String deliveryStatus = '$baseUrl/settings/ds-parcel-count/';
+  static String deliveryStatus = '$apiUrl/settings/ds-parcel-count/';
 
-  static String merchantParcels = '$baseUrl/merchants/parcels/';
+  static String merchantParcels = '$apiUrl/merchants/parcels/';
   // static String merchantParcelsByStatus(int statusId) =>
   //     '$baseUrl/merchants/parcels-status/?delivery_status=$statusId';
 

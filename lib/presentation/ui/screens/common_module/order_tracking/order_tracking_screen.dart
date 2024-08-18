@@ -22,7 +22,7 @@ class OrderTrackingScreen extends StatelessWidget {
               itemCount: controller.parcelUpdateList.length,
               itemBuilder: (context, index) {
                 final status = controller.parcelUpdateList[index];
-                final String imageurl='media/'+controller.parcelUpdateList[index].status.image.split("/media/media/").last;
+                final String imageurl='/media/${controller.parcelUpdateList[index].status.image.split("/media/media/").last}';
                 return TimelineTile(
                   alignment: TimelineAlign.manual,
                   lineXY: 0.1,

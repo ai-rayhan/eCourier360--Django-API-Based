@@ -42,10 +42,10 @@ class ReceiversScreenState extends State<ReceiversScreen> with SingleTickerProvi
             padding: const EdgeInsets.all(16),
             child: SizedBox(
               width: 200,
-              child: ElevatedButton(onPressed:(){
+              child: ElevatedButton.icon(onPressed:(){
                 if(controller.receiverIDList.isNotEmpty){
                   showCustomDialog(
-                  context: context, title: "Delete Receiver",
+                  context: context, title: "Delete Receivers",
                   content: const Text("Are you sure to delete this receiver"),
                     onSubmitPressed: () {
                       controller.deleteReceivers();
@@ -55,7 +55,10 @@ class ReceiversScreenState extends State<ReceiversScreen> with SingleTickerProvi
                   Get.to(const AddReceiverScreen());
                 }
 
-              }, child:  Text(controller.receiverIDList.isNotEmpty?"Delete Receiver":"Add Receiver")),
+              },
+               label:  Text(controller.receiverIDList.isNotEmpty?"Delete Receiver":"Add Receiver"),
+                icon:Icon(controller.receiverIDList.isNotEmpty?Icons.delete:Icons.add_circle_outline_sharp) ,
+              ),
             ),
           );
         }

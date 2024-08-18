@@ -1,20 +1,21 @@
 
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/ui/widgets/parcel/tracking_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ParcelList extends StatefulWidget {
-  const ParcelList({super.key, this.tabId, required this.deliveryStatusIdList});
+class PayableParcelList extends StatefulWidget {
+  const PayableParcelList({super.key, this.tabId, required this.deliveryStatusIdList});
   final List<int> deliveryStatusIdList;
   final int? tabId;
 
   @override
-  State<ParcelList> createState() => _ParcelListState();
+  State<PayableParcelList> createState() => _PayableParcelListState();
 }
 
-class _ParcelListState extends State<ParcelList> {
+class _PayableParcelListState extends State<PayableParcelList> {
  final ParcelController parcelController=Get.find<ParcelController>();
  @override
   void initState() {
@@ -33,6 +34,11 @@ class _ParcelListState extends State<ParcelList> {
   Widget build(BuildContext context) {
     return  GetBuilder<ParcelController>(
       builder: (parcelController) {
+        if(widget.tabId==0 && parcelController.merchantPendingBooking.isEmpty){
+          return const EmptyDataPage(msg: "No Payable parcel available",);
+        }else if(parcelController.riderPendingBooking.isEmpty){
+          return const EmptyDataPage(msg: "No Payable parcel available",);
+        }
         return Visibility(
           visible: !parcelController.inProgress,
           replacement: const CircularProgressIndicator(),

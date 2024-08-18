@@ -2,6 +2,7 @@ import 'package:e_courier_360/data/models/parcel.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_data_controller.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/header_text.dart';
 import 'package:e_courier_360/presentation/utility/sizedbox.dart';
@@ -51,9 +52,9 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
                 visible: !merchantController.inProgress,
                 replacement: const Center(child: SizedBox( child:Text('Loading..')),),
                 child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     labelText: 'Merchant',
-                    prefixIcon: Icon(Icons.local_taxi_rounded),
+                    prefixIcon: const Icon(Icons.store,size: 25,),
                   ),
                   value:AuthController.mcid==null?null:merchantController.getMerchantFromId(AuthController.mcid!).shopName,
                   // value:pickUpZoneController.getPickupZoneById(widget.parcel?.pickupZone??0)?.name,
@@ -71,7 +72,7 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
                   },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please select your pickup Zone';
+                      return 'Please select a merchant';
                     }
                     return null;
                   },
@@ -81,66 +82,94 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
           }
         ),
           AppSizedBox.h10,
-          InputCard(
-            child: TextFormField(
-              controller: _merchantInvoiceTEController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                  hintText: 'Marchent Invoice ID',
-                  prefixIcon: Icon(Icons.insert_page_break_rounded)),
-              onSaved: (newValue) => parcelDataController.invoiceIdValue=newValue,
-              validator: (String? value) {
+          CustomInputField(
+            hintText:'Marchent Invoice ID',
+            controller: _merchantInvoiceTEController,
+            icon: Icon(Icons.insert_page_break_rounded),
+            onSavedForm: (newValue) => parcelDataController.invoiceIdValue=newValue,       
+            validator: (String? value) {
                 if (value?.trim().isEmpty ?? true) {
                   return 'Enter Marchent Invoice ID';
                 }
                 return null;
               },
-            ),
-          ),
+             ),
+          // InputCard(
+          //   child: TextFormField(
+          //     controller: _merchantInvoiceTEController,
+             
+          //     decoration:  const InputDecoration(
+          //         hintText: 'Marchent Invoice ID',
+          //         prefixIcon: Icon(Icons.insert_page_break_rounded,size: 25,)),
+          //     onSaved: (newValue) => parcelDataController.invoiceIdValue=newValue,
+          //     validator: (String? value) {
+          //       if (value?.trim().isEmpty ?? true) {
+          //         return 'Enter Marchent Invoice ID';
+          //       }
+          //       return null;
+          //     },
+          //   ),
+          // ),
         
           const SizedBox(
             height: 10,
           ),
-          InputCard(
-            child: TextFormField(
-              controller: _cashAmountTEController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                  labelText: 'Cash Money Amount',
-                  hintText: 'Cash Money Amount',
-                  prefixIcon: Icon(Icons.hourglass_top_outlined)),
-              onSaved: (newValue) => parcelDataController.cashAmountValue=newValue,
-              validator: (String? value) {
-                if (value?.trim().isEmpty ?? true) {
-                  return 'Enter Cash Money Amount';
+          CustomInputField(
+            hintText:'Cash Money Amount',
+            controller: _cashAmountTEController,
+            icon: Icon(Icons.monetization_on),
+            onSavedForm: (newValue) => parcelDataController.cashAmountValue=newValue,       
+             validator: (String? value) {
+                if (value?.trim().isEmpty==null||!value!.isNumericOnly) {
+                  return 'Enter valid amount';
                 }
                 return null;
               },
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          InputCard(
-            child: TextFormField(
-              controller: _sellingPriceTEController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                  labelText: 'Selling Price Amount',
-                  hintText: 'Selling Price Amount',
-                  prefixIcon: Icon(Icons.hourglass_top_outlined)),
-              onSaved: (newValue) =>parcelDataController.sellingPriceValue=newValue,
-              validator: (String? value) {
-                if (value?.trim().isEmpty ?? true) {
-                  return 'Enter Selling Price Amount';
+             ),
+             AppSizedBox.h8,
+          CustomInputField(
+            hintText:'Selling Price Amount',
+            controller: _sellingPriceTEController,
+            icon: Icon(Icons.monetization_on),
+            onSavedForm: (newValue) => parcelDataController.sellingPriceValue=newValue,       
+             validator: (String? value) {
+                if (value?.trim().isEmpty==null||!value!.isNumericOnly) {
+                  return 'Enter valid amount';
                 }
                 return null;
               },
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
+             ),
+          // InputCard(
+          //   child: TextFormField(
+              
+          //     decoration: const InputDecoration(
+          //         labelText: 'Cash Money Amount',
+          //         hintText: 'Cash Money Amount',
+          //         prefixIcon: Icon(Icons.hourglass_top_outlined)),
+             
+
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // InputCard(
+          //   child: TextFormField(
+          //     controller: _sellingPriceTEController,
+          //     decoration: const InputDecoration(
+          //         labelText: 'Selling Price Amount',
+          //         hintText: 'Selling Price Amount',
+          //         prefixIcon: Icon(Icons.hourglass_top_outlined)),
+          //     onSaved: (newValue) =>parcelDataController.sellingPriceValue=newValue,
+          //     validator: (String? value) {
+          //       if (value?.trim().isEmpty==null||value!.isNumericOnly) {
+          //         return 'Enter valid selling price';
+          //       }
+          //       return null;
+          //     },
+          //   ),
+          // ),
+          AppSizedBox.h16
         ],
       );
   }

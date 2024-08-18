@@ -194,10 +194,10 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                                       deliveryCharge: _deliveryChargeInfoController.totalCharge),
                                   widget.products,AuthController.mcid.toString());
                               if (response) {
-                                Get.snackbar("Great", "Parcel Added");
                                 Get.back();
                                 Get.back();
                                 Get.find< MainBottomNavController>().changeIndex(2);
+                                Get.snackbar("Great", "Parcel Added");
                               }
                             } else {
                               bool response = await Get.find<ParcelController>().updateParcel(

@@ -60,6 +60,7 @@ class CustomInputField extends StatelessWidget {
                 hintText: hintText,
                 prefixIcon: icon,
               ),
+              style: TextStyle(fontSize: 14),
               validator: validator ??(value) {
                 if (canblank ?? false) {
                   return null;
