@@ -28,8 +28,7 @@ class ParcelsTrackScreenState extends State<ParcelsTrackScreen> with SingleTicke
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
     _tabController.index=Get.find<DeliveryStatusController>().tabindex;
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    });
+
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/splash_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/app_logo.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dialog.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,9 +34,9 @@ class _ApplicationInReviewScreenState extends State<ApplicationInReviewScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                   IconButton(onPressed: (){
-                    showCustomDialog(context: context,title: "Logout?",content: Text("Are you sure logout this account"),onSubmitPressed: () {
+                    showCustomDialog(context: context,title: "Logout?",content: const Text("Are you sure logout this account"),onSubmitPressed: () {
                     AuthController.clearAuthData();
-                    Get.offAll(const SplashScreen());
+                    Get.offAndToNamed(RoutePath.initial);
                     },);
                   }, icon: const Icon(Icons.logout))
                   ,
@@ -73,8 +73,6 @@ class _ApplicationInReviewScreenState extends State<ApplicationInReviewScreen> {
                   width: double.infinity,
                   child:ElevatedButton(
                        onPressed: ()  {
-                       Get.back();
-                       Get.back();
                        },
                        child: const Text('OK'),
                      )

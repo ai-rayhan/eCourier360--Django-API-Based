@@ -162,7 +162,7 @@ final Receiver receiver;
                     },
                 );
                   }else{
-
+                    Get.to(AddReceiverScreen(receiver:receiver));
                   }
                 },),
               ),

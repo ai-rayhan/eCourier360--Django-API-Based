@@ -21,10 +21,10 @@ class DeliveryStatusController extends GetxController {
   List<int> get statusIds =>deliveryStatuses.map((status) => status.id).toList();
   List<int> get statusCount =>deliveryStatuses.map((status) => status.parcelCount??0).toList();
   DeliveryStatus  deliveryStatus (int id) =>deliveryStatuses.where((status) => status.id==id).toList().first;
-  Future<bool> getDeliveryStatus() async {
+  Future<bool> getDeliveryStatus({bool parcelCount=true}) async {
     _inProgress = true;
     update();
-     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.deliveryStatus,);
+     final  NetworkCallerReturnObject response =await GetRequest.execute(parcelCount?Urls.deliveryStatusWithParcelCount:Urls.deliveryStatus,);
      log(response.responseCode.toString());
     _inProgress = false;
     if (response.success) {

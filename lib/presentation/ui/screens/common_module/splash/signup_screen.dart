@@ -2,6 +2,7 @@ import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_otp_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/merchant/credential_form.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/logo_with_name.dart';
@@ -101,7 +102,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             }
 
                             if (response) {
-                              Get.to(VerifyOTPScreen(phone: _phoneTEController.text,));
+                              Get.toNamed(RoutePath.riderBottomNav,arguments: {'phone': _phoneTEController.text});
                             } else {
                               if (mounted) {
                                 Get.snackbar('Wrong!',

@@ -5,6 +5,8 @@ class RoutePath {
   static const login = '/login';
   static const applicationInReview = '/application-in-review';
   static const signup = '/signup';
+  static const verifyOtp = '/verify-otp';
+  static const verifyphone = '/verify-phone';
   static const adminBottomNav = '/admin-bottom-nav';
   static const merchantBottomNav = '/merchant-bottom-nav';
   static const riderBottomNav = '/rider-bottom-nav';

@@ -103,7 +103,7 @@ class Parcel {
       deliveryStatus: json['delivery_status'] as int,
       pickupZone: json['pickup_zone'] as int,
       deliveryZone: json['delivery_zone'] as int,
-      deliveryType: 2,
+      deliveryType: json['delivery_type'],
     );
   }
 

@@ -6,7 +6,6 @@ import 'package:e_courier_360/data/repositories/auth_repo.dart';
 import 'package:e_courier_360/core/network_caller/request_methods/post_request.dart';
 import 'package:e_courier_360/core/network_caller/request_return_object.dart';
 import 'package:e_courier_360/data/utility/urls.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_phone_screen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -70,52 +69,52 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<bool> merchantRegister({required String username,required String fullName,required String shopName,required String shopEmail,required String shopAddress,required String pickupPhone,required String pickupAddress}) async {
-    _inProgress = true;
-    update();
-     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.merchantRegister, {
-    "fullname":fullName,
-    "shop_name":shopName,
-    "shop_address":shopAddress,
-    "pickup_address":pickupAddress,
-    "shop_email":shopEmail,
-    "username":username,
-    "pickup_phone":pickupPhone
-    }, isLogin: false);
-    _inProgress = false;
-    if (response.success) {
-      update();
-      return true;
-    } else {
-      _errorMessage = response.errorMessage;
-      update();
-      return false;
-    }
-  }
+  // Future<bool> merchantRegister({required String username,required String fullName,required String shopName,required String shopEmail,required String shopAddress,required String pickupPhone,required String pickupAddress}) async {
+  //   _inProgress = true;
+  //   update();
+  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.merchantRegister, {
+  //   "fullname":fullName,
+  //   "shop_name":shopName,
+  //   "shop_address":shopAddress,
+  //   "pickup_address":pickupAddress,
+  //   "shop_email":shopEmail,
+  //   "username":username,
+  //   "pickup_phone":pickupPhone
+  //   }, isLogin: false);
+  //   _inProgress = false;
+  //   if (response.success) {
+  //     update();
+  //     return true;
+  //   } else {
+  //     _errorMessage = response.errorMessage;
+  //     update();
+  //     return false;
+  //   }
+  // }
  
-  Future<bool> riderRegister({required String username,required String fullName,required String registrationNo,required String email,required String address,required String phone,required String vehicleType}) async {
-    _inProgress = true;
-    update();
-     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.riderRegister, {
-    "username": username,
-    "full_name":fullName,
-    "email": email,
-    "phone": phone,
-    "address": address,
-    "vehicle_type": vehicleType,
-    "registration_number": registrationNo,
-    // "rider_commission": 10
-    }, isLogin: false);
-    _inProgress = false;
-    if (response.success) {
-      update();
-      return true;
-    } else {
-      _errorMessage = response.errorMessage;
-      update();
-      return false;
-    }
-  }
+  // Future<bool> riderRegister({required String username,required String fullName,required String registrationNo,required String email,required String address,required String phone,required String vehicleType}) async {
+  //   _inProgress = true;
+  //   update();
+  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.riderRegister, {
+  //   "username": username,
+  //   "full_name":fullName,
+  //   "email": email,
+  //   "phone": phone,
+  //   "address": address,
+  //   "vehicle_type": vehicleType,
+  //   "registration_number": registrationNo,
+  //   // "rider_commission": 10
+  //   }, isLogin: false);
+  //   _inProgress = false;
+  //   if (response.success) {
+  //     update();
+  //     return true;
+  //   } else {
+  //     _errorMessage = response.errorMessage;
+  //     update();
+  //     return false;
+  //   }
+  // }
 
   updateMerchantId(int mcId){
   mcid=mcId;
@@ -179,9 +178,9 @@ class AuthController extends GetxController {
     token == null;
   }
 
-  static Future<void> goToLogin() async {
-    Get.to(() => const VerifyPhoneScreen());
-  }
+  // static Future<void> goToLogin() async {
+  //   Get.to(() => const VerifyPhoneScreen());
+  // }
 
   
 saveMerchantId(String mcid)async{

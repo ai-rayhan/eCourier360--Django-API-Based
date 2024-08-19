@@ -42,12 +42,12 @@ class ReceiverController extends GetxController {
   }
     Receiver? _newReceiver;
     Receiver? get newReceiver=>_newReceiver;
-  Future<bool> addReceiver(String name,String phone, String address ) async {
+  Future<bool> addReceiver(String name,String phone,String email, String address ) async {
     _inProgress = true;
     update();
      final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.receiverList,{
         "name": name,
-        "email": '',
+        "email": email,
         "phone": phone,
         "address": address,
         "merchant": '1'

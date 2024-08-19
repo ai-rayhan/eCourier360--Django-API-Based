@@ -1,3 +1,4 @@
+import 'package:e_courier_360/data/helper/validator.dart';
 import 'package:e_courier_360/data/models/parcel.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
@@ -120,10 +121,7 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
             icon: Icon(Icons.monetization_on),
             onSavedForm: (newValue) => parcelDataController.cashAmountValue=newValue,       
              validator: (String? value) {
-                if (value?.trim().isEmpty==null||!value!.isNumericOnly) {
-                  return 'Enter valid amount';
-                }
-                return null;
+                return numericValidator(value);
               },
              ),
              AppSizedBox.h8,
@@ -133,10 +131,7 @@ class _ParcelInformationFormState extends State<ParcelInformationForm> {
             icon: Icon(Icons.monetization_on),
             onSavedForm: (newValue) => parcelDataController.sellingPriceValue=newValue,       
              validator: (String? value) {
-                if (value?.trim().isEmpty==null||!value!.isNumericOnly) {
-                  return 'Enter valid amount';
-                }
-                return null;
+               return numericValidator(value);
               },
              ),
           // InputCard(

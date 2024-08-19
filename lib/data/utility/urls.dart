@@ -62,8 +62,8 @@ class Urls {
 
   static String deliveryType = '$apiUrl/settings/delivery-time/';
   static String updateDeliveryType(int id) => '$apiUrl/settings/delivery-time/$id/';
-  // static String deliveryStatus = '$baseUrl/settings/delivery-status/';
-  static String deliveryStatus = '$apiUrl/settings/ds-parcel-count/';
+  static String deliveryStatus = '$apiUrl/settings/delivery-status/';
+  static String deliveryStatusWithParcelCount = '$apiUrl/settings/ds-parcel-count/';
 
   static String merchantParcels = '$apiUrl/merchants/parcels/';
   // static String merchantParcelsByStatus(int statusId) =>

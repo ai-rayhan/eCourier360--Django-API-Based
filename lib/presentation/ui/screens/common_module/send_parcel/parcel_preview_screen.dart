@@ -191,7 +191,7 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                                       cod: _parcelDataController.cashAmountValue ?? '',
                                       sellingPrice: _parcelDataController.sellingPriceValue ?? "",
                                       weight: _parcelDataController.weightValue ?? '',
-                                      deliveryCharge: _deliveryChargeInfoController.totalCharge),
+                                      deliveryCharge: _deliveryChargeInfoController.totalCharge,deliveryType:_parcelDataController.deliveryTypeValueID??0),
                                   widget.products,AuthController.mcid.toString());
                               if (response) {
                                 Get.back();
@@ -227,13 +227,14 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                                       cod: _parcelDataController.cashAmountValue ?? '',
                                       sellingPrice: _parcelDataController.sellingPriceValue ?? "",
                                       weight: _parcelDataController.weightValue ?? '',
-                                      deliveryCharge: _deliveryChargeInfoController.totalCharge),
+                                      deliveryCharge: _deliveryChargeInfoController.totalCharge,deliveryType:_parcelDataController.deliveryTypeValueID??0 ),
                                   widget.products,
                                   widget.parcelId ?? 0,AuthController.mcid.toString());
                               if (response) {
+                                Get.back();
+                                Get.back();
+                                Get.back();
                                 Get.snackbar("Great", "Parcel Updated");
-                                Get.back();
-                                Get.back();
                                 Get.find< MainBottomNavController>().changeIndex(2);
                               }
                             }

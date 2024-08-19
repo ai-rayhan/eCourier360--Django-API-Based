@@ -44,16 +44,16 @@ class _SendPercelScreenState extends State<SendPercelScreen> {
       }
       _parcelDataController.setParcel=widget.parcel!;
     }
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Get.find<PickUpZoneController>().getPickupZone();
-      await Get.find<DeliveryZoneController>().getDeliveryZone();
-      await Get.find<ReceiverController>().getReceivers();
-      await Get.find<CategoryController>().getCategories();
-      await Get.find<DeliveryTypeInfoController>().getDeliveryTypeInfo();
-      if(AuthController.userRole==0||AuthController.userRole==1){
-        await Get.find<MerchantController>().getAllMerchants();
-      }
-    });
+    //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+    //   await Get.find<PickUpZoneController>().getPickupZone();
+    //   await Get.find<DeliveryZoneController>().getDeliveryZone();
+    //   await Get.find<ReceiverController>().getReceivers();
+    //   await Get.find<CategoryController>().getCategories();
+    //   await Get.find<DeliveryTypeInfoController>().getDeliveryTypeInfo();
+    //   if(AuthController.userRole==0||AuthController.userRole==1){
+    //     await Get.find<MerchantController>().getAllMerchants();
+    //   }
+    // });
   }
 
   @override
@@ -111,7 +111,7 @@ class _SendPercelScreenState extends State<SendPercelScreen> {
                       if(isLast && _formKey.currentState!.validate()){
                         _formKey.currentState!.save();
                           if(_parcelDataController.receiverId==null){
-                          bool response= await Get.find<ReceiverController>().addReceiver(_parcelDataController.nameValue??'',_parcelDataController.phoneNumberValue??'',_parcelDataController.receiverAddressValue??'');
+                          bool response= await Get.find<ReceiverController>().addReceiver(_parcelDataController.nameValue??'',_parcelDataController.phoneNumberValue??'',_parcelDataController.receiverAddressValue??'','');
                           if(response==false){
                            return;
                           }

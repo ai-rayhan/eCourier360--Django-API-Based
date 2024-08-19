@@ -12,6 +12,7 @@ class ParcelData {
   final String sellingPrice;
   final String weight;
   final double deliveryCharge;
+  final int deliveryType;
 
   ParcelData( {
     required this.deliveryCharge,
@@ -26,5 +27,6 @@ class ParcelData {
     required this.cod,
     required this.sellingPrice,
     required this.weight,
+    required this.deliveryType,
   });
 }

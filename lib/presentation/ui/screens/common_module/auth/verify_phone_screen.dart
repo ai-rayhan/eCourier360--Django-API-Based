@@ -1,6 +1,7 @@
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_otp_screen.dart';
+import 'package:e_courier_360/presentation/state_holders/send_phone_otp_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/app_logo.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class VerifyPhoneScreen extends StatefulWidget {
 class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   final TextEditingController _phoneTEController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final bool? args = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,49 +64,48 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 const SizedBox(
                   height: 7,
                 ),
-                // GetBuilder<SendPhoneOtpController>(builder: (controller) {
-                //   return SizedBox(
-                //       width: double.infinity,
-                //       child: Visibility(
-                //         visible: controller.inProgress == false,
-                //         replacement: const Center(
-                //           child: CircularProgressIndicator(),
-                //         ),
-                        // child:
+                GetBuilder<SendPhoneOtpController>(builder: (controller) {
+                  return SizedBox(
+                      width: double.infinity,
+                      child: Visibility(
+                        visible: controller.inProgress == false,
+                        replacement: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        child:
                          Padding(
                            padding: const EdgeInsets.all(16.0),
                            child: SizedBox(
                             width: double.infinity,
                              child: ElevatedButton(
                                 onPressed: () async {
-                                    Get.to(() => VerifyOTPScreen(
-                                           phone:_phoneTEController.text.trim(),
-                                          ));
-                                  // if (_formkey.currentState!.validate()) {
-                                  //   final bool result =
-                                  //       await controller.sendOtpToPhone(
-                                  //           _phoneTEController.text.trim());
-                                  //   if (result) {
-                                  //     Get.to(() => VerifyOTPScreen(
-                                  //          phone:_phoneTEController.text.trim(),
-                                  //         ));
-                                  //   } else {
-                                  //     Get.showSnackbar(
-                                  //       GetSnackBar(
-                                  //         title: 'Send OTP failed',
-                                  //         message: controller.errorMessage,
-                                  //         duration: const Duration(seconds: 2),
-                                  //         isDismissible: true,
-                                  //       ),
-                                  //     );
-                                  //   }
-                                  // }
+                                  if (_formkey.currentState!.validate()) {
+                                    final bool result =
+                                        await controller.sendOtpToPhone(
+                                            _phoneTEController.text.trim());
+                                    if (result) {
+                                      if(args==true){
+                                       Get.toNamed(RoutePath.verifyOtp,arguments:{'phone':_phoneTEController.text});
+                                      }else{
+                                      //  Get.toNamed(RoutePath.verifyOtpAndUpdatePassword,arguments:{'phone':_phoneTEController.text});
+                                      }
+                                    } else {
+                                      Get.showSnackbar(
+                                        GetSnackBar(
+                                          title: 'Send OTP failed',
+                                          message: controller.errorMessage,
+                                          duration: const Duration(seconds: 2),
+                                          isDismissible: true,
+                                        ),
+                                      );
+                                    }
+                                  }
                                 },
                                 child: const Text('Next')),
                            ),
                          ),
-                //       ));
-                // })
+                      ));
+                })
               ],
             ),
           ),

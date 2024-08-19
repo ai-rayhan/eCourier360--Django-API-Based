@@ -1,4 +1,5 @@
 
+import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/parcels_screen.dart';
@@ -31,7 +32,14 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
   
  @override
   void initState() {
-  deliveryStatusController.reduceDeliveryStatusForUpdate(parcelSatusController.selectedParcels.first.deliveryStatus);
+       WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
+        if(AuthController.userRole==4){
+        await Get.find<DeliveryStatusController>().getDeliveryStatus(parcelCount: false).then((_){
+          deliveryStatusController.reduceDeliveryStatusForUpdate(parcelSatusController.selectedParcels.first.deliveryStatus);
+        });
+        }else{
+       deliveryStatusController.reduceDeliveryStatusForUpdate(parcelSatusController.selectedParcels.first.deliveryStatus);        }
+    });
     super.initState();
   }
   @override
@@ -59,35 +67,41 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
               return Column(
                 children: [
                   const HeaderText(title: "Parcel Status:"),
-                  InputCard(
-                    child: DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(
-                        labelText: 'Parcel Status:',
-                      ),
-                      value:parcelSatusController.selectedParcels.isNotEmpty?deliveryStatusController.deliveryStatus(parcelSatusController.selectedParcels.first.deliveryStatus).status:null,
-                      items: deliveryStatusController.updateStatusNames.map((level) {
-                        return DropdownMenuItem<String>(
-                          value: level,
-                          child: Text(
-                            level,
-                            overflow: TextOverflow.ellipsis,
+                  GetBuilder<DeliveryStatusController>(
+                    builder: (parcelController) {
+                      return InputCard(
+                        child:parcelController.inProgress?
+                        const Center(child: SizedBox( child:Text('Loading..')),):
+                         DropdownButtonFormField<String>(
+                          decoration: const InputDecoration(
+                            labelText: 'Parcel Status:',
                           ),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        int selectedIndex = deliveryStatusController.updateStatusNames.indexOf(value!);
-                        controller.selectedStatusId = deliveryStatusController.updateStatusIds[selectedIndex];
-                         if (controller.selectedStatusId == 3 || controller.selectedStatusId == 5){
-                          Get.find<RiderController>().getAllRiders();
-                         }
-                      },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please select Parcel Status:';
-                        }
-                        return null;
-                      },
-                    ),
+                          value:parcelSatusController.selectedParcels.isNotEmpty?deliveryStatusController.deliveryStatus(parcelSatusController.selectedParcels.first.deliveryStatus).status:null,
+                          items: deliveryStatusController.updateStatusNames.map((level) {
+                            return DropdownMenuItem<String>(
+                              value: level,
+                              child: Text(
+                                level,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            int selectedIndex = deliveryStatusController.updateStatusNames.indexOf(value!);
+                            controller.selectedStatusId = deliveryStatusController.updateStatusIds[selectedIndex];
+                             if (controller.selectedStatusId == 3 || controller.selectedStatusId == 5){
+                              Get.find<RiderController>().getAllRiders();
+                             }
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please select Parcel Status:';
+                            }
+                            return null;
+                          },
+                        ),
+                      );
+                    }
                   ),
                   AppSizedBox.h5,
                   if (controller.selectedStatusId == 3 || controller.selectedStatusId == 5)
@@ -177,10 +191,9 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                             partialCash: partialCash,
                             reason: reason,
                           );
-                          
+                          await Get.find<DeliveryStatusController>().getDeliveryStatus();
                          if(response){
                           Get.back();
-                          // Get.find<DashBoardController>().getDashboardInfo();
                           Get.off(const ParcelsTrackScreen());
                          
                          }

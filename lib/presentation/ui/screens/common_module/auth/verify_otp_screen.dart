@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
-  const VerifyOTPScreen({super.key, required this.phone});
-  final String phone;
+  const VerifyOTPScreen({super.key});
+
 
   @override
   State<VerifyOTPScreen> createState() => _VerifyOTPScreenState();
@@ -22,7 +22,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final SendPhoneOtpController _sendPhoneOtpController=Get.find<SendPhoneOtpController>();
   final OtpTimeDecreaseController _otpTimeDecreaseController=Get.find<OtpTimeDecreaseController>();
-
+  final Map<String, dynamic> args = Get.arguments;
   @override
   void initState() {
     super.initState();
@@ -30,7 +30,8 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   }
 
   void startCountdown() {
-   _sendPhoneOtpController.sendOtpToPhone(widget.phone);
+
+   _sendPhoneOtpController.sendOtpToPhone(args['phone']);
    _otpTimeDecreaseController.startCountdown();
   }
 
@@ -115,7 +116,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                         onPressed: () async {
                           if (_formkey.currentState!.validate()) {
                             final bool response = await verifyOTPController
-                                .verifyOTP(widget.phone, _otpTEController.text);
+                                .verifyOTP(args['phone'], _otpTEController.text);
                             if (response) {
                                await Get.find<AuthController>().saveVerification(true);
                                 Get.to(() => const LoginScreen());

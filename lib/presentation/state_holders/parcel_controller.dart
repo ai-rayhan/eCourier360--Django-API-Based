@@ -103,6 +103,7 @@ class ParcelController extends GetxController {
     "delivery_charge": parcelData.deliveryCharge.toStringAsFixed(2),
     "delivery_address": parcelData.receiverAddress,
     "date": "2024-04-17",  
+    "delivery_type_id": parcelData.deliveryType.toString(),  
     }, isLogin: true);
     bool response2= await Get.find<ProductController>().addProduct(productList,response.returnValue['id'],);
     _inProgress = false;
@@ -136,7 +137,8 @@ class ParcelController extends GetxController {
     "delivery_address": parcelData.receiverAddress,
     "date": "2024-04-17",  
     }, isLogin: true);
-    bool response2= await Get.find<ProductController>().updateProduct(productList,response.returnValue['id'],);
+    bool response2= await Get.find<ProductController>().updateProduct(productList,
+    parcelId,);
     _inProgress = false;
     if (response.success&& response2) {
       update();

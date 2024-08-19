@@ -10,6 +10,7 @@ class ParcelDataController extends GetxController{
     }
 
 String? _pickupZone, _name, _phoneNumber, _receiverAddress, _deliveryZone, _deliveryType, _invoiceId, _productCategory, _cashAmount, _sellingPrice, _weight;
+int?_deliveryTypeID;
    
 int? _receiverId;
 int? get receiverId=>_receiverId;
@@ -51,6 +52,11 @@ String? get pickupZoneValue => _pickupZone;
   String? get deliveryTypeValue => _deliveryType;
   set deliveryTypeValue(String? value) {
     _deliveryType = value;
+    update();
+  }
+  int? get deliveryTypeValueID => _deliveryTypeID;
+  set deliveryTypeValueID(int? value) {
+    _deliveryTypeID = value;
     update();
   }
 

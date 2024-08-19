@@ -47,6 +47,7 @@ class _CredentialFormState extends State<CredentialForm> {
         CustomInputField(
           controller: widget.confimPasswordController,
           hintText: 'Confirm Password',
+          obscureText: !showPassword,
           icon: const Icon(Icons.visibility),
           validator: (p0) {
             if (widget.passwordController.text !=

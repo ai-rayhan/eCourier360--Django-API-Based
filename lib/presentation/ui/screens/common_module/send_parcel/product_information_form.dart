@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:e_courier_360/data/helper/validator.dart';
 import 'package:e_courier_360/presentation/state_holders/category_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/stepper_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
@@ -111,6 +112,9 @@ class ProductInfoForm extends StatelessWidget {
                   hintText: "Weight(Kg)",
                   initialValue: stepperController.productList[index].weight,
                   onSavedForm: (newValue) => stepperController.productList[index].weight = newValue ,
+                  validator: (value) {
+                    return numericValidator(value);
+                      },
                   ),
                       // InputCard(
                       //   child: TextFormField(
@@ -142,6 +146,9 @@ class ProductInfoForm extends StatelessWidget {
                               stepperController.productList[index].quantity,
                   onSavedForm:(newValue) => stepperController
                               .productList[index].quantity = newValue ,
+                  validator: (value) {
+                        return numericValidator(value);
+                      },
                   ),
                       // InputCard(
                       //   child: TextFormField(
@@ -171,11 +178,14 @@ class ProductInfoForm extends StatelessWidget {
                   children: [
                     Expanded(
                       child: CustomInputField(
-                                        hintText: "Height(Inch.)",
+                          hintText: "Height(Inch.)",
                                          initialValue:
                             stepperController.productList[index].height,
                                         onSavedForm:(newValue) => stepperController
                             .productList[index].height = newValue ,
+                            validator: (value) {
+                             return numericValidator(value);
+                      },
                                         ),
                     ),
                     AppSizedBox.w10,
@@ -184,6 +194,9 @@ class ProductInfoForm extends StatelessWidget {
                   hintText: "Width(Inch.)",
                   initialValue: stepperController.productList[index].width,
                   onSavedForm:(newValue) => stepperController.productList[index].width = newValue ,
+                  validator: (value) {
+                     return numericValidator(value);
+                      },
                   ),
                       // InputCard(
                       //   child: TextFormField(

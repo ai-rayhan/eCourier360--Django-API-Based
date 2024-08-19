@@ -1,10 +1,11 @@
-import 'package:e_courier_360/data/helper/route_panel_checker.dart';
+import 'package:e_courier_360/data/helper/initial_route.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/auth/password_update_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/splash/signup_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_outlined_button.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
-import 'package:e_courier_360/quick_config.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/logo_with_name.dart';
@@ -81,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _passwordTEController.text);
                             if (response) {
                               if (mounted) {
-                                checkUserPanel();
+                                checkInitialRoute();
                               }
                             } else {
                               if (mounted) {
@@ -111,7 +112,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                      Get.snackbar("Contact", "Contact Support:${QuickConfig.supportEmail}");
+                      Get.toNamed(RoutePath.verifyphone,arguments: true);
+                      Get.to(UpdatePasswordScreen());
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.grey[100]

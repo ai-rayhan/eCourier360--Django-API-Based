@@ -1,11 +1,14 @@
 
 import 'package:e_courier_360/presentation/bindings/add_parcel_binding.dart';
 import 'package:e_courier_360/presentation/bindings/bottomnav_binding.dart';
+import 'package:e_courier_360/presentation/bindings/otp_bindings.dart';
 import 'package:e_courier_360/presentation/bindings/splash_binding.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/bottom_navigation_bar/admin_bottom_navigation_bar.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/application_submitted_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/login_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/splash_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_otp_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_phone_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/onboard/onboard_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/parcels_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/send_parcel_screen.dart';
@@ -30,6 +33,20 @@ class AppPages {
     GetPage(
       name: RoutePath.login,
       page: () => const LoginScreen(),
+    ),
+    // GetPage(
+    //   name: RoutePath.signup,
+    //   page: () => const SignupScreen(),
+    // ),
+    GetPage(
+      name: RoutePath.verifyOtp,
+      page: () => const VerifyOTPScreen(),
+      binding: SendOTPBinding()
+    ),
+    GetPage(
+      name: RoutePath.verifyphone,
+      page: () => const VerifyPhoneScreen(),
+      binding: SendOTPBinding()
     ),
     GetPage(
       name: RoutePath.applicationInReview,

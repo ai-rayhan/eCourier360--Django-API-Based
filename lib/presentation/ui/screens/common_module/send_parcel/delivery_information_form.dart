@@ -158,13 +158,13 @@ final TextEditingController _addressTEController=TextEditingController();
             controller: _phoneTEController,
             decoration:  InputDecoration(
                 hintText: 'Receiver Phone',
-            
                 prefixIcon: Icon(
                   Icons.phone,
                   size: 25,
                 )),
             validator: (String? value) {
-              if (value?.trim().isEmpty ?? true) {
+
+              if (value==null||value.length<9||!value.isNumericOnly) {
                 return 'Enter Receiver Phone';
               }
               return null;
@@ -266,6 +266,8 @@ final TextEditingController _addressTEController=TextEditingController();
                   }).toList(),
                   onChanged: (value) {
                     parcelDataController.deliveryTypeValue=value;
+                    int deliveryTypeId=deliveryZone.indexOf(value!);
+                    parcelDataController.deliveryTypeValueID=deliveryTypeId;
                   },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -286,8 +288,6 @@ final TextEditingController _addressTEController=TextEditingController();
     );
   }
 }
-
-
 
 // import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
 // import 'package:flutter/material.dart';
