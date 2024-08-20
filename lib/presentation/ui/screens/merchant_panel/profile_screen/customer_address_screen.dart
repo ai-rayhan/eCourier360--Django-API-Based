@@ -58,7 +58,7 @@ class _CustomerAddressScreenState extends State<CustomerAddressScreen> {
       //   child: GestureDetector(
       //      onTap: () => Get.to(const AddReceiverScreen()),
       //     child: Container(
-      //       decoration: AppBoxDecoration.whiteBlueDecoration.copyWith(color: AppColors.secondaryColor),
+      //       decoration: whiteBlueDecoration(context).copyWith(color: AppColors.secondaryColor),
       //       child: Padding(
       //         padding: const EdgeInsets.all(10.0),
       //         child: Row(

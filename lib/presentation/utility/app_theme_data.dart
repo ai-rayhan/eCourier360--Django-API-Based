@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppThemeData {
   static ThemeData lightThemData = ThemeData(
-    primaryColor:  AppColors.primaryColor,
+    primaryColor:  const Color.fromARGB(255, 109, 60, 253),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.primaryColor,
       elevation: 3,
@@ -77,12 +77,17 @@ class AppThemeData {
           labelStyle:TextStyle(color: Colors.white),
           labelColor: AppColors.secondaryColor,
           unselectedLabelStyle: TextStyle(color: Color(0x94FFFFFF)),),
-    dividerTheme: const DividerThemeData(space: 0)
-
+    dividerTheme: const DividerThemeData(space: 0),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+    primaryContainer: Colors.white,
+    secondary: Colors.white38,
+  ),
     
   );
+
   static ThemeData darkThemeData = ThemeData.dark().copyWith(
     primaryColor:  AppColors.primaryColor,
+    hintColor: AppColors.primaryColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.primaryColor,
       elevation: 3,
@@ -154,8 +159,10 @@ class AppThemeData {
           labelStyle:TextStyle(color: Colors.white),
           labelColor: AppColors.secondaryColor,
           unselectedLabelStyle: TextStyle(color: Color(0x94FFFFFF)),),
-    dividerTheme: const DividerThemeData(space: 0)
-
-    
+    dividerTheme: const DividerThemeData(space: 0),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+    primaryContainer: const Color.fromARGB(150, 39, 39, 39),
+    secondary: const Color.fromARGB(137, 163, 163, 163),
+  ),
   );
 }

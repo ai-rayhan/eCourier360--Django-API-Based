@@ -25,7 +25,7 @@ class HomeOptionCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           clipBehavior: Clip.antiAlias,
-          decoration:AppBoxDecoration.whiteDecoration,
+          decoration:appBoxDecoration(context),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,3 +47,4 @@ class HomeOptionCard extends StatelessWidget {
     );
   }
 }
+ 

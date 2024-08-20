@@ -127,7 +127,7 @@ class MerchantBussinessInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: controller.merchantDetails!.bankInformation!.map((bankInfo) {
                       return Container(
-                        decoration: AppBoxDecoration.whiteDecoration,
+                        decoration: appBoxDecoration(context),
                         child: ListTile(
                           title: Text( "Bank Name :${bankInfo.bankName}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                           subtitle: Text("Acc.No:${bankInfo.accountNumber}  Branch:${bankInfo.branch}"),
@@ -154,7 +154,7 @@ class ParcelSummaryScreen extends StatelessWidget {
     return Column(children: [
       const HeaderText(title: "Parcel Information:"),
           Container(
-            decoration: AppBoxDecoration.whiteDecoration,
+            decoration: appBoxDecoration(context),
             child: const Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(children: [  SpaceBetweenRow(title: 'Total Parcel', value: '0'),
@@ -220,7 +220,7 @@ class ParcelSummaryScreen extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return Container(
-//       decoration: AppBoxDecoration.whiteDecoration,
+//       decoration: appBoxDecoration(context),
 //       child: const Column(
 //         children: [
 //           InfoRow(

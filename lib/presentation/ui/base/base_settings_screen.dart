@@ -36,13 +36,13 @@ class SettingsScreen extends StatelessWidget {
                   height: 30,
                 ),
                 Container(
-                    decoration: AppBoxDecoration.whiteDecoration,
+                    decoration: appBoxDecoration(context),
                     child: Column(
                       children: [
                         //Company Information
                         Container(
                           width: double.infinity,
-                          decoration: AppBoxDecoration.whiteDecoration,
+                          decoration: appBoxDecoration(context),
                           child: Column(
                             children: [
                               AppSizedBox.h16,

@@ -66,7 +66,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
                 Container(
                   height: 220,
                   width: double.infinity,
-                  decoration: AppBoxDecoration.whiteDecoration,
+                  decoration: appBoxDecoration(context),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(children: [

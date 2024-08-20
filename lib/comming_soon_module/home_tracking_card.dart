@@ -12,7 +12,7 @@
 //       child: Container(
 //         height: 210,
 //         width: double.infinity,
-//         decoration: AppBoxDecoration.whiteDecoration,
+//         decoration: appBoxDecoration(context),
 //         child: Padding(
 //           padding: const EdgeInsets.all(12.0),
 //           child: Column(

@@ -10,7 +10,7 @@ class ShopInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
    final Merchant? merchant= Get.find<MerchantController>().merchantDetails;
     return Container(
-      decoration: AppBoxDecoration.whiteDecoration,
+      decoration: appBoxDecoration(context),
       child:  Column(
         children: [
           InfoRow(

@@ -11,7 +11,7 @@ class ProfileInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
    final Rider? rider =Get.find<RiderController>().riderDetails;
     return Container(
-      decoration: AppBoxDecoration.whiteDecoration,
+      decoration: appBoxDecoration(context),
       child:  Column(
         children: [
           InfoRow(

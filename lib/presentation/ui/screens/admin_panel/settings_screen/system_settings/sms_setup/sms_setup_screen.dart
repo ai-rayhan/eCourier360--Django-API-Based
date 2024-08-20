@@ -46,7 +46,7 @@ class SmsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: AppBoxDecoration.whiteDecoration,
+      decoration: appBoxDecoration(context),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

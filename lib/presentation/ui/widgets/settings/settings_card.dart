@@ -42,7 +42,7 @@ class SettingsCard extends StatelessWidget {
                   // backgroundColor: AppColors.primaryColor,
                   child: Icon(
                     iconData,
-                    color: AppColors.secondaryColor.withOpacity(.6),
+                    // color: AppColors.secondaryColor.withOpacity(.6),
                     size: 25,
                   ),
                 ),
@@ -54,11 +54,11 @@ class SettingsCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: AppTextStyle.darkGrey14Bold,
+                      style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                     Text(
                       subtitle,
-                      style: AppTextStyle.darkgrey13,
+                      // style: AppTextStyle.darkgrey13,
                     )
                   ],
                 ),
@@ -66,7 +66,7 @@ class SettingsCard extends StatelessWidget {
                  trailling?? const Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 14,
-                  color: AppColors.dark14,
+                  // color: AppColors.dark14,
                 ),
                 const SizedBox(
                   width: 15,

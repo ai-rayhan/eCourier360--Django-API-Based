@@ -96,7 +96,7 @@ class PaymentListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Container(
-        decoration: AppBoxDecoration.whiteDecoration,
+        decoration: appBoxDecoration(context),
         child: ListTile(
           title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
           subtitle: Text(subtitle),

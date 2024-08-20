@@ -103,7 +103,7 @@ class RiderBussinessInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: rider!.bankInformation!.map((bankInfo) {
                       return Container(
-                        decoration: AppBoxDecoration.whiteDecoration,
+                        decoration: appBoxDecoration(context),
                         child: ListTile(
                           title: Text( "Bank Name :${bankInfo.bankName}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                           subtitle: Text("Acc.No:${bankInfo.accountNumber}  Branch:${bankInfo.branch}"),

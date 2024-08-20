@@ -114,7 +114,7 @@ final Receiver receiver;
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Container(
-              decoration:controller.receiverIDList.contains(receiver.id)?AppBoxDecoration.whiteBlueDecoration:AppBoxDecoration.whiteDecoration,
+              decoration:controller.receiverIDList.contains(receiver.id)?whiteBlueDecoration(context):appBoxDecoration(context),
               // height: 70,
               width: double.infinity,
               child: ListTile(
@@ -201,7 +201,7 @@ final Receiver receiver;
 //           child: Padding(
 //             padding: const EdgeInsets.all(4.0),
 //             child: Container(
-//               decoration:controller.riderIDList.contains(rider.id)?AppBoxDecoration.whiteBlueDecoration:AppBoxDecoration.whiteDecoration,
+//               decoration:controller.riderIDList.contains(rider.id)?whiteBlueDecoration(context):appBoxDecoration(context),
 //               // height: 70,
 //               width: double.infinity,
 //               child: ListTile(

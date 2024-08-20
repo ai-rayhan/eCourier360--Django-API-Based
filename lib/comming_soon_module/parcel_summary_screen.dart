@@ -52,7 +52,7 @@
 //     return Column(children: [
 //       const HeaderText(title: "Parcel Information:"),
 //           Container(
-//             decoration: AppBoxDecoration.whiteDecoration,
+//             decoration: appBoxDecoration(context),
 //             child: const Padding(
 //               padding: EdgeInsets.all(8.0),
 //               child: Column(children: [  SpaceBetweenRow(title: 'Total Parcel', value: '0'),

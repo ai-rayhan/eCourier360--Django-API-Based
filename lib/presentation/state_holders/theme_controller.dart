@@ -4,7 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends GetxController {
   var isDarkMode = false.obs;
-
+  Color decorationColor = Colors.white;
+  
   void toggleTheme() {
     isDarkMode.value = !isDarkMode.value;
     Get.changeThemeMode(isDarkMode.value ? ThemeMode.dark : ThemeMode.light);
@@ -20,5 +21,13 @@ class ThemeController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isDarkMode.value = prefs.getBool('isDarkMode') ?? false;
     Get.changeThemeMode(isDarkMode.value ? ThemeMode.dark : ThemeMode.light);
+  }
+  updateDecorationColor(){
+    if(isDarkMode.value){
+      decorationColor=Colors.black54;
+    }else{
+       decorationColor=Colors.white;
+    }
+    update();
   }
 }

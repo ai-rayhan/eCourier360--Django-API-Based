@@ -20,7 +20,7 @@ final String image;
           Container(
             width: Sizefinder.deviceWidth(context)/4.6,
             height: Sizefinder.deviceWidth(context)/4.6,
-            decoration: AppBoxDecoration.whiteDecoration,
+            decoration: appBoxDecoration(context),
             child:  
             Padding(
               padding: const EdgeInsets.all(8.0),

@@ -47,7 +47,7 @@ class TrackingCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: AppColors.secondaryColor),
                     )
-                  : AppBoxDecoration.whiteDecoration,
+                  : appBoxDecoration(context),
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 6),

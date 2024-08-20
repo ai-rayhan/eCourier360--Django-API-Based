@@ -33,7 +33,7 @@ class MerchantInfoSummuryCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Container(
-              decoration: controller.merchantIDList.contains(merchant.id)?AppBoxDecoration.whiteBlueDecoration:AppBoxDecoration.whiteDecoration,
+              decoration: controller.merchantIDList.contains(merchant.id)?whiteBlueDecoration(context):appBoxDecoration(context),
               width: double.infinity,
               child: ListTile(
                 title: Text(

@@ -13,7 +13,7 @@ class SupportCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => AppUrlLauncher.openEmail(QuickConfig.supportEmail),
       child: Container(
-        decoration: AppBoxDecoration.whiteDecoration,
+        decoration: appBoxDecoration(context),
         child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(children: [Image.asset(AssetsPath.support, width: 50,

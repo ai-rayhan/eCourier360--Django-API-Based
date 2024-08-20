@@ -21,7 +21,7 @@ class CustomListTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Container(
-        decoration: AppBoxDecoration.whiteDecoration,
+        decoration: appBoxDecoration(context),
         child: ListTile(
           title: Text(title,maxLines: 2,overflow: TextOverflow.ellipsis),
           subtitle: Text(subtitle,maxLines: 3,overflow: TextOverflow.ellipsis,),
