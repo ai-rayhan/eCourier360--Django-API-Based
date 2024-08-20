@@ -1,0 +1,42 @@
+enum LanKeys {
+  language('language'),
+  darkTheme('dark_theme'),
+  appearance('appearance'),
+  account('account'),
+  settings('settings'),
+  home('home'),
+  allPayment('all_payment'),
+  logoutMsg('logout_msg'),
+  logout('logout'),
+  courier('courier'),
+  tracking('tracking'),
+  dispatch('dispatch'),
+  deliveryStatus('delivery_status'),
+  parcel('parcel'),
+  pickup('pickup'),
+  delivery('delivery'),
+  driver('driver'),
+  receiver('receiver'),
+  deliveryTime('delivery_time'),
+  sender('sender'),
+  returnn('return'),
+  shipment('shipment'),
+  weight('weight'),
+  cost('cost'),
+  distance('distance'),
+  estimatedTime('estimated_time'),
+  insurance('insurance'),
+  deliveryFee('delivery_fee'),
+  paymentMethod('payment_method'),
+  trackingNumber('tracking_number'),
+  customerService('customer_service'),
+  deliveryAddress('delivery_address'),
+  pickupAddress('pickup_address'),
+  status('status'),
+  confirmation('confirmation'),
+  history('history');
+
+  final String key;
+
+  const LanKeys(this.key);
+}

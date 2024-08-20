@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _passwordTEController.text);
                             if (response) {
                               if (mounted) {
-                                checkInitialRoute();
+                               InitialRoute.loggedInRoute();
                               }
                             } else {
                               if (mounted) {

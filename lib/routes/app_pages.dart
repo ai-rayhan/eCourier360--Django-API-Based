@@ -33,6 +33,7 @@ class AppPages {
     GetPage(
       name: RoutePath.login,
       page: () => const LoginScreen(),
+      binding: OnboardBinding()
     ),
     // GetPage(
     //   name: RoutePath.signup,

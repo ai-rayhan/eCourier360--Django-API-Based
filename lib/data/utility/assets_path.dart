@@ -22,6 +22,11 @@ class AssetsPath {
   static const String persons = '$imagePath/persons.png';
   static const String rider = '$imagePath/rider.png';
   static const String payment = '$imagePath/payment.png';
+
+  // flags
+  static const String bdFlag = '$imagePath/bd.png';
+  static const String usFlag = '$imagePath/us.png';
+
   //onboarding images
   static const String onboard2 = '$imagePath/onboard1.png';
   static const String onboard1 = '$imagePath/onboard2.png';

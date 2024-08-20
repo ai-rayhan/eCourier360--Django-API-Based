@@ -27,17 +27,21 @@ class ImageDropdownButtonState extends State<ImageDropdownButton> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
+    return DropdownButton<String>(
       value: selectedItem,
+      icon: const Padding(
+        padding: EdgeInsets.all(2.0),
+        child: Icon(Icons.expand_circle_down_outlined,size: 17,),
+      ),
       items: widget.items.map((item) {
         return DropdownMenuItem<String>(
           value: item["value"] as String,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Image(
-                image: item["image"] as ImageProvider,
-                width: 30,
-                height: 30,
+              Image.asset(
+                item["image"],
+                width: 25,
               ),
               const SizedBox(width: 10),
               Text(item["value"] as String),

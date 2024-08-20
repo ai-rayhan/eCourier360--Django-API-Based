@@ -5,7 +5,7 @@ import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_scree
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/category/category_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/delivery_type/delivery_type_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/role_permissions_screen/all_roles_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/system_config/system_config_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/system_settings/system_settings_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,19 +52,19 @@ class _AdminSettingsScreenState extends State<AdminSettingsScreen> {
               Get.to(const CategoriesScreen());
             }),
         SettingsCard(
-            title: "System Config",
-            subtitle: "Manage app system settings,Appname",
-            iconData: Icons.settings_brightness_rounded,
-            ontap: () {
-              Get.to(SystemConfigScreen());
-            }),
-        SettingsCard(
             title: "Roles and permissions",
             subtitle: "Manage Roles and User Permissions",
             iconData: Icons.admin_panel_settings_outlined,
             ontap: () {
              Get.lazyPut<RolePermissionController>(() => RolePermissionController());
               Get.to(AllRolesScreen());
+            }),
+        SettingsCard(
+            title: "System Settings",
+            subtitle: "Manage SMS,Payment Gateway",
+            iconData: Icons.settings_applications_outlined,
+            ontap: () {
+              Get.to(SystemSettingsScreen());
             }),
       ],
     ));

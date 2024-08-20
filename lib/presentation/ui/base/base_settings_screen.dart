@@ -1,3 +1,4 @@
+import 'package:e_courier_360/presentation/ui/base/general_settings_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:get/get.dart';
@@ -65,7 +66,13 @@ class SettingsScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        // User profile
+                          SettingsCard(
+                             title: "General Settings",
+                             subtitle: "Manage theme,Language and account.",
+                             iconData: Icons.settings_brightness_rounded,
+                             ontap: () {
+                               Get.to(GeneralSettingsScreen());
+                             }),
                         child,
                         SettingsCard(
                             title: "Logout",

@@ -25,6 +25,7 @@ class AppThemeData {
       focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide.none
       ),
+      
       enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide.none
       ),
