@@ -4,7 +4,7 @@ import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dialog.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
-import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/custom_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,29 +29,29 @@ class _DeliveryZoneScreenState extends State<DeliveryZoneScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar:  CourierAppBar(
-      title: "${widget.branch.name}>Delivery Zone",
+    appBar:  const CourierAppBar(
+      title: "Delivery Zones",
       ),
       body:GetBuilder<DeliveryZoneController>(
         builder: (controller) {
           return Visibility(
             visible: !controller.inProgress,
             replacement: const Center(child:  CenterCircularProgressIndicator(),),
-            child: ListView.builder(
-              itemCount: controller.deliveryZones.length,
-              itemBuilder: (context,index)=>SettingsCard(
-              title: controller.deliveryZones[index].name,
-             subtitle: controller.deliveryZones[index].branchId.toString(), iconData: Icons.local_shipping_rounded, ontap: (){
-             },
-             trailling: IconButton(icon: Icon(Icons.edit),onPressed: (){
-              _nameTEController.text=controller.deliveryZones[index].name;
-              showCustomDialog(context: context, title: "Update PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
-               onSubmitPressed: () async{
-              await Get.find<DeliveryZoneController>().updateDeliveryZone(_nameTEController.text, widget.branch.id,controller.deliveryZones[index].id);
-              _nameTEController.clear();
-             },);
-             },),
-             ))
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: controller.deliveryZones.length,
+                itemBuilder: (context,index)=>CustomListTile(
+                title: controller.deliveryZones[index].name,
+                subtitle:widget.branch.name,
+                leading: CircleAvatar(radius: 20,child: Text(controller.deliveryZones[index].id.toString()),),
+                trailing: IconButton(icon: const Icon(Icons.edit),onPressed: (){
+                _nameTEController.text=controller.deliveryZones[index].name;
+                showCustomDialog(context: context, title: "Update PickUp Zone",content:CustomInputField(hintText: 'Name',controller: _nameTEController,),
+                 onSubmitPressed: () async{
+                await Get.find<DeliveryZoneController>().updateDeliveryZone(_nameTEController.text, widget.branch.id,controller.deliveryZones[index].id);
+                _nameTEController.clear(); },); },), )),
+            )
 
           );
         }

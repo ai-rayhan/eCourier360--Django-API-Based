@@ -127,7 +127,7 @@ class _EditDeliveryTypeScreenState extends State<EditDeliveryTypeScreen> {
                 child: CustomInputField(
                   controller: _cashCollectionChargeController,
                   hintText: 'COD Charge (%)',
-                  icon: const Icon(Icons.home),
+                  icon: const Icon(Icons.credit_card_outlined),
                 ),
               ),
             ],
@@ -136,12 +136,14 @@ class _EditDeliveryTypeScreenState extends State<EditDeliveryTypeScreen> {
             width: double.infinity,
             child: Padding(
                padding: const EdgeInsets.all(8.0),
-               child: ElevatedButton(onPressed: (){
+               child: ElevatedButton(onPressed: ()async{
                  final deliveryInfo = DeliveryInfo( deliveryType: _deliveryTypeNameController.text, timeSlot: _timeSlotController.text, estimatedDays: _estimatedDaysController.text, basicCharge: double.tryParse(_basicChargeController.text) ?? 0.0, perKgWeight: double.tryParse(_perKgWeightController.text) ?? 0.0, perHeight: double.tryParse(_perHeightController.text) ?? 0.0, perWidth: double.tryParse(_perWidthController.text) ?? 0.0, cashCollectionChargePercent: double.tryParse(_cashCollectionChargeController.text) ?? 0.0, id: widget.deliveryInfo?.id,);
                 if(widget.deliveryInfo==null){
-                  Get.find<DeliveryTypeInfoController>().addDeliveryType(deliveryInfo);
+                 await Get.find<DeliveryTypeInfoController>().addDeliveryType(deliveryInfo);
+                  Get.back();
                 }else{
-                 Get.find<DeliveryTypeInfoController>().updateDeliveryType(deliveryInfo,widget.deliveryInfo!.id!);
+                 await Get.find<DeliveryTypeInfoController>().updateDeliveryType(deliveryInfo,widget.deliveryInfo!.id!);
+                 Get.back();
                 }
                
                }, child:  Text(widget.deliveryInfo==null? "Add Delivery type":"Update Delivery type")),

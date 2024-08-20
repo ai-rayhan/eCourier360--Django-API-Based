@@ -2,7 +2,9 @@ import 'package:e_courier_360/presentation/state_holders/role_permission_control
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/role_permissions_screen/role_permissions_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/custom_list_tile.dart';
 import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
+import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,18 +32,18 @@ class _AllRolesScreenState extends State<AllRolesScreen> {
       ),
       body:GetBuilder<RolePermissionController>(
         builder: (controller) {
-          return Visibility(
-            visible: !controller.inProgress,
-            replacement: const Center(child:  CenterCircularProgressIndicator(),),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
             child: ListView.builder(
               itemCount: controller.roleList.length,
-              itemBuilder: (context,index)=>SettingsCard(
+              itemBuilder: (context,index)=>CustomListTile(
               title: controller.roleList[index].name,
-             subtitle: controller.roleList[index].permissions.toString(), iconData: Icons.admin_panel_settings, ontap: (){
+              subtitle: '${controller.roleList[index].permissions.length} permissions given',
+              leading: CircleAvatar(child: Icon(Icons.admin_panel_settings,color: AppColors.secondaryColor,),),
+              onTap: (){
               Get.to( EditRolesPermissionScreen(role:controller.roleList[index],));
              },
-             ))
-
+             )),
           );
         }
       ),

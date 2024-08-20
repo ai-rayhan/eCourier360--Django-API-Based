@@ -40,19 +40,19 @@ class _EditBranchScreenState extends State<EditBranchScreen> {
           CustomInputField(
             controller: _nameTEController,
             hintText: 'Name',
-            icon: const Icon(Icons.account_circle_sharp),
+            icon: const Icon(Icons.account_balance),
           ),
           AppSizedBox.h8,
           CustomInputField(
             controller: _phoneTEController,
             hintText: 'Phone',
-            icon: const Icon(Icons.near_me_rounded),
+            icon: const Icon(Icons.phone),
           ),
           AppSizedBox.h8,
           CustomInputField(
             controller: _emailTEController,
             hintText: 'Email',
-            icon: const Icon(Icons.near_me_rounded),
+            icon: const Icon(Icons.email),
           ),
           AppSizedBox.h8,
           CustomInputField(
@@ -64,11 +64,13 @@ class _EditBranchScreenState extends State<EditBranchScreen> {
             width: double.infinity,
             child: Padding(
                padding: const EdgeInsets.all(8.0),
-               child: ElevatedButton(onPressed: (){
+               child: ElevatedButton(onPressed: ()async{
                 if(widget.branch!=null){
-                  Get.find<SettingsController>().updateBranch(_nameTEController.text, _phoneTEController.text, _emailTEController.text, _addressTEController.text,widget.branch!.id);
+                 await Get.find<SettingsController>().updateBranch(_nameTEController.text, _phoneTEController.text, _emailTEController.text, _addressTEController.text,widget.branch!.id);
+                  Get.back();
                 }else{
-                 Get.find<SettingsController>().addBranch(_nameTEController.text, _phoneTEController.text, _emailTEController.text, _addressTEController.text);
+                await Get.find<SettingsController>().addBranch(_nameTEController.text, _phoneTEController.text, _emailTEController.text, _addressTEController.text);
+                 Get.back();
                 }
                
                }, child:  Text(widget.branch==null? "Add Branch":"Update Branch")),

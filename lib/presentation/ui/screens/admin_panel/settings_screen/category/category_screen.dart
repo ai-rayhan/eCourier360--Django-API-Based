@@ -3,7 +3,7 @@ import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dialog.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
-import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/custom_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,22 +36,26 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           return Visibility(
             visible: !controller.inProgress,
             replacement: const Center(child: const CenterCircularProgressIndicator(),),
-            child: ListView.builder(
-              itemCount: controller.categories.length,
-              itemBuilder: (context,index)=>SettingsCard(
-              title: controller.categories[index].title,
-             subtitle: '', iconData: Icons.category_outlined,
-             trailling: Icon(Icons.edit),
-              ontap: (){
-              _titleTEController.text=controller.categories[index].title;
-              showCustomDialog(context: context, title: "Update Category",content:CustomInputField(hintText: 'Title',controller: _titleTEController,),
-               onSubmitPressed: () async{
-              await Get.find<CategoryController>().updateCategory(_titleTEController.text,controller.categories[index].id);
-              _titleTEController.clear();
-             },);
-             },
-            
-             ))
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: controller.categories.length,
+                itemBuilder: (context,index)=>CustomListTile(
+                title: controller.categories[index].title,
+                subtitle: '',
+                leading: CircleAvatar(child: Icon(Icons.category_outlined)),
+                trailing: Icon(Icons.edit),
+                onTap: (){
+                _titleTEController.text=controller.categories[index].title;
+                showCustomDialog(context: context, title: "Update Category",content:CustomInputField(hintText: 'Title',controller: _titleTEController,),
+                 onSubmitPressed: () async{
+                await Get.find<CategoryController>().updateCategory(_titleTEController.text,controller.categories[index].id);
+                _titleTEController.clear();
+               },);
+               },
+              
+               )),
+            )
 
           );
         }

@@ -1,8 +1,8 @@
 import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/delivery_type/edit_delivery_type_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/custom_list_tile.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
-import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,16 +33,21 @@ class _DeliveryTypesScreenState extends State<DeliveryTypesScreen> {
         return Visibility(
             visible: controller.deliveryTypes.isNotEmpty,
             replacement: const EmptyDataPage(),
-            child: ListView.builder(
-                itemCount: controller.deliveryTypes.length,
-                itemBuilder: (context, index) => SettingsCard(
-                      title: controller.deliveryTypes[index].deliveryType,
-                      subtitle: controller.deliveryTypes[index].timeSlot??"",
-                      iconData: Icons.view_in_ar_rounded,
-                      ontap: () {
-                        Get.to( EditDeliveryTypeScreen(deliveryInfo: controller.deliveryTypes[index],));
-                      },
-                      )));
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                  itemCount: controller.deliveryTypes.length,
+                  itemBuilder: (context, index) => CustomListTile(
+                        title: controller.deliveryTypes[index].deliveryType,
+                        subtitle: controller.deliveryTypes[index].timeSlot ?? "",
+                        leading: const Icon(Icons.view_in_ar_rounded),
+                        onTap: () {
+                          Get.to(EditDeliveryTypeScreen(
+                            deliveryInfo: controller.deliveryTypes[index],
+                          ));
+                        },
+                      )),
+            ));
       }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),

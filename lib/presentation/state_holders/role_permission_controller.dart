@@ -30,7 +30,7 @@ class RolePermissionController extends GetxController {
      _rolelist = (response.returnValue as List<dynamic>)
           .map((json) => Role.fromJson(json))
           .toList();
-     _rolelist.sort((a, b) => a.name.compareTo(b.name));
+     _rolelist.sort((a, b) => a.id.compareTo(b.id));
       update();
       showSuccess("success");
       return true;
@@ -108,7 +108,7 @@ class RolePermissionController extends GetxController {
     "permissions": selectedPermissionId,
     });
     if (response.success) {
-      // await getPickupZone(branchId: branchId);
+      await getRoles();
       return true;
     } else {
       showError(response.errorMessage);
