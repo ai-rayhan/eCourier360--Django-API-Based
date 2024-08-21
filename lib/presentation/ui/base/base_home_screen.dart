@@ -58,7 +58,7 @@ class BaseHomeScreen extends StatelessWidget {
                               child: CircularProgressIndicator(),
                             ),
                             child: Container(
-                              decoration:whiteBlueDecoration(context),
+                              decoration:primaryDecoration(context),
                               // color: AppColors.primaryColor,
                               child: IconButton(
                                 onPressed: ()async{

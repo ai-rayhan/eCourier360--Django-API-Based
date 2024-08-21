@@ -1,5 +1,4 @@
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_otp_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/merchant/credential_form.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:e_courier_360/routes/app_routes.dart';
@@ -130,12 +129,12 @@ class _SignupScreenState extends State<SignupScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                       Text(
                         "Have an account?",
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Colors.grey),
+                            color: Colors.grey[600]),
                       ),
                       TextButton(
                         onPressed: () {

@@ -78,10 +78,8 @@ class AppThemeData {
           labelColor: AppColors.secondaryColor,
           unselectedLabelStyle: TextStyle(color: Color(0x94FFFFFF)),),
     dividerTheme: const DividerThemeData(space: 0),
-    colorScheme: ColorScheme.fromSwatch().copyWith(
-    primaryContainer: Colors.white,
-    secondary: Colors.white38,
-  ),
+    cardTheme: CardTheme(color:Colors.white, shadowColor: const Color.fromARGB(244, 206, 206, 206) ),
+   
     
   );
 
@@ -98,10 +96,10 @@ class AppThemeData {
         horizontal: 16,
         vertical: 8,
       ),
-      hintStyle: TextStyle(color: Colors.grey.shade400),
-      labelStyle: TextStyle(color: Colors.grey.shade400),
-      prefixIconColor: Colors.grey.shade400,
-      suffixIconColor: Colors.grey.shade400,
+      hintStyle: TextStyle(color: Colors.grey.shade700),
+      labelStyle: TextStyle(color: Colors.grey.shade700),
+      prefixIconColor: Colors.grey.shade700,
+      suffixIconColor: Colors.grey.shade700,
       border: const OutlineInputBorder(
        borderSide: BorderSide.none
       ),
@@ -160,9 +158,6 @@ class AppThemeData {
           labelColor: AppColors.secondaryColor,
           unselectedLabelStyle: TextStyle(color: Color(0x94FFFFFF)),),
     dividerTheme: const DividerThemeData(space: 0),
-    colorScheme: ColorScheme.fromSwatch().copyWith(
-    primaryContainer: const Color.fromARGB(150, 39, 39, 39),
-    secondary: const Color.fromARGB(137, 163, 163, 163),
-  ),
+    cardTheme: CardTheme(color:const Color.fromARGB(255, 19, 17, 27), shadowColor: const Color.fromARGB(244, 53, 53, 53) ),
   );
 }

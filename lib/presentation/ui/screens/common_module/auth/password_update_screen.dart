@@ -1,4 +1,5 @@
 import 'package:e_courier_360/presentation/ui/widgets/common/app_logo.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,28 +30,32 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                 const SizedBox(height: 24.0),
                 Text('Update Password', style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 24.0),
-                TextFormField(
-                  controller: _passwordTEController,
-                  obscureText: true,
-                  decoration: InputDecoration(labelText: 'New Password'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a new password';
-                    }
-                    return null;
-                  },
+                InputCard(
+                  child: TextFormField(
+                    controller: _passwordTEController,
+                    obscureText: true,
+                    decoration: InputDecoration(labelText: 'New Password'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a new password';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 const SizedBox(height: 16.0),
-                TextFormField(
-                  controller: _confirmPasswordTEController,
-                  obscureText: true,
-                  decoration: InputDecoration(labelText: 'Confirm Password'),
-                  validator: (value) {
-                    if (value != _passwordTEController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
+                InputCard(
+                  child: TextFormField(
+                    controller: _confirmPasswordTEController,
+                    obscureText: true,
+                    decoration: InputDecoration(labelText: 'Confirm Password'),
+                    validator: (value) {
+                      if (value != _passwordTEController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 const SizedBox(height: 24.0),
                 SizedBox(

@@ -108,21 +108,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     }),
                   ),
-                  AppSizedBox.h16,
-                  Center(
-                    child: TextButton(
-                      onPressed: () {
-                      Get.toNamed(RoutePath.verifyphone,arguments: true);
-                      Get.to(UpdatePasswordScreen());
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.grey[100]
+                  // AppSizedBox.h5,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                        Get.toNamed(RoutePath.verifyphone,arguments: true);
+                        Get.to(UpdatePasswordScreen());
+                        },
+                        style: TextButton.styleFrom(
+                          backgroundColor: Theme.of(context).cardColor
+                        ),
+                        child: Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.grey[700], fontSize: 16,),
+                        ),
                       ),
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.grey[400], fontSize: 16),
-                      ),
-                    ),
+                    ],
                   ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,

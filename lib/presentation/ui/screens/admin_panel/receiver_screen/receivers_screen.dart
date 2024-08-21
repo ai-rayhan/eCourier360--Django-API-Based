@@ -114,7 +114,7 @@ final Receiver receiver;
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Container(
-              decoration:controller.receiverIDList.contains(receiver.id)?whiteBlueDecoration(context):appBoxDecoration(context),
+              decoration:controller.receiverIDList.contains(receiver.id)?primaryDecoration(context):appBoxDecoration(context),
               // height: 70,
               width: double.infinity,
               child: ListTile(

@@ -29,7 +29,7 @@ final String image;
                 // SizedBox(
                 //   child: image
                 //   ),
-                Text(status,style: AppTextStyle.primary14w600.copyWith(fontSize: 12),maxLines: 1,overflow: TextOverflow.ellipsis,),
+                Text(status,style: AppTextStyle.darkGrey13Bold,maxLines: 1,overflow: TextOverflow.ellipsis,),
               ],),
             ),
           ),

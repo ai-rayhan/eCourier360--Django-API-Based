@@ -1,6 +1,7 @@
 import 'package:e_courier_360/data/utility/localization_key.dart';
 import 'package:e_courier_360/presentation/state_holders/theme_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/translation_controller.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/image_dropdown_field.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:flutter/material.dart';
@@ -12,53 +13,17 @@ class GeneralSettingsScreen extends StatefulWidget {
 }
 
 class _GeneralSettingsScreenState extends State<GeneralSettingsScreen> {
-  bool isDarkTheme = false; // Example: Replace with your theme management
-  String selectedLanguage = 'English'; // Example: Replace with your language management
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:  Text(LanKeys.settings.key.tr),
-      ),
+      appBar: CourierAppBar(title:LanKeys.settings.key.tr),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
           _buildSectionHeader(LanKeys.appearance.key.tr),
           _buildThemeSwitchTile(),
           _buildLanguageDropdownTile(),
-          // const SizedBox(height: 20.0),
-          // _buildSectionHeader('Account'),
-          // _buildListTile(
-          //   icon: Icons.person,
-          //   title: 'Account Settings',
-          //   onTap: () {
-          //     // Navigate to account settings screen
-          //   },
-          // ),
-          // _buildListTile(
-          //   icon: Icons.security,
-          //   title: 'Privacy & Security',
-          //   onTap: () {
-          //     // Navigate to privacy and security settings
-          //   },
-          // ),
-          // const SizedBox(height: 20.0),
-          // _buildSectionHeader('Notifications'),
-          // _buildListTile(
-          //   icon: Icons.notifications,
-          //   title: 'Notification Settings',
-          //   onTap: () {
-          //     // Navigate to notification settings screen
-          //   },
-          // ),
-          // _buildListTile(
-          //   icon: Icons.logout,
-          //   title: 'Logout',
-          //   onTap: () {
-          //     // Handle logout
-          //   },
-          // ),
         ],
       ),
     );

@@ -23,7 +23,7 @@ class CustomDialog extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: Colors.white,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Column(

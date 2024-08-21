@@ -17,15 +17,15 @@ import 'package:flutter/material.dart';
 
 BoxDecoration appBoxDecoration(BuildContext context) {
     return BoxDecoration(
-         color: Theme.of(context).colorScheme.primaryContainer, borderRadius: BorderRadius.all(Radius.circular(14),),
+         color: Theme.of(context).cardTheme.color, borderRadius: BorderRadius.all(Radius.circular(14),),
          border: Border.all(width: 1,color: AppColors.lightPrimaryColor.withOpacity(.3)),
-         boxShadow:[BoxShadow(color: Theme.of(context).colorScheme.secondary,blurRadius: 5,spreadRadius: 1),
+         boxShadow:[BoxShadow(color: Theme.of(context).cardTheme.shadowColor!,blurRadius: 5,spreadRadius: 1),
       ]);
   }
-BoxDecoration whiteBlueDecoration(BuildContext context) {
+BoxDecoration primaryDecoration(BuildContext context) {
     return BoxDecoration(
-         color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.all(Radius.circular(14),),
+         color: Theme.of(context).cardTheme.copyWith(color: const Color.fromARGB(255, 200, 182, 255)).color, borderRadius: BorderRadius.all(Radius.circular(14),),
          border: Border.all(width: 1,color: AppColors.lightPrimaryColor.withOpacity(.3)),
-         boxShadow:[BoxShadow(color: Theme.of(context).colorScheme.primary,blurRadius: 5,spreadRadius: 1),
+         boxShadow:[BoxShadow(color: Theme.of(context).cardTheme.shadowColor!,blurRadius: 5,spreadRadius: 1),
       ]);
   }

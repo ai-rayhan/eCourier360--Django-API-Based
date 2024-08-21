@@ -14,13 +14,7 @@ final String title;
       child: Row(
         children: [
           Text(title,
-              style: TextStyle(
-                  fontFamily: FontFamily.popins,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600
-                  ,color: const Color.fromARGB(255, 63, 63, 63)
-
-                  )),
+              style:AppTextStyle.darkGrey16Bold),
         ],
       ),
     );

@@ -90,10 +90,10 @@ class BranchEditCard extends StatelessWidget {
             decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 219, 209, 253),
                 borderRadius: BorderRadius.all(Radius.circular(8))),
-            child: const Center(
+            child:  Center(
                 child: Text(
               "Pickup\nZones",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,color: const Color.fromARGB(255, 90, 90, 90)),
             )),
           ),
         ),
@@ -113,8 +113,8 @@ class BranchEditCard extends StatelessWidget {
             child: const Center(
                 child: Text(
               "Delivery\nZones",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-            )),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,color:  Color.fromARGB(255, 90, 90, 90)),
+            ))
           ),
         ),
         AppSizedBox.w10,
@@ -134,12 +134,12 @@ class BranchEditCard extends StatelessWidget {
                 child: Column(
               children: [
                 Icon(
-                  Icons.edit_note_outlined,
+                  Icons.edit_note_outlined,color:  Color.fromARGB(255, 90, 90, 90),
                   size: 15,
                 ),
                 Text(
                   "Edit",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13,color:  Color.fromARGB(255, 90, 90, 90)),
                 ),
               ],
             )),

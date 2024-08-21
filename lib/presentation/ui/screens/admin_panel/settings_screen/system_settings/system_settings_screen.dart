@@ -1,4 +1,5 @@
 import 'package:e_courier_360/data/utility/localization_key.dart';
+import 'package:e_courier_360/presentation/state_holders/sms_provider_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/translation_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/system_settings/sms_setup/sms_setup_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/image_dropdown_field.dart';
@@ -28,6 +29,7 @@ class _SystemSettingsScreenState extends State<SystemSettingsScreen> {
             icon: Icons.sms,
             title: 'SMS Setup',
             onTap: () {
+              Get.lazyPut<SmsProviderController>(() => SmsProviderController());
               Get.to(SmsSettingsPage());
             },
           ),

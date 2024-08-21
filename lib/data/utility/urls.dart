@@ -68,6 +68,10 @@ class Urls {
   static String merchantParcels = '$apiUrl/merchants/parcels/';
   // static String merchantParcelsByStatus(int statusId) =>
   //     '$baseUrl/merchants/parcels-status/?delivery_status=$statusId';
+   
+
+  // Settings
+  static String smsProvider = '$apiUrl/settings/sms-provider/';
 
 
 }

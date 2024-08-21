@@ -1,9 +1,7 @@
 import 'package:e_courier_360/presentation/state_holders/role_permission_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/role_permissions_screen/role_permissions_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
-import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_list_tile.dart';
-import 'package:e_courier_360/presentation/ui/widgets/settings/settings_card.dart';
 import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

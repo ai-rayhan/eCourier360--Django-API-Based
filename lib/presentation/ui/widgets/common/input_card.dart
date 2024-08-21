@@ -1,5 +1,3 @@
-
-import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class InputCard extends StatelessWidget {
@@ -18,11 +16,8 @@ final Widget child ;
           right: 12,
           bottom: 2,
         ),
-        decoration: ShapeDecoration(
-          color: AppColors.whiteColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8)),
-        ),
+        decoration: BoxDecoration( color: Theme.of(context).cardTheme.color, borderRadius: BorderRadius.all(Radius.circular(8),),
+         boxShadow:[BoxShadow(color: Theme.of(context).cardTheme.shadowColor!,blurRadius: 1,spreadRadius: 1)]),
         child: child);
   }
 }

@@ -1,10 +1,5 @@
-import 'package:e_courier_360/data/models/branch.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/branches/edit_branch_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/deliveryzone/delivery_zone_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/admin_panel/settings_screen/pickupzone/pickup_zone_screen.dart';
-import 'package:e_courier_360/presentation/utility_urls.dart';
+import 'package:e_courier_360/presentation/utility/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SettingsCard extends StatelessWidget {
   const SettingsCard({
@@ -13,67 +8,57 @@ class SettingsCard extends StatelessWidget {
     required this.subtitle,
     required this.iconData,
     required this.ontap,
-    this.trailling,
-    this.hasDivider,
+    this.trailing,
+    this.hasDivider = false,
   });
+
   final String title;
   final String subtitle;
   final IconData iconData;
   final VoidCallback ontap;
-  final bool? hasDivider;
-  final Widget? trailling;
+  final Widget? trailing;
+  final bool hasDivider;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        hasDivider == null
-            ? Divider(
-                height: 5,
-                color: Colors.grey[200],
-              )
-            : Container(),
-        GestureDetector(
+        if (hasDivider)
+          Divider(
+            height: 1,
+            color: Colors.grey[300],
+          ),
+        ListTile(
+          visualDensity: VisualDensity(horizontal: 0, vertical: -4),
           onTap: ontap,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  // backgroundColor: AppColors.primaryColor,
-                  child: Icon(
-                    iconData,
-                    // color: AppColors.secondaryColor.withOpacity(.6),
-                    size: 25,
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      subtitle,
-                      // style: AppTextStyle.darkgrey13,
-                    )
-                  ],
-                ),
-                const Spacer(),
-                 trailling?? const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 14,
-                  // color: AppColors.dark14,
-                ),
-                const SizedBox(
-                  width: 15,
-                )
-              ],
+          leading: CircleAvatar(
+            backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
+            child: Icon(
+              iconData,
+              color: AppColors.lightPrimaryColor,
+              size: 24,
             ),
           ),
+          title: Text(
+            title,
+            // style: const TextStyle(
+            //   fontWeight: FontWeight.w500,
+            //   fontSize: 16,
+            // ),
+          ),
+          subtitle: Text(
+            subtitle,
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 13,
+            ),
+          ),
+          trailing: trailing ??
+              const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 16,
+                color: Colors.grey,
+              ),
         ),
       ],
     );

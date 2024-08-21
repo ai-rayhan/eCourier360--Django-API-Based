@@ -148,11 +148,7 @@ class TrackingCard extends StatelessWidget {
                         const SizedBox(width: 5),
                         Text(
                           "৳ ${parcel.cashCollection}",
-                          style: TextStyle(
-                            fontFamily: FontFamily.popins,
-                            fontSize: 16,
-                            color: AppColors.primaryColor,
-                          ),
+                          style: AppTextStyle.primary14w600
                         ),
                         const SizedBox(width: 5),
                         const CircleAvatar(radius: 4),
