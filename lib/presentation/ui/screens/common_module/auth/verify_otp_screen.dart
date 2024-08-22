@@ -2,9 +2,9 @@ import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/otp_time_decrease_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/send_phone_otp_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/verify_otp_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/login_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/app_logo.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -118,8 +118,13 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                             final bool response = await verifyOTPController
                                 .verifyOTP(args['phone'], _otpTEController.text);
                             if (response) {
-                               await Get.find<AuthController>().saveVerification(true);
-                                Get.to(() => const LoginScreen());
+                               if(args['updatepass']){
+                                Get.toNamed(RoutePath.changePassword,arguments: args['phone']);
+                               }else{
+                                await Get.find<AuthController>().saveVerification(true);
+                                Get.toNamed(RoutePath.login);
+                                // Get.to(() => const LoginScreen());
+                               }
                             } else {
                               Get.showSnackbar(
                                 GetSnackBar(

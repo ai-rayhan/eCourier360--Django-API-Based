@@ -1,6 +1,5 @@
 import 'package:e_courier_360/data/helper/initial_route.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/password_update_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/splash/signup_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_outlined_button.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
@@ -115,7 +114,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextButton(
                         onPressed: () {
                         Get.toNamed(RoutePath.verifyphone,arguments: true);
-                        Get.to(UpdatePasswordScreen());
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: Theme.of(context).cardColor

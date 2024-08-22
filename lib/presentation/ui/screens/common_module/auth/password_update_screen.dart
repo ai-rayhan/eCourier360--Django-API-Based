@@ -1,3 +1,4 @@
+import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/app_logo.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   final TextEditingController _passwordTEController = TextEditingController();
   final TextEditingController _confirmPasswordTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  final String phoneNumber=Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +35,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   child: TextFormField(
                     controller: _passwordTEController,
                     obscureText: true,
-                    decoration: InputDecoration(labelText: 'New Password'),
+                    decoration: const InputDecoration(labelText: 'New Password'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a new password';
@@ -48,7 +49,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   child: TextFormField(
                     controller: _confirmPasswordTEController,
                     obscureText: true,
-                    decoration: InputDecoration(labelText: 'Confirm Password'),
+                    decoration: const InputDecoration(labelText: 'Confirm Password'),
                     validator: (value) {
                       if (value != _passwordTEController.text) {
                         return 'Passwords do not match';
@@ -63,7 +64,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        // Handle password update logic here
+                        Get.find<AuthController>().changePassword(phoneNumber,_passwordTEController.text);
                         Get.snackbar('Success', 'Password updated successfully',
                             snackPosition: SnackPosition.BOTTOM);
                       }

@@ -1,4 +1,5 @@
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/parcel_summary_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/widgets/merchant_info_summury_card.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_progress_indicator.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_dialog.dart';

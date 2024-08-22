@@ -6,6 +6,7 @@ import 'package:e_courier_360/presentation/bindings/splash_binding.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/bottom_navigation_bar/admin_bottom_navigation_bar.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/application_submitted_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/login_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/auth/password_update_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/splash_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_otp_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_phone_screen.dart';
@@ -47,6 +48,11 @@ class AppPages {
     GetPage(
       name: RoutePath.verifyphone,
       page: () => const VerifyPhoneScreen(),
+      binding: SendOTPBinding()
+    ),
+    GetPage(
+      name: RoutePath.changePassword,
+      page: () => const UpdatePasswordScreen(),
       binding: SendOTPBinding()
     ),
     GetPage(

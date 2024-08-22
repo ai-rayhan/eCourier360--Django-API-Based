@@ -7,6 +7,7 @@ class RoutePath {
   static const signup = '/signup';
   static const verifyOtp = '/verify-otp';
   static const verifyphone = '/verify-phone';
+  static const changePassword = '/change-password';
   static const adminBottomNav = '/admin-bottom-nav';
   static const merchantBottomNav = '/merchant-bottom-nav';
   static const riderBottomNav = '/rider-bottom-nav';

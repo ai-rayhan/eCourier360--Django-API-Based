@@ -15,7 +15,7 @@ class VerifyPhoneScreen extends StatefulWidget {
 class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   final TextEditingController _phoneTEController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  final bool? args = Get.arguments;
+  final bool args = Get.arguments??false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,11 +84,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                         await controller.sendOtpToPhone(
                                             _phoneTEController.text.trim());
                                     if (result) {
-                                      if(args==true){
-                                       Get.toNamed(RoutePath.verifyOtp,arguments:{'phone':_phoneTEController.text});
-                                      }else{
-                                      //  Get.toNamed(RoutePath.verifyOtpAndUpdatePassword,arguments:{'phone':_phoneTEController.text});
-                                      }
+                                       Get.toNamed(RoutePath.verifyOtp,arguments:{'phone':_phoneTEController.text,'updatepass':args});
                                     } else {
                                       Get.showSnackbar(
                                         GetSnackBar(

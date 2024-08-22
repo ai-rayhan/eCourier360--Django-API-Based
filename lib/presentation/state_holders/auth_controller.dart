@@ -12,8 +12,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthController extends GetxController {
   static String? token;
   static int? userId;
-  static int? mcid=3;
-  static int? userRole=1;
+  static int? mcid;
+  static int? riderid;
+  static int? userRole;
   static bool? isActiveUser=true;
   UserProfile? profile;
   bool _isPhoneVerifiedUser =false;
@@ -69,52 +70,23 @@ class AuthController extends GetxController {
     }
   }
 
-  // Future<bool> merchantRegister({required String username,required String fullName,required String shopName,required String shopEmail,required String shopAddress,required String pickupPhone,required String pickupAddress}) async {
-  //   _inProgress = true;
-  //   update();
-  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.merchantRegister, {
-  //   "fullname":fullName,
-  //   "shop_name":shopName,
-  //   "shop_address":shopAddress,
-  //   "pickup_address":pickupAddress,
-  //   "shop_email":shopEmail,
-  //   "username":username,
-  //   "pickup_phone":pickupPhone
-  //   }, isLogin: false);
-  //   _inProgress = false;
-  //   if (response.success) {
-  //     update();
-  //     return true;
-  //   } else {
-  //     _errorMessage = response.errorMessage;
-  //     update();
-  //     return false;
-  //   }
-  // }
- 
-  // Future<bool> riderRegister({required String username,required String fullName,required String registrationNo,required String email,required String address,required String phone,required String vehicleType}) async {
-  //   _inProgress = true;
-  //   update();
-  //    final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.riderRegister, {
-  //   "username": username,
-  //   "full_name":fullName,
-  //   "email": email,
-  //   "phone": phone,
-  //   "address": address,
-  //   "vehicle_type": vehicleType,
-  //   "registration_number": registrationNo,
-  //   // "rider_commission": 10
-  //   }, isLogin: false);
-  //   _inProgress = false;
-  //   if (response.success) {
-  //     update();
-  //     return true;
-  //   } else {
-  //     _errorMessage = response.errorMessage;
-  //     update();
-  //     return false;
-  //   }
-  // }
+  Future<bool> changePassword(String phone,String password) async {
+    _inProgress = true;
+    update();
+     final  NetworkCallerReturnObject response =await PostRequest.execute(Urls.signin, {
+      "phone_number": phone,
+      "new_password": password
+    }, isLogin: false);
+    if (response.success) {
+      _inProgress = false;
+      update();
+      return true;
+    } else {
+      _errorMessage = response.errorMessage;
+      update();
+      return false;
+    }
+  }
 
   updateMerchantId(int mcId){
   mcid=mcId;
@@ -142,6 +114,7 @@ class AuthController extends GetxController {
     _isPhoneVerifiedUser = await _checkIsphoneVerified();
     userRole = profile?.data.role;
     mcid = profile?.data.merchantId;
+    riderid = profile?.data.riderId;
     userId = profile?.data.id;
   }
 

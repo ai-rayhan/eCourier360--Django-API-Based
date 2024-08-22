@@ -17,6 +17,8 @@ class Urls {
   static String updateShop(int id) =>'$apiUrl/merchants/shop-update/$id/';
   static String sendOtpToPhone = '$apiUrl/send-otp/';
   static String verifyPhoneOtp = '$apiUrl/verifyphone-otp/';
+
+  @Deprecated("Will remove")
   static String updateProfile = '$apiUrl/updateprofile/';
   static String viewProfile = '$apiUrl/viewprofile/';
 
@@ -24,6 +26,7 @@ class Urls {
   static String merchantDetails(int mcid) => '$apiUrl/merchants/merchant/$mcid/';
   static String merchantActivate = '$apiUrl/merchants/activate/';
   static String updatemerchantProfile(int? mcId)=> '$apiUrl/merchants/update/$mcId/';
+  static String merchantParcelSummary(int? mcId)=> '$apiUrl/parcels/merchant-parcel-summary/$mcId/';
 
   static String merchantPaymentHistory(int? mcId)=> '$apiUrl/accounts/payment-by-merchant/$mcId/';
 
@@ -34,6 +37,8 @@ class Urls {
   static String riders = '$apiUrl/rider/list-create/';
   static String riderDetails(int riderId) => '$apiUrl/rider/riderdetails/$riderId/';
   static String riderActivate = '$apiUrl/rider/activate/';
+  static String updateriderProfile(int? rID)=> '$apiUrl/rider/update/$rID/';
+  static String riderParcelSummary(int rId) => '$apiUrl/parcels/rider-parcel-summary/$rId/';
 
   //Admin settings
   static String branch = '$apiUrl/branch/branches/';

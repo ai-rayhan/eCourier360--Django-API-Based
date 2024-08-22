@@ -1,4 +1,5 @@
 import 'package:e_courier_360/data/models/merchant.dart';
+import 'package:e_courier_360/presentation/state_holders/parcel_summary_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
@@ -24,6 +25,7 @@ class MerchantInfoSummuryCard extends StatelessWidget {
           },
           onTap: (){
              if(controller.merchantIDList.isEmpty){
+             Get.lazyPut<ParcelSummaryController>(() => ParcelSummaryController());
              Get.to( MerchantDetailsScreen(merchant:merchant.id));
              }else{
                controller.updateMerchantId(merchant.id);

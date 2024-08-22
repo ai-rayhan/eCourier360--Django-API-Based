@@ -1,5 +1,7 @@
 import 'package:e_courier_360/data/helper/string_converter.dart';
+import 'package:e_courier_360/data/models/merchant_parcel_summary.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/parcel_summary_controller.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/merchants_screen/widgets/shop_info_card.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_tabbar.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
@@ -47,7 +49,6 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
   late TabController _tabController;
   final List<String> _tabs = [
     'Bussiness Information',
-    // 'Credential',
     'Parcel Summury'
   ];
 
@@ -56,7 +57,7 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 100));
       await Get.find<MerchantController>().getMerchantDetails(widget.merchant!);
     });
   }
@@ -79,9 +80,9 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
         padding: const EdgeInsets.all(12.0),
         child: TabBarView(
           controller: _tabController,
-          children:  const [
-            MerchantBussinessInfo(),
-            ParcelSummaryScreen(),
+          children:   [
+            const MerchantBussinessInfo(),
+            MerchantParcelSummaryScreen(merchantId:widget.merchant!),
 
           ],
         ),
@@ -89,6 +90,61 @@ class MerchantDetailsScreenState extends State<MerchantDetailsScreen>
     );
   }
 }
+
+class MerchantParcelSummaryScreen extends StatefulWidget {
+  final int merchantId;
+
+  const MerchantParcelSummaryScreen({required this.merchantId, super.key});
+
+  @override
+  State<MerchantParcelSummaryScreen> createState() => _MerchantParcelSummaryScreenState();
+}
+
+class _MerchantParcelSummaryScreenState extends State<MerchantParcelSummaryScreen> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Get.find<ParcelSummaryController>().getMerchantParcelSummary(widget.merchantId);
+    });
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return  GetBuilder<ParcelSummaryController>(
+        builder: (controller) {
+          if (controller.inProgress) {
+            return const Center(child: CircularProgressIndicator());
+          }  else {
+            ParcelSummary summary = controller.parcelSummary;
+            return Column(
+              children: [
+                Container(
+                  decoration: appBoxDecoration(context),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        SpaceBetweenRow(title: 'Total Parcel', value: summary.totalParcel.toString()),
+                        SpaceBetweenRow(title: 'Approved', value: summary.approved.toString()),
+                        SpaceBetweenRow(title: 'Delivery', value: summary.delivery.toString()),
+                        SpaceBetweenRow(title: 'Partial', value: summary.partial.toString()),
+                        SpaceBetweenRow(title: 'Return + Returned', value: summary.returnReturned.toString()),
+                        SpaceBetweenRow(title: 'Parcel Price', value: summary.parcelPrice.toStringAsFixed(2)),
+                        SpaceBetweenRow(title: 'Cash Collection', value: summary.cashCollection.toStringAsFixed(2)),
+                        SpaceBetweenRow(title: 'Merchant Paid', value: summary.merchantPaid.toStringAsFixed(2)),
+                        SpaceBetweenRow(title: 'Delivery Charge (-)', value: summary.deliveryCharge.toStringAsFixed(2)),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }
+        },
+      );
+  }
+}
+
 
 class MerchantBussinessInfo extends StatelessWidget {
   const MerchantBussinessInfo({super.key});
