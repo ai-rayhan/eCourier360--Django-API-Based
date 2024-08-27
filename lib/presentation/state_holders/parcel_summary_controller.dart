@@ -13,7 +13,7 @@ class ParcelSummaryController extends GetxController {
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
   
-  late ParcelSummary parcelSummary;
+  ParcelSummary? parcelSummary;
   Future<bool> getMerchantParcelSummary(int merchantId) async {
     _inProgress = true;
     showloading('Loading..');

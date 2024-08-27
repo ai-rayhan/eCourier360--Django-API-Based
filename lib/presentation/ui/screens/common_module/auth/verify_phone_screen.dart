@@ -1,3 +1,5 @@
+import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/send_phone_otp_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/app_logo.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/input_card.dart';
@@ -29,6 +31,15 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 const SizedBox(
                   height: 160,
                 ),
+                  GestureDetector(
+                  onTap:(){
+                     Get.find<MainBottomNavController>().changeIndex(0);
+                      AuthController.clearAuthData();
+                      Get.offAllNamed(RoutePath.initial);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [Text("logout"),Icon(Icons.logout)],)),
                 const AppLogo(
                   height: 80,
                 ),
@@ -84,7 +95,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                         await controller.sendOtpToPhone(
                                             _phoneTEController.text.trim());
                                     if (result) {
-                                       Get.toNamed(RoutePath.verifyOtp,arguments:{'phone':_phoneTEController.text,'updatepass':args});
+                                       Get.offAllNamed(RoutePath.verifyOtp,arguments:{'phone':_phoneTEController.text,'updatepass':args});
                                     } else {
                                       Get.showSnackbar(
                                         GetSnackBar(

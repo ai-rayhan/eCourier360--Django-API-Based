@@ -17,33 +17,31 @@ class _SmsSettingsPageState extends State<SmsSettingsPage> {
   final TextEditingController twilioFromController = TextEditingController();
   final TextEditingController twilioStatusController = TextEditingController();
   final TextEditingController bulkSmsKeyController = TextEditingController();
-  final TextEditingController bulkSmsSenderidController =
-      TextEditingController();
+  final TextEditingController bulkSmsSenderidController =TextEditingController();
   final TextEditingController bulkSmsStatusController = TextEditingController();
+  bool bulkSMS = false;
+  bool twilio = false;
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Get.find<SmsProviderController>().getSMSProvider();
+       initTxt();
     });
-    // initTxt();
     super.initState();
   }
+  initTxt() {
+    SmsProviderController smsprovider = Get.find<SmsProviderController>();
+    twilioSidController.text = smsprovider.smsProviders[0].accountSid ?? "";
+    twilioTokenController.text = smsprovider.smsProviders[0].authToken ?? '';
+    twilioFromController.text = smsprovider.smsProviders[0].fromNumber ?? '';
+    twilio=smsprovider.smsProviders[0].status;
 
-  // initTxt() {
-  //   SmsProviderController smsprovider = Get.find<SmsProviderController>();
-  //   twilioSidController.text = smsprovider.smsProviders[0].accountSid ?? "";
-  //   twilioTokenController.text = smsprovider.smsProviders[0].authToken ?? '';
-  //   twilioFromController.text = smsprovider.smsProviders[0].fromNumber ?? '';
-
-  //   bulkSmsKeyController.text = smsprovider.smsProviders[1].apiKey ?? '';
-  //   bulkSmsSenderidController.text = smsprovider.smsProviders[1].senderId ?? '';
-  //   //  bulkSMS=smsprovider.smsProviders[1].senderId??''
-  //   //  twilio=smsprovider.smsProviders[1].senderId??''
-  // }
-
-  bool bulkSMS = false;
-  bool twilio = false;
+    bulkSmsKeyController.text = smsprovider.smsProviders[1].apiKey ?? '';
+    bulkSmsSenderidController.text = smsprovider.smsProviders[1].senderId ?? '';
+    bulkSMS=smsprovider.smsProviders[1].status;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +71,12 @@ class _SmsSettingsPageState extends State<SmsSettingsPage> {
                   setState(() {});
                 },
               ), onSaved: ()async { 
-                Map<String,String> data={
+                Map<String,dynamic> data={
                       "sms_provider": "twilio",
                        "account_sid": twilioSidController.text,
                        "auth_token": twilioTokenController.text,
-                       "from_number": twilioFromController.text
+                       "from_number": twilioFromController.text,
+                       "status": twilio,
                 };
                 await Get.find<SmsProviderController>().updateSMSProvider(data,1);
                },
@@ -99,10 +98,11 @@ class _SmsSettingsPageState extends State<SmsSettingsPage> {
                   setState(() {});
                 },
               ), onSaved: ()async { 
-                  Map<String,String> data={
+                  Map<String,dynamic> data={
                       "sms_provider": "bulksms",
                       "api_key":  bulkSmsKeyController.text,
-                      "sender_id": bulkSmsSenderidController.text
+                      "sender_id": bulkSmsSenderidController.text,
+                      "status": bulkSMS
                 };
                 await Get.find<SmsProviderController>().updateSMSProvider(data,2);
                },

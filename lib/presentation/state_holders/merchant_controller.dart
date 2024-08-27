@@ -149,7 +149,7 @@ class MerchantController extends GetxController {
   Future<bool> activateMerchant() async {
     _inProgress = true;
     update();
-     final  NetworkCallerReturnObject response =await DynamicPostRequest.execute(Urls.merchantActivate, token: AuthController.token,{
+     final  NetworkCallerReturnObject response =await DynamicPutRequest.execute(Urls.merchantActivate, token: AuthController.token,{
          "status":selectedStatus,
          "merchant_ids":merchantIDList
 

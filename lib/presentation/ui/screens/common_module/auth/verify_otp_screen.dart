@@ -29,10 +29,14 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
     startCountdown();
   }
 
-  void startCountdown() {
-
-   _sendPhoneOtpController.sendOtpToPhone(args['phone']);
+  void startCountdown()async {
+   bool response= await _sendPhoneOtpController.sendOtpToPhone(args['phone']);
+   if(response){
    _otpTimeDecreaseController.startCountdown();
+   }
+   else{
+    Get.snackbar("Wrong", "Phone Number or User Not valid");
+   }
   }
 
   @override
@@ -118,11 +122,11 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                             final bool response = await verifyOTPController
                                 .verifyOTP(args['phone'], _otpTEController.text);
                             if (response) {
-                               if(args['updatepass']){
+                               if(args['updatepass']==true){
                                 Get.toNamed(RoutePath.changePassword,arguments: args['phone']);
                                }else{
                                 await Get.find<AuthController>().saveVerification(true);
-                                Get.toNamed(RoutePath.login);
+                                Get.offNamed(RoutePath.login);
                                 // Get.to(() => const LoginScreen());
                                }
                             } else {

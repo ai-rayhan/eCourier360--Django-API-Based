@@ -103,6 +103,7 @@ class MerchantParcelSummaryScreen extends StatefulWidget {
 class _MerchantParcelSummaryScreenState extends State<MerchantParcelSummaryScreen> {
   @override
   void initState() {
+    Get.lazyPut<ParcelSummaryController>(() => ParcelSummaryController());
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Get.find<ParcelSummaryController>().getMerchantParcelSummary(widget.merchantId);
     });
@@ -114,8 +115,10 @@ class _MerchantParcelSummaryScreenState extends State<MerchantParcelSummaryScree
         builder: (controller) {
           if (controller.inProgress) {
             return const Center(child: CircularProgressIndicator());
-          }  else {
-            ParcelSummary summary = controller.parcelSummary;
+          }  else if(controller.parcelSummary==null){
+            return EmptyDataPage();
+          } else{
+            ParcelSummary summary = controller.parcelSummary!;
             return Column(
               children: [
                 Container(

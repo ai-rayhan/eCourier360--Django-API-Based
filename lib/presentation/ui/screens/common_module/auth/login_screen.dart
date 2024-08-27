@@ -1,6 +1,6 @@
 import 'package:e_courier_360/data/helper/initial_route.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/splash/signup_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/auth/signup_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/center_outlined_button.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/custom_input_field.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
@@ -26,9 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
             child: Form(
               key: _formKey,
               child: Column(

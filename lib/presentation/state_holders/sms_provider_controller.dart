@@ -25,7 +25,7 @@ class SmsProviderController extends GetxController {
     }
   }
 
-  Future<bool> updateSMSProvider(Map<String,String> data, int id) async {
+  Future<bool> updateSMSProvider(Map<String,dynamic> data, int id) async {
     showloading('Loading..');
     final success = await _repository.updateSmsProvider(data, id);
     if (success) {
@@ -54,7 +54,7 @@ class SmsProviderRepository {
 
   Future<bool> updateSmsProvider(Map<String, dynamic> data, int id) async {
     final NetworkCallerReturnObject response = await DynamicPutRequest.execute(
-      "${Urls.smsProvider}/$id/",
+      "${Urls.smsProvider}$id/",
       token: AuthController.token,
       data,
     );

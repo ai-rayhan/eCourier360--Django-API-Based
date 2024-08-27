@@ -21,7 +21,7 @@ class InitialRoute{
   static void  checkInitialRoute(){
   final OnBoardingController onboardController = Get.find<OnBoardingController>(); 
   final AuthController authController = Get.find<AuthController>(); 
-      if (authController.isTokenNotNull && onboardController.isSeeOnboard && !authController.isPhoneVerifiedUser) {
+      if (authController.isTokenNotNull && onboardController.isSeeOnboard && authController.isPhoneVerifiedUser) {
         _checkUserPanel();
     } 
     else if (authController.isTokenNotNull && onboardController.isSeeOnboard && !authController.isPhoneVerifiedUser) {
@@ -36,9 +36,9 @@ class InitialRoute{
 
  static void  loggedInRoute(){
   final AuthController authController = Get.find<AuthController>(); 
-  if(authController.isTokenNotNull && !authController.isPhoneVerifiedUser){
+  if(authController.isTokenNotNull && authController.isPhoneVerifiedUser){
     _checkUserPanel();
-  }else if(authController.isPhoneVerifiedUser){
+  }else if(!authController.isPhoneVerifiedUser){
       Get.offAllNamed(RoutePath.verifyphone); 
   }else{
     Get.snackbar("Wrong", "Something went wrong");

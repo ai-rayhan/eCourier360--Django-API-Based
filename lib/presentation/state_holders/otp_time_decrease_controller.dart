@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 
 class OtpTimeDecreaseController extends GetxController {
-  int countdown = 300;
+  int countdown = 60;
   bool buttonEnabled = false;
   late Timer timer;
 
@@ -22,6 +22,7 @@ class OtpTimeDecreaseController extends GetxController {
 
   void countStart() {
     if (countdown == 0) {
+      countdown=60;
       buttonEnabled = false;
       update();
     }

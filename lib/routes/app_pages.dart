@@ -7,7 +7,7 @@ import 'package:e_courier_360/presentation/ui/screens/admin_panel/bottom_navigat
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/application_submitted_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/login_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/password_update_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/auth/splash_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/common_module/splash/splash_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_otp_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_phone_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/onboard/onboard_screen.dart';

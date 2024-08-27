@@ -1,7 +1,7 @@
 class Urls {
   // static const String baseUrl = 'http://192.168.0.193:8000/api';//Base API URL
-  // static const String baseUrl = 'http://10.0.2.2:8000/api';//Base API URL
-  static const String siteUrl = 'https://courier.2ndhandmarketbd.com/test2';//Base API URL
+  // static const String siteUrl = 'http://10.0.2.2:8000';//Base API URL
+  static const String siteUrl = 'https://courier.2ndhandmarketbd.com/python12';//Base API URL
   static  String get apiUrl => '$siteUrl/api';
   
   static String signin = '$apiUrl/signin/';
@@ -14,6 +14,9 @@ class Urls {
   // static String createMerchant = '$baseUrl/merchants/create/';
   static String addShop = '$apiUrl/merchants/allshop/';
   static String shopList = '$apiUrl/merchants/shop/';
+
+
+  
   static String updateShop(int id) =>'$apiUrl/merchants/shop-update/$id/';
   static String sendOtpToPhone = '$apiUrl/send-otp/';
   static String verifyPhoneOtp = '$apiUrl/verifyphone-otp/';

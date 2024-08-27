@@ -6,6 +6,7 @@ class SmsProvider {
   final String? fromNumber;
   final String? apiKey;
   final String? senderId;
+  final bool status;
 
   SmsProvider({
     required this.id,
@@ -15,6 +16,7 @@ class SmsProvider {
     this.fromNumber,
     this.apiKey,
     this.senderId,
+    required this.status,
   });
 
   factory SmsProvider.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class SmsProvider {
       fromNumber: json['from_number'],
       apiKey: json['api_key'],
       senderId: json['sender_id'],
+      status: json['status'],
     );
   }
 
@@ -38,6 +41,7 @@ class SmsProvider {
       'from_number': fromNumber,
       'api_key': apiKey,
       'sender_id': senderId,
+      'status': status,
     };
   }
 }

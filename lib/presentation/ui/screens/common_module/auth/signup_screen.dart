@@ -33,9 +33,9 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Form(
               key: _formKey,
               child: Column(
@@ -91,7 +91,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                      "vehicle_type":  _shopNameTEController.text,
                                      "registration_number": _pickupAddressTEController.text,
                               };
-
+                    
                               response = await authController.signUp(
                                  _fullNameTEController.text, 
                                  _emailTEController.text, 
@@ -99,9 +99,9 @@ class _SignupScreenState extends State<SignupScreen> {
                                   _confirmPasswordTEController.text,"rider",
                                   riderInfo);
                             }
-
+                    
                             if (response) {
-                              Get.toNamed(RoutePath.riderBottomNav,arguments: {'phone': _phoneTEController.text});
+                              Get.offAllNamed(RoutePath.verifyOtp,arguments: {'phone': _phoneTEController.text});
                             } else {
                               if (mounted) {
                                 Get.snackbar('Wrong!',
@@ -151,9 +151,9 @@ class _SignupScreenState extends State<SignupScreen> {
               ],),
               ]
             ),
+                    ),
           ),
-        ),
-      ),
+                ),
     ));
   }
 
