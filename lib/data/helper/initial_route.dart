@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/local/onboard_controller.dart';
 import 'package:e_courier_360/routes/app_routes.dart';
@@ -25,6 +27,7 @@ class InitialRoute{
         _checkUserPanel();
     } 
     else if (authController.isTokenNotNull && onboardController.isSeeOnboard && !authController.isPhoneVerifiedUser) {
+      log(authController.isPhoneVerifiedUser.toString());
        Get.offAllNamed(RoutePath.verifyphone); 
     }else if (!authController.isTokenNotNull && onboardController.isSeeOnboard) {
        Get.offAllNamed(RoutePath.login); 

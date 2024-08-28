@@ -45,10 +45,19 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
   }
  @override
   void initState() {
-  dashBoardController.reduceDeliveryStatusForUpdate(parcelSatusController.selectedParcels.first.deliveryStatus);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
+      getNumber();
+      dashBoardController.reduceDeliveryStatusForUpdate(parcelSatusController.selectedParcels.first.deliveryStatus);
+    });
     super.initState();
   }
-List <String> statuses=['Deliverd',"Payment Settled"];
+ @override
+  void dispose() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
+     Get.find<ParcelStatusController>().toggleSelection(parcelSatusController.selectedParcels.first);
+    });
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +95,7 @@ List <String> statuses=['Deliverd',"Payment Settled"];
                         controller.selectedStatusId = dashBoardController.updateStatusIds[selectedIndex];
                         if (controller.selectedStatusId == 12) {
                           log(AuthController.mcid.toString());
-                         await Get.find<MerchantController>().getMerchantDetails(merchantID!);
+                         await Get.find<MerchantController>().getMerchantDetails(merchantID??1);
                         }
                       },
                       validator: (value) {
@@ -179,6 +188,9 @@ riderPayment(){
 }
 merchantPayment() {
     return GetBuilder<MerchantController>(builder: (mcController) {
+                    if (mcController.inProgress){
+                      return Center();
+                    }
                     return Column(
                       children: [
                         // const HeaderText(title: "Select Payment Type:"),
@@ -212,7 +224,7 @@ merchantPayment() {
                         // ),
                         const HeaderText(title: "Select Payment Method Name:"),
                         // if (paymentTypeId != null)
-                        if(mcController.merchantDetails?.bankInformation!=null)
+                        if(mcController.merchantDetails!.bankInformation!=null&& mcController.merchantDetails!.bankInformation!.isNotEmpty)
                           InputCard(
                             child: DropdownButtonFormField<String>(
                               decoration:  InputDecoration(

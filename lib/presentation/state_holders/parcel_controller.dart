@@ -152,8 +152,8 @@ class ParcelController extends GetxController {
   final List<Parcel> _allStatusParcels=[];
   List<Parcel> get allStatusParcels=> _allStatusParcels;
   
-  List<Parcel>get riderPendingBooking=>_allStatusParcels.where((element) => element.driverPaymentStatus==1).toList();
-  List<Parcel>get merchantPendingBooking=>_allStatusParcels.where((element) => element.paymentStatus==1).toList();
+  List<Parcel>get riderPendingBooking=>_allStatusParcels.where((element) => element.driverPaymentStatus==0).toList();
+  List<Parcel>get merchantPendingBooking=>_allStatusParcels.where((element) => element.paymentStatus==0).toList();
 
     Future<void> getParcelsByMultipleStatuses(List<int> statusIdsList) async {
     _allStatusParcels.clear();

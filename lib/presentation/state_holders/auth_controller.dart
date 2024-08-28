@@ -59,6 +59,7 @@ class AuthController extends GetxController {
       UserProfile userProfile= UserProfile.fromJson(response.returnValue);
       userRole=userProfile.data.role;
       token=response.returnValue['data']['access'];
+      _isPhoneVerifiedUser=response.returnValue['data']['is_phone_verified'];
       saveUserDetails( response.returnValue['data']['access'],userProfile);
       saveVerification(response.returnValue['data']['is_phone_verified']);
       update();

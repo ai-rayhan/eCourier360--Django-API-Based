@@ -102,9 +102,9 @@ class TrackingCard extends StatelessWidget {
                                         const Text("Merchant",
                                           style: TextStyle(fontSize: 10),
                                         ),
-                                      if( parcel.paymentStatus==1)
+                                      if( parcel.paymentStatus==0)
                                        const Icon(Icons.cancel_outlined,size: 13,color: Colors.red,),
-                                      if( parcel.paymentStatus==2)
+                                      if( parcel.paymentStatus==1)
                                        const Icon(Icons.check_circle_outline_sharp,size: 13,color: Colors.green,),
                                       ],
                                     ),
@@ -114,9 +114,9 @@ class TrackingCard extends StatelessWidget {
                                           const Text("Rider",
                                             style: TextStyle(fontSize: 10),
                                           ),
-                                        if( parcel.driverPaymentStatus==1)
+                                        if( parcel.driverPaymentStatus==0)
                                        const Icon(Icons.cancel_outlined,size: 13,color: Colors.red,),
-                                        if( parcel.driverPaymentStatus==2)
+                                        if( parcel.driverPaymentStatus==1)
                                        const Icon(Icons.check_circle_outline_sharp,size: 13,color: Colors.green,),
                                         ],
                                       ),
@@ -147,7 +147,7 @@ class TrackingCard extends StatelessWidget {
                       children: [
                         const SizedBox(width: 5),
                         Text(
-                          "৳ ${parcel.cashCollection}",
+                          "৳ ${parcel.cod}",
                           style: AppTextStyle.primary14w600
                         ),
                         const SizedBox(width: 5),

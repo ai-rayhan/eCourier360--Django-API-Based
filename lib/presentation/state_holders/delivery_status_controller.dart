@@ -106,6 +106,7 @@ void reduceDeliveryStatusForUpdate(int statusID) {
       }
     }
   }
+  update();
 }
 DeliveryStatus? _findDeliveryStatusById(int id) {
   try {
