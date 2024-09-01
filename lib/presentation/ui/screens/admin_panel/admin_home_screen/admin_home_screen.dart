@@ -1,5 +1,6 @@
 import 'package:e_courier_360/presentation/ui/base/base_home_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/admin_home_screen/admin_options.dart';
+import 'package:e_courier_360/presentation/utility/size.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:flutter/material.dart';
 class AdminHomeScreen extends StatelessWidget {
@@ -25,10 +26,11 @@ class AdminHomeScreen extends StatelessWidget {
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
+                mainAxisExtent: Sizefinder.deviceWidth(context)/3.2,
               ),
               itemCount: adminOptions.length,
               itemBuilder: (BuildContext context, int index) {

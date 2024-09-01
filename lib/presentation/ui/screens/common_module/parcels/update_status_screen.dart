@@ -194,7 +194,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                           await Get.find<DeliveryStatusController>().getDeliveryStatus();
                          if(response){
                           Get.back();
-                          Get.off(const ParcelsTrackScreen());
+                          // Get.off(const ParcelsTrackScreen());
                          
                          }
 

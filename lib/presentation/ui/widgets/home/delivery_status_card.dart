@@ -6,12 +6,13 @@ import 'package:e_courier_360/presentation/utility/text_style.dart';
 
 class SummaryCard extends StatelessWidget {
   const SummaryCard({
-    super.key, required this.status, required this.count, required this.countColor, required this.image,
+    super.key, required this.status, required this.count, required this.countColor, required this.icon,
   });
 final String status;
 final String count;
 final Color countColor;
-final String image;
+// final String image;
+final Icon? icon;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,17 +20,17 @@ final String image;
         children: [
           Container(
             width: Sizefinder.deviceWidth(context)/4.6,
-            height: Sizefinder.deviceWidth(context)/4.6,
+            height: 70,
             decoration: appBoxDecoration(context),
             child:  
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(children: [
-                Image.network(image,height: 35,width: 35,),
-                // SizedBox(
-                //   child: image
-                //   ),
-                Text(status,style: AppTextStyle.darkGrey13Bold,maxLines: 1,overflow: TextOverflow.ellipsis,),
+                // Image.network(image,height: 35,width: 35,),
+                SizedBox(
+                  child: icon
+                  ),
+                Text(status,style: AppTextStyle.darkGrey13Bold.copyWith(fontSize: 11),maxLines: 1,overflow: TextOverflow.ellipsis,),
               ],),
             ),
           ),

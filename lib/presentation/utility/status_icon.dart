@@ -8,7 +8,6 @@ List <IconData> statusIcons=[
   Icons.swap_horiz,
   Icons.motorcycle,
   Icons.pause_circle,
-  Icons.question_mark_outlined,//Missing Id
   Icons.playlist_add_check_circle_sharp,
   Icons.assignment_turned_in,
   Icons.restart_alt_sharp,
@@ -23,7 +22,6 @@ List<Color> colors=[
   const Color.fromARGB(255, 226, 195, 19),
   Colors.orange,
   Colors.lightBlue,
-  const Color.fromARGB(255, 182, 41, 41),//Missing Id
   const Color.fromARGB(179, 4, 192, 129),
   const Color.fromARGB(255, 50, 182, 56),
   const Color.fromARGB(255, 141, 152, 172),

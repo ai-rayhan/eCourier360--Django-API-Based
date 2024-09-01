@@ -170,7 +170,7 @@ class _PercelViewScreenState extends State<PercelViewScreen> {
                                 Get.to(const MakePaymentScreen());
                                 }else{
                                  Get.lazyPut<RiderController>(() => RiderController());
-                                 Get.to(const UpdateStatusScreen());
+                                 Get.off(const UpdateStatusScreen());
                                 }
                                 },
                                 child: (widget.parcelData.deliveryStatus==8||widget.parcelData.deliveryStatus==9)?

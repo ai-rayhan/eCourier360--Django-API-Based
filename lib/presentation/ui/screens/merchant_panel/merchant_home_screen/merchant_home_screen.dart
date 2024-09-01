@@ -8,6 +8,7 @@ import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class MerchantHomeScreen extends StatelessWidget {
   const MerchantHomeScreen({super.key});
@@ -32,7 +33,7 @@ class MerchantHomeScreen extends StatelessWidget {
                         height: 90,
                         width: Sizefinder.deviceWidth(context)/2.4,
                         title: 'Send Parcel',
-                        imagePath: AssetsPath.addParcel, 
+                        imagePath: HugeIcons.strokeRoundedPackageAdd, 
                         onTap: () {
                          Get.toNamed(RoutePath.sendParcel);
                         },
@@ -42,7 +43,7 @@ class MerchantHomeScreen extends StatelessWidget {
                         height: 90,
                         width: Sizefinder.deviceWidth(context)/2.4,
                         title: 'Payment History',
-                        imagePath: AssetsPath.payment, 
+                        imagePath:Icons.payments_rounded, 
                         onTap: () {
                         Get.lazyPut<PaymentController>(() => PaymentController());
                         Get.to(const PaymentHistoryScreen());

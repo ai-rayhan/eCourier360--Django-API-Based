@@ -3,6 +3,7 @@ import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/home/delivery_status_card.dart';
+import 'package:e_courier_360/presentation/utility/size.dart';
 import 'package:e_courier_360/presentation/utility/status_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,8 +23,10 @@ class ParcelDashBoard extends StatelessWidget {
         padding: EdgeInsets.zero,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
+          // childAspectRatio:1.1,
+         mainAxisExtent: 70,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
         ),
@@ -47,7 +50,8 @@ class ParcelDashBoard extends StatelessWidget {
                   .toString(),
               countColor: colors[dashBoardController
                   .deliveryStatuses[index].id-1],
-              image:"${Urls.siteUrl}/${dashBoardController.deliveryStatuses[index].image}"
+              icon:Icon(statusIcons[index],size: 30,color: colors[index],)
+              // "${Urls.siteUrl}/${dashBoardController.deliveryStatuses[index].image}"
             ),
           );
         },

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:e_courier_360/data/helper/date_converter.dart';
 import 'package:e_courier_360/data/models/parcel.dart';
 import 'package:e_courier_360/data/models/body/parcel_data.dart';
 import 'package:e_courier_360/data/models/product.dart';
@@ -27,24 +28,24 @@ class ParcelController extends GetxController {
   late Parcel _parcel;
   Parcel get parcel=>_parcel;
 
-  Future<bool> getMerchantParcels() async {
-    _inProgress = true;
-    update();
-     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.merchantParcels,);
-    _inProgress = false;
-    if (response.success) {
-     _parcels = (response.returnValue as List<dynamic>)
-          .map((json) => Parcel.fromJson(json))
-          .toList();
-     _parcels.sort((a, b) => a.createdAt.compareTo(b.createdAt));
-      update();
-      return true;
-    } else {
-      _errorMessage = response.errorMessage;
-      update();
-      return false;
-    }
-  }
+  // Future<bool> getMerchantParcels() async {
+  //   _inProgress = true;
+  //   update();
+  //    final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.merchantParcels,);
+  //   _inProgress = false;
+  //   if (response.success) {
+  //    _parcels = (response.returnValue as List<dynamic>)
+  //         .map((json) => Parcel.fromJson(json))
+  //         .toList();
+  //    _parcels.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+  //     update();
+  //     return true;
+  //   } else {
+  //     _errorMessage = response.errorMessage;
+  //     update();
+  //     return false;
+  //   }
+  // }
 
   Future<bool> getParcelsByStatus(int statusId) async {
     _inProgress = true;
@@ -102,7 +103,7 @@ class ParcelController extends GetxController {
     "delivery_zone": deliveryZoneId.toString(),
     "delivery_charge": parcelData.deliveryCharge.toStringAsFixed(2),
     "delivery_address": parcelData.receiverAddress,
-    "date": "2024-04-17",  
+    "date": DateConverter.yyyyMMdd(DateTime.now()),  
     "delivery_type_id": parcelData.deliveryType.toString(),  
     }, isLogin: true);
     bool response2= await Get.find<ProductController>().addProduct(productList,response.returnValue['id'],);

@@ -14,7 +14,7 @@ void main() async{
   Get.put(TranslationController());
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => const ECourier360(),
     ),
   );
