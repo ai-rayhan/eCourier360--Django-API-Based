@@ -12,7 +12,7 @@ class AdminPaymentHistoryScreen extends StatefulWidget {
 
 class AdminPaymentHistoryScreenState extends State<AdminPaymentHistoryScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final List<String> _tabs = ['Merchant Payment', 'Rider Payment']; 
+  final List<String> _tabs = ['Merchant Payment History', 'Rider Payment History']; 
 
   @override
   void initState() {

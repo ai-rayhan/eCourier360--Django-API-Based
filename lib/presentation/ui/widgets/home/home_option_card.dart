@@ -1,5 +1,4 @@
 
-import 'package:e_courier_360/presentation/utility/size.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +19,8 @@ class HomeOptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Sizefinder.deviceWidth(context)/3.2,
-      width: Sizefinder.deviceWidth(context)/3.2,
+      // height: Sizefinder.deviceWidth(context)/3.2,
+      // width: Sizefinder.deviceWidth(context)/3.2,
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -32,16 +31,19 @@ class HomeOptionCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                radius: 25,
+                radius: 18,
                 backgroundColor: AppColors.secondaryColor.withOpacity(.8),
                 foregroundColor: AppColors.whiteColor,
-                child: Icon(imagePath,size: 30,),),
+                child: Icon(imagePath,size: 20,),),
               Padding(
                 padding: const EdgeInsets.all(5.0),
-                child: Text(
-                  title,
-                  style: AppTextStyle.darkGrey14Bold.copyWith(fontSize: 12),
-                  overflow: TextOverflow.ellipsis,
+                child: Center(
+                  child: Text(
+                    title,
+                    // maxLines: 2,
+                    style: AppTextStyle.darkGrey14Bold.copyWith(fontSize: 12),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ],

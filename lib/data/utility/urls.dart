@@ -67,6 +67,8 @@ class Urls {
   // Payment
   static String makeMerchantPayment = '$apiUrl/parcels/merchant-payment/';
   static String makeRiderPayment = '$apiUrl/parcels/rider-payment/';
+  static String adminMerchantPaymentHistory = '$apiUrl/accounts/merchant-payment/';
+  static String riderPaymentHistory = '$apiUrl/accounts/driver-payment/';
 
   //Admin settings
   static String branch = '$apiUrl/branch/branches/';

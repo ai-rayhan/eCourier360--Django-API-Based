@@ -1,4 +1,6 @@
 
+import 'package:e_courier_360/data/models/merchant_settlement.dart';
+import 'package:e_courier_360/data/models/rider_settlement.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/payment_history_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/update_status_controller.dart';
@@ -46,12 +48,32 @@ class _PaymentListState extends State<PaymentList> {
         return Visibility(
           visible: !parcelController.inProgress,
           replacement: const CircularProgressIndicator(),
-          child: ListView.builder(
-            itemCount:widget.tabId==0? parcelController.merchantSettlements.length:parcelController.riderSettlements.length,
-            itemBuilder: (context,index)=>CustomListTile(title: 'title', subtitle: 'subtitle'))
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
+              itemCount:widget.tabId==0? parcelController.merchantSettlements.length:parcelController.riderSettlements.length,
+              itemBuilder: (context,index){ 
+                if(widget.tabId==0){
+                  MerchantSettlement merchantSettlement=parcelController.merchantSettlements[index];
+                  return CustomListTile(leading: CircleAvatar(child: Text(merchantSettlement.id.toString()),), title:  "Merchant name:${merchantSettlement.merchant} ",
+                   subtitle: "Payment Method:${merchantSettlement.paymentMethod} Payment by:${merchantSettlement.createdBy}");
+                }else{
+                  RiderSettlement riderSettlement=parcelController.riderSettlements[index];
+                  return CustomListTile(
+                    leading: CircleAvatar(child: Text(riderSettlement.id.toString()),),
+                    title:  "Rider name:${riderSettlement.rider} ",
+                   subtitle: "Payment Method:${riderSettlement.paymentMethod} Payment by:${riderSettlement.createdBy}");
+                }}),
+          )
             // TrackingCard(parcel:widget.tabId==0? parcelController.merchantSettlements[index]:parcelController.riderSettlements[index])),
         );
       }
     );
   }
+
+
+
+
+
+  
 }

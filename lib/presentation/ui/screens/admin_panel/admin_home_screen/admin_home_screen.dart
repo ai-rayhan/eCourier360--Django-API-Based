@@ -28,9 +28,9 @@ class AdminHomeScreen extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                mainAxisExtent: Sizefinder.deviceWidth(context)/3.2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                // mainAxisExtent: Sizefinder.deviceWidth(context)/4,
               ),
               itemCount: adminOptions.length,
               itemBuilder: (BuildContext context, int index) {

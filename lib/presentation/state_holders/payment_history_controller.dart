@@ -23,7 +23,7 @@ class PaymentHistoryController extends GetxController {
     _inProgress = true;
     showloading('Loading..');
     update();
-     final  NetworkCallerReturnObject response =await GetRequest.execute("${Urls.pickupZone}?branch_id=$branchId",);
+     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.adminMerchantPaymentHistory);
     _inProgress = false;
     if (response.success) {
      _merchantSettlements = (response.returnValue as List<dynamic>)
@@ -45,7 +45,7 @@ class PaymentHistoryController extends GetxController {
     _inProgress = true;
     showloading('Loading..');
     update();
-     final  NetworkCallerReturnObject response =await GetRequest.execute("${Urls.pickupZone}?branch_id=$branchId",);
+     final  NetworkCallerReturnObject response =await GetRequest.execute(Urls.riderPaymentHistory,);
     _inProgress = false;
     if (response.success) {
      _riderSettlements = (response.returnValue as List<dynamic>)

@@ -14,6 +14,7 @@ class RiderSettlement {
   final String updatedAt;
   final int rider;
   final int paymentMethod;
+  final String createdBy;
 
   RiderSettlement({
     required this.id,
@@ -31,6 +32,7 @@ class RiderSettlement {
     required this.updatedAt,
     required this.rider,
     required this.paymentMethod,
+    required this.createdBy,
   });
 
   factory RiderSettlement.fromJson(Map<String, dynamic> json) {
@@ -50,6 +52,7 @@ class RiderSettlement {
       updatedAt: json['updated_at'],
       rider: json['rider'],
       paymentMethod: json['payment_method'],
+      createdBy: json['created_by'],
     );
   }
 
@@ -70,6 +73,7 @@ class RiderSettlement {
       'updated_at': updatedAt,
       'rider': rider,
       'payment_method': paymentMethod,
+      'created_by': createdBy,
     };
   }
 }

@@ -1,6 +1,7 @@
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/rider_controller.dart';
+import 'package:e_courier_360/presentation/ui/screens/admin_panel/payment_history_screen/payment_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/payment_screen/payment_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/receiver_screen/receivers_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/admin_panel/riders_screen/riders_screen.dart';
@@ -45,9 +46,15 @@ List<HomeOptionCard> adminOptions = [
       }),
 
   HomeOptionCard(
-      title: "Payment",
+      title: "Make Payment",
       imagePath:Icons.payments_rounded,
       onTap: () {
         Get.to(const AdminPaymentScreen());
+      }),
+  HomeOptionCard(
+      title: "Payment History",
+      imagePath:Icons.payments_rounded,
+      onTap: () {
+        Get.to(const AdminPaymentHistoryScreen());
       }),
 ];

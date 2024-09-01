@@ -14,6 +14,7 @@ class MerchantSettlement {
   final String updatedAt;
   final int merchant;
   final int paymentMethod;
+  final String createdBy;
 
   MerchantSettlement({
     required this.id,
@@ -31,6 +32,7 @@ class MerchantSettlement {
     required this.updatedAt,
     required this.merchant,
     required this.paymentMethod,
+    required this.createdBy,
   });
 
   factory MerchantSettlement.fromJson(Map<String, dynamic> json) {
@@ -49,7 +51,8 @@ class MerchantSettlement {
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
       merchant: json['merchant'],
-      paymentMethod: json['payment_method'],
+      paymentMethod: json['payment_to'],
+      createdBy: json['created_by'],
     );
   }
 
@@ -69,7 +72,8 @@ class MerchantSettlement {
       'created_at': createdAt,
       'updated_at': updatedAt,
       'merchant': merchant,
-      'payment_method': paymentMethod,
+      'payment_to': paymentMethod,
+      'created_by': createdBy,
     };
   }
 }

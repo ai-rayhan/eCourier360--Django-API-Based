@@ -5,6 +5,7 @@ import 'package:e_courier_360/presentation/state_holders/delivery_status_control
 import 'package:e_courier_360/presentation/state_holders/delivery_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/payment_history_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/receiver_controller.dart';
@@ -34,6 +35,8 @@ class ControllerBinder extends Bindings {
     // Get.put( ProductController());
     Get.put( TabNavigationController());
     Get.put( MerchantController());
+    
+    Get.put( PaymentHistoryController());
     
   }
 }
