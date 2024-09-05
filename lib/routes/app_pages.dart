@@ -13,6 +13,7 @@ import 'package:e_courier_360/presentation/ui/screens/common_module/auth/verify_
 import 'package:e_courier_360/presentation/ui/screens/common_module/onboard/onboard_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/parcels_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/send_parcel_screen.dart';
+import 'package:e_courier_360/presentation/ui/screens/guest_panel/bottom_nav_bar/guest_bottom_nav_screen.dart';
 import 'package:e_courier_360/presentation/ui/screens/merchant_panel/bottom_navigationbar/merchant_bottom_navbar.dart';
 import 'package:e_courier_360/presentation/ui/screens/rider_panel/bottom_navigationbar/rider_bottom_navbar.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ import 'app_routes.dart';
 class AppPages {
   AppPages._();
   static final routes = [
+    //Auth 
     GetPage(
       name: RoutePath.initial,
       page: () => const SplashScreen(),
@@ -59,21 +61,31 @@ class AppPages {
       name: RoutePath.applicationInReview,
       page: () => const ApplicationInReviewScreen(),
     ),
+     ///////////Admin panel///////////////////
     GetPage(
       name: RoutePath.adminBottomNav,
       page: () => const AdminBottomNavigationBar(),
       binding: BottomNavBinding(),
     ),
+    //Merchant panel 
     GetPage(
       name: RoutePath.merchantBottomNav,
       page: () => const MerchantBottomNavigationBar(),
       binding: BottomNavBinding(),
     ),
+    //Rider panel 
     GetPage(
       name: RoutePath.riderBottomNav,
       page: () => const RiderBottomNavigationBar(),
       binding: BottomNavBinding(),
     ),
+    // Guest Panel
+    GetPage(
+      name: RoutePath.guestBottomNav,
+      page: () => const GuestBottomNavigationBar(),
+      binding: BottomNavBinding(),
+    ),
+    //Common
     GetPage(
       name: RoutePath.sendParcel,
       page: () => const SendPercelScreen(),

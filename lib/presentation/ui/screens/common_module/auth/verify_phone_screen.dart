@@ -33,7 +33,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 ),
                   GestureDetector(
                   onTap:(){
-                     Get.find<MainBottomNavController>().changeIndex(0);
+                     Get.find<MainBottomNavController>().changePage(0);
                       AuthController.clearAuthData();
                       Get.offAllNamed(RoutePath.initial);
                   },

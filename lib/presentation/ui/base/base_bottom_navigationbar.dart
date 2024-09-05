@@ -6,8 +6,9 @@ import 'package:get/get.dart';
 
 //This is Base bottom Navigation Bar which used for all panel
 class BaseBottomNavScreen extends StatelessWidget {
-  const BaseBottomNavScreen({super.key, required this.screens, required this.items});
-  final List<Widget> screens;
+  const BaseBottomNavScreen({super.key, this.initialRoute, required this.items});
+  // final List<Widget> screens;
+  final String? initialRoute;
   final List<BottomNavigationBarItem> items;
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,15 @@ class BaseBottomNavScreen extends StatelessWidget {
           }
            controller.backToHome();
         } ,
-        child: screens[controller.currentIndex] ),
+        child:Navigator(
+            key: Get.nestedKey(1),
+            initialRoute: initialRoute,
+            onGenerateRoute: controller.onGenerateRoute,
+          ), ),
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: controller.currentIndex,
-            onTap: controller.changeIndex,
+            onTap: controller.changePage,
+            // controller.changeIndex,
             selectedItemColor: AppColors.primaryColor,
             unselectedItemColor: Colors.grey,
             showUnselectedLabels: true,

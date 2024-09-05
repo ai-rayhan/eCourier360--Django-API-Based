@@ -6,10 +6,7 @@ import 'package:e_courier_360/presentation/state_holders/delivery_zone_controlle
 import 'package:e_courier_360/presentation/state_holders/pickup_zone_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/receiver_controller.dart';
 import 'package:e_courier_360/presentation/ui/base/base_bottom_navigationbar.dart';
-import 'package:e_courier_360/presentation/ui/screens/merchant_panel/merchant_home_screen/merchant_home_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/merchant_panel/profile_screen/profile_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/parcels_screen.dart';
-import 'package:e_courier_360/presentation/ui/screens/merchant_panel/calculate_screen/calculate_screen.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,16 +34,9 @@ class _MerchantBottomNavigationBarState
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
   }
 
-  final List<Widget> _screens = const [
-    MerchantHomeScreen(),
-    CalculateScreen(),
-    ParcelsTrackScreen(),
-    MerchantProfileScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return BaseBottomNavScreen(screens: _screens, items: const [
+    return const BaseBottomNavScreen(initialRoute:RoutePath.merchantHome, items: [
       BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
       BottomNavigationBarItem(icon: Icon(Icons.calculate), label: 'Calculate'),
       BottomNavigationBarItem(icon: Icon(Icons.update), label: 'Parcels'),

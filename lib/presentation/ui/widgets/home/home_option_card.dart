@@ -19,8 +19,8 @@ class HomeOptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // height: Sizefinder.deviceWidth(context)/3.2,
-      // width: Sizefinder.deviceWidth(context)/3.2,
+      height:height,
+      width: width,
       child: GestureDetector(
         onTap: onTap,
         child: Container(

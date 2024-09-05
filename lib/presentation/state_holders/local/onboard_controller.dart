@@ -1,6 +1,7 @@
 
 
 import 'package:e_courier_360/presentation/ui/screens/common_module/auth/login_screen.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,9 +29,17 @@ update();
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setBool('seeOnboard', true);
   }
+  Future<void> switchGuestMode() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setBool('guestmode', true);
+  }
 
   void navigateToLogin() {
     makeSeeOnboard();
     Get.offAll(const LoginScreen());
+  }
+  void navigateToAsGuest() {
+    switchGuestMode();
+    Get.offNamed(RoutePath.guestBottomNav);
   }
 }

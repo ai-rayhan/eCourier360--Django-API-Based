@@ -31,7 +31,7 @@ class MerchantHomeScreen extends StatelessWidget {
                                
                       HomeOptionCard(
                         height: 90,
-                        width: Sizefinder.deviceWidth(context)/2.4,
+                        width: Sizefinder.deviceWidth(context)/2.35,
                         title: 'Send Parcel',
                         imagePath: HugeIcons.strokeRoundedPackageAdd, 
                         onTap: () {
@@ -41,7 +41,7 @@ class MerchantHomeScreen extends StatelessWidget {
                       AppSizedBox.w16,
                       HomeOptionCard(
                         height: 90,
-                        width: Sizefinder.deviceWidth(context)/2.4,
+                        width: Sizefinder.deviceWidth(context)/2.35,
                         title: 'Payment History',
                         imagePath:Icons.payments_rounded, 
                         onTap: () {

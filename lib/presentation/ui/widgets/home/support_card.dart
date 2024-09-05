@@ -12,21 +12,24 @@ class SupportCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => AppUrlLauncher.openEmail(QuickConfig.supportEmail),
-      child: Container(
-        decoration: appBoxDecoration(context),
-        child: Padding(
+      child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(children: [Image.asset(AssetsPath.support, width: 50,
-        height: 50,color: AppColors.lightPrimaryColor,) ,
-        const SizedBox(width: 15,),
-          Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Need help?",style: AppTextStyle.darkGrey14Bold,),
-            const Text("Contact with  Support"),
-          ],
-        )]),
-      ),),
+        child: Container(
+          decoration: appBoxDecoration(context),
+          child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(children: [Image.asset(AssetsPath.support, width: 50,
+          height: 50,color: AppColors.lightPrimaryColor,) ,
+          const SizedBox(width: 15,),
+            Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Need help?",style: AppTextStyle.darkGrey14Bold,),
+              const Text("Contact with  Support"),
+            ],
+          )]),
+        ),),
+      ),
     );
   }
 }

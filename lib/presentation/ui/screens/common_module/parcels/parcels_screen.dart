@@ -5,7 +5,9 @@ import 'package:e_courier_360/presentation/state_holders/update_status_controlle
 import 'package:e_courier_360/presentation/ui/screens/common_module/parcels/update_status_screen.dart';
 import 'package:e_courier_360/presentation/ui/widgets/common/appbar.dart';
 import 'package:e_courier_360/presentation/ui/screens/common_module/send_parcel/common/parcel_list.dart';
+import 'package:e_courier_360/presentation/ui/widgets/common/empty_data.dart';
 import 'package:e_courier_360/presentation/utility_urls.dart';
+import 'package:e_courier_360/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,7 +41,28 @@ class ParcelsTrackScreenState extends State<ParcelsTrackScreen> with SingleTicke
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Get.find<DeliveryStatusController>().deliveryStatuses.isEmpty?
+    
+     Scaffold(
+        appBar: CourierAppBar(
+        title: "Parcels",
+        leadingOnPressed: (){
+          Get.find<MainBottomNavController>().backToHome();
+        },),
+      body: Column(
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          EmptyDataPage(msg: "You Haven't added any parcel\nAdd new parcel and view details here",msgStyle: AppTextStyle.darkGrey13Bold,),
+          ElevatedButton.icon(onPressed: (){
+            Get.find<MainBottomNavController>().changePage(0);
+            Get.toNamed(RoutePath.adminHome);
+          }, label: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 0),
+            child: Text("Start Adding New parcel",style:AppTextStyle.theme16w600 ,),
+          ))
+          ],
+      )): Scaffold(
       appBar: CourierAppBar(
         title: "Parcels",
         leadingOnPressed: (){

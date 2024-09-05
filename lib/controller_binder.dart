@@ -3,6 +3,7 @@ import 'package:e_courier_360/presentation/state_holders/category_controller.dar
 import 'package:e_courier_360/presentation/state_holders/delivery_type_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_zone_controller.dart';
+import 'package:e_courier_360/presentation/state_holders/local/onboard_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/merchant_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/parcel_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/payment_history_controller.dart';
@@ -37,6 +38,7 @@ class ControllerBinder extends Bindings {
     Get.put( MerchantController());
     
     Get.put( PaymentHistoryController());
+    Get.put( OnBoardingController());
     
   }
 }

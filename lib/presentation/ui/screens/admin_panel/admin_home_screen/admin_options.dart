@@ -21,14 +21,14 @@ List<HomeOptionCard> adminOptions = [
       title: "All Parcel",
       imagePath:HugeIcons.strokeRoundedPackage,
       onTap: () {
-        Get.find<MainBottomNavController>().changeIndex(2);
+        Get.find<MainBottomNavController>().changePage(2);
       }),
   HomeOptionCard(
       title: "Merchants",
       imagePath: HugeIcons.strokeRoundedUserMultiple,
       onTap: () {
         Get.lazyPut<MerchantController>(() => MerchantController());
-         Get.find<MainBottomNavController>().changeIndex(1);
+         Get.find<MainBottomNavController>().changePage(1);
       }),
       
   HomeOptionCard(

@@ -58,6 +58,7 @@ dependencies:
   flutter_easyloading: ^3.0.5
   flutter_paypal: ^0.2.1
   hugeicons: ^0.0.7
+  smooth_page_indicator: ^1.2.0+3
 
 
 icons_launcher:

@@ -79,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
                             subtitle: "Exit from app",
                             iconData: Icons.logout,
                             ontap: () {
-                              Get.find<MainBottomNavController>().changeIndex(0);
+                              Get.find<MainBottomNavController>().backToHome();
                               AuthController.clearAuthData();
                               Get.offAllNamed(RoutePath.initial);
                             }),

@@ -14,6 +14,8 @@ class ECourier360 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
           return GetMaterialApp(
+            defaultTransition: Transition.circularReveal,
+            transitionDuration: const Duration(seconds: 1),
             debugShowCheckedModeBanner: false,
             theme: AppThemeData.lightThemData,
             darkTheme: AppThemeData.darkThemeData,

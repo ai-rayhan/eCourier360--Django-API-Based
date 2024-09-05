@@ -196,7 +196,7 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                               if (response) {
                                 Get.back();
                                 Get.back();
-                                Get.find< MainBottomNavController>().changeIndex(2);
+                                Get.find< MainBottomNavController>().changePage(2);
                                 Get.snackbar("Great", "Parcel Added");
                               }
                             } else {
@@ -235,7 +235,7 @@ class _ParcelPreviewScreenState extends State<ParcelPreviewScreen> {
                                 Get.back();
                                 Get.back();
                                 Get.snackbar("Great", "Parcel Updated");
-                                Get.find< MainBottomNavController>().changeIndex(2);
+                                Get.find< MainBottomNavController>().changePage(2);
                               }
                             }
                           },

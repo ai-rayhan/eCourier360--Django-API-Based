@@ -17,7 +17,7 @@ class BaseHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? voucherId;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -44,45 +44,7 @@ class BaseHomeScreen extends StatelessWidget {
                           ),
                         ),
                         // tracking input field
-                                            Padding(
-                     padding: const EdgeInsets.only(top: 16,right: 16,left: 16),
-                     child: InputCard(child: TextField(
-                      decoration: InputDecoration(
-                      hintText: 'Enter tracking number',
-                      suffixIcon: GetBuilder<ParcelController>(
-                        builder: (parcelController) {
-                          return Visibility(
-                            visible:!parcelController.inProgress,
-                            replacement: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: CircularProgressIndicator(),
-                            ),
-                            child: Container(
-                              decoration:primaryDecoration(context),
-                              // color: AppColors.primaryColor,
-                              child: IconButton(
-                                onPressed: ()async{
-                                  if(voucherId!=null && voucherId!.length>5){
-                                    final bool response=await parcelController.trackingParcel(voucherId!);
-                                    if(response){
-                                    Get.to(const OrderTrackingScreen());
-                                    }
-                                  }
-                                },
-                                icon: const Icon(
-                                Icons.search_rounded,
-                                size: 30,color: AppColors.primaryColor,
-                                 ),
-                              ),
-                            ),
-                          );
-                        }
-                      )),
-                      onChanged: (value) {
-                         voucherId=value;
-                      },
-                        ),),
-                   ),
+                        TrackingInput(),
                       ]),
                 ),
               ),
@@ -91,23 +53,30 @@ class BaseHomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Parcels Summary',
-                      style: TextStyle(
-                          fontFamily: FontFamily.popins,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500)),
-                  AppSizedBox.h10,
                   GetBuilder<DeliveryStatusController>(
                       builder: (dashBoardController) {
-                    return Visibility(
-                      visible: dashBoardController.deliveryStatuses.isEmpty||
-                          !dashBoardController.inProgress,
-                      replacement: const CenterCircularProgressIndicator(),
-                      child: ParcelDashBoard(
-                        dashBoardController: dashBoardController,
-                      ),
+                    return dashBoardController.deliveryStatuses.isEmpty?
+                    Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKDYN3Aunp2tGSkL4cTMb1QPs-aJBigsoX8g&s')
+                    : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Parcels Summary',
+                            style: TextStyle(
+                                fontFamily: FontFamily.popins,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500)),
+                        AppSizedBox.h10,
+                        Visibility(
+                          visible:
+                              dashBoardController.deliveryStatuses.isEmpty ||
+                                  !dashBoardController.inProgress,
+                          replacement: const CenterCircularProgressIndicator(),
+                          child: ParcelDashBoard(
+                            dashBoardController: dashBoardController,
+                          ),
+                        )
+                      ],
                     );
                   }),
                   bottomChild ?? Container()
@@ -115,6 +84,64 @@ class BaseHomeScreen extends StatelessWidget {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class TrackingInput extends StatelessWidget {
+  const TrackingInput({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    String? voucherId;
+    return Padding(
+      padding: const EdgeInsets.only(
+          top: 16, right: 16, left: 16),
+      child: InputCard(
+        child: TextField(
+          decoration: InputDecoration(
+              hintText: 'Enter tracking number',
+              suffixIcon: GetBuilder<ParcelController>(
+                  builder: (parcelController) {
+                return Visibility(
+                  visible: !parcelController.inProgress,
+                  replacement: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(),
+                  ),
+                  child: Container(
+                    decoration: primaryDecoration(context),
+                    // color: AppColors.primaryColor,
+                    child: IconButton(
+                      onPressed: () async {
+                        if (voucherId != null &&
+                            voucherId!.length > 5) {
+                          final bool response =
+                              await parcelController
+                                  .trackingParcel(
+                                      voucherId!);
+                          if (response) {
+                            Get.to(
+                                const OrderTrackingScreen());
+                          }
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.search_rounded,
+                        size: 30,
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                  ),
+                );
+              })),
+          onChanged: (value) {
+            voucherId = value;
+          },
         ),
       ),
     );

@@ -11,13 +11,13 @@ class InitialRoute{
     Get.offAllNamed(RoutePath.adminBottomNav);
   }
   else if(AuthController.userRole==3){
-   Get.toNamed(RoutePath.merchantBottomNav);
+   Get.offAllNamed(RoutePath.merchantBottomNav);
   }
   else if(AuthController.userRole==4){
- Get.toNamed(RoutePath.riderBottomNav);
+ Get.offAllNamed(RoutePath.riderBottomNav);
   }
   else{
-    Get.toNamed(RoutePath.applicationInReview);
+    Get.offAllNamed(RoutePath.applicationInReview);
   }
 }
   static void  checkInitialRoute(){

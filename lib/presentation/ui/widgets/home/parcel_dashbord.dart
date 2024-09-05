@@ -1,9 +1,7 @@
-import 'package:e_courier_360/data/utility/urls.dart';
 import 'package:e_courier_360/presentation/state_holders/auth_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/delivery_status_controller.dart';
 import 'package:e_courier_360/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:e_courier_360/presentation/ui/widgets/home/delivery_status_card.dart';
-import 'package:e_courier_360/presentation/utility/size.dart';
 import 'package:e_courier_360/presentation/utility/status_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,9 +36,9 @@ class ParcelDashBoard extends StatelessWidget {
             onTap: () {
               dashBoardController.tabIndex = index;
               if(AuthController.userRole==4){
-                 Get.find<MainBottomNavController>().changeIndex(1);
+                 Get.find<MainBottomNavController>().changePage(1);
               }else{
-                  Get.find<MainBottomNavController>().changeIndex(2);
+                  Get.find<MainBottomNavController>().changePage(2);
               }
             },
             child: SummaryCard(

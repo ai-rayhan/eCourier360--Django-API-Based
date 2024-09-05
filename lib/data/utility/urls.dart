@@ -1,7 +1,7 @@
 class Urls {
   // static const String baseUrl = 'http://192.168.0.193:8000/api';//Base API URL
-  static const String siteUrl = 'http://10.0.2.2:8000';//Base API URL
-  // static const String siteUrl = 'https://courier.2ndhandmarketbd.com/python12';//Base API URL
+  // static const String siteUrl = 'http://10.0.2.2:8000';//Base API URL
+  static const String siteUrl = 'https://courier.2ndhandmarketbd.com/python12';//Base API URL
   static  String get apiUrl => '$siteUrl/api';
   
   //Auth and Verify
